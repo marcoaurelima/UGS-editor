@@ -113,6 +113,7 @@
 				<object class="wxPanel" name="ID_PANEL4" variable="Panel4" member="yes">
 					<pos>24,24</pos>
 					<size>352,87</size>
+					<bg>wxSYS_COLOUR_SCROLLBAR</bg>
 					<style>wxBORDER_DOUBLE|wxTAB_TRAVERSAL</style>
 					<object class="wxButton" name="ID_BUTTON2" variable="Button2" member="yes">
 						<label>Play</label>
@@ -121,8 +122,8 @@
 					</object>
 					<object class="wxStaticText" name="ID_STATICTEXT7" variable="StaticText7" member="yes">
 						<label>00:00 / 03:34</label>
-						<pos>96,24</pos>
-						<size>176,23</size>
+						<pos>104,17</pos>
+						<size>176,31</size>
 						<font>
 							<size>17</size>
 							<style>normal</style>

@@ -134,8 +134,9 @@ UGS_editorFrame::UGS_editorFrame(wxWindow* parent,wxWindowID id)
     Panel3 = new wxPanel(Panel1, ID_PANEL3, wxPoint(536,104), wxSize(400,272), wxBORDER_DOUBLE|wxTAB_TRAVERSAL, _T("ID_PANEL3"));
     Panel3->SetBackgroundColour(wxSystemSettings::GetColour(wxSYS_COLOUR_INACTIVECAPTION));
     Panel4 = new wxPanel(Panel3, ID_PANEL4, wxPoint(24,24), wxSize(352,87), wxBORDER_DOUBLE|wxTAB_TRAVERSAL, _T("ID_PANEL4"));
+    Panel4->SetBackgroundColour(wxSystemSettings::GetColour(wxSYS_COLOUR_SCROLLBAR));
     Button2 = new wxButton(Panel4, ID_BUTTON2, _("Play"), wxPoint(16,16), wxSize(63,34), 0, wxDefaultValidator, _T("ID_BUTTON2"));
-    StaticText7 = new wxStaticText(Panel4, ID_STATICTEXT7, _("00:00 / 03:34"), wxPoint(96,24), wxSize(176,23), 0, _T("ID_STATICTEXT7"));
+    StaticText7 = new wxStaticText(Panel4, ID_STATICTEXT7, _("00:00 / 03:34"), wxPoint(104,17), wxSize(176,31), 0, _T("ID_STATICTEXT7"));
     wxFont StaticText7Font(17,wxFONTFAMILY_SWISS,wxFONTSTYLE_NORMAL,wxFONTWEIGHT_NORMAL,false,_T("Sans"),wxFONTENCODING_DEFAULT);
     StaticText7->SetFont(StaticText7Font);
     Gauge1 = new wxGauge(Panel4, ID_GAUGE1, 100, wxPoint(16,41), wxSize(311,28), 0, wxDefaultValidator, _T("ID_GAUGE1"));
