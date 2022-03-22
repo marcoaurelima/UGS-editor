@@ -15,9 +15,9 @@
 #include <wx/checkbox.h>
 #include <wx/choice.h>
 #include <wx/frame.h>
+#include <wx/gauge.h>
 #include <wx/menu.h>
 #include <wx/panel.h>
-#include <wx/statbox.h>
 #include <wx/statline.h>
 #include <wx/stattext.h>
 #include <wx/textctrl.h>
@@ -38,6 +38,7 @@ class UGS_editorFrame: public wxFrame
         //*)
 
         //(*Identifiers(UGS_editorFrame)
+        static const long ID_PANEL2;
         static const long ID_STATICTEXT1;
         static const long ID_TEXTCTRL1;
         static const long ID_STATICTEXT2;
@@ -49,12 +50,19 @@ class UGS_editorFrame: public wxFrame
         static const long ID_STATICTEXT6;
         static const long ID_TEXTCTRL3;
         static const long ID_BUTTON1;
-        static const long ID_BUTTON2;
         static const long ID_CHECKBOX3;
         static const long ID_CHECKBOX2;
         static const long ID_CHECKBOX1;
         static const long ID_STATICLINE1;
-        static const long ID_STATICBOX1;
+        static const long ID_BUTTON2;
+        static const long ID_STATICTEXT7;
+        static const long ID_GAUGE1;
+        static const long ID_PANEL4;
+        static const long ID_STATICTEXT8;
+        static const long ID_STATICTEXT9;
+        static const long ID_PANEL5;
+        static const long ID_PANEL3;
+        static const long ID_BUTTON3;
         static const long ID_PANEL1;
         static const long idMenuQuit;
         static const long idMenuAbout;
@@ -63,12 +71,17 @@ class UGS_editorFrame: public wxFrame
         //(*Declarations(UGS_editorFrame)
         wxButton* Button1;
         wxButton* Button2;
+        wxButton* Button3;
         wxCheckBox* CheckBox1;
         wxCheckBox* CheckBox2;
         wxCheckBox* CheckBox3;
         wxChoice* Choice1;
+        wxGauge* Gauge1;
         wxPanel* Panel1;
-        wxStaticBox* StaticBox1;
+        wxPanel* Panel2;
+        wxPanel* Panel3;
+        wxPanel* Panel4;
+        wxPanel* Panel5;
         wxStaticLine* StaticLine1;
         wxStaticText* StaticText1;
         wxStaticText* StaticText2;
@@ -76,6 +89,9 @@ class UGS_editorFrame: public wxFrame
         wxStaticText* StaticText4;
         wxStaticText* StaticText5;
         wxStaticText* StaticText6;
+        wxStaticText* StaticText7;
+        wxStaticText* StaticText8;
+        wxStaticText* StaticText9;
         wxTextCtrl* TextCtrl1;
         wxTextCtrl* TextCtrl2;
         wxTextCtrl* TextCtrl3;

@@ -13,6 +13,7 @@
 //(*InternalHeaders(UGS_editorFrame)
 #include <wx/font.h>
 #include <wx/intl.h>
+#include <wx/settings.h>
 #include <wx/string.h>
 //*)
 
@@ -43,6 +44,7 @@ wxString wxbuildinfo(wxbuildinfoformat format)
 }
 
 //(*IdInit(UGS_editorFrame)
+const long UGS_editorFrame::ID_PANEL2 = wxNewId();
 const long UGS_editorFrame::ID_STATICTEXT1 = wxNewId();
 const long UGS_editorFrame::ID_TEXTCTRL1 = wxNewId();
 const long UGS_editorFrame::ID_STATICTEXT2 = wxNewId();
@@ -54,12 +56,19 @@ const long UGS_editorFrame::ID_STATICTEXT5 = wxNewId();
 const long UGS_editorFrame::ID_STATICTEXT6 = wxNewId();
 const long UGS_editorFrame::ID_TEXTCTRL3 = wxNewId();
 const long UGS_editorFrame::ID_BUTTON1 = wxNewId();
-const long UGS_editorFrame::ID_BUTTON2 = wxNewId();
 const long UGS_editorFrame::ID_CHECKBOX3 = wxNewId();
 const long UGS_editorFrame::ID_CHECKBOX2 = wxNewId();
 const long UGS_editorFrame::ID_CHECKBOX1 = wxNewId();
 const long UGS_editorFrame::ID_STATICLINE1 = wxNewId();
-const long UGS_editorFrame::ID_STATICBOX1 = wxNewId();
+const long UGS_editorFrame::ID_BUTTON2 = wxNewId();
+const long UGS_editorFrame::ID_STATICTEXT7 = wxNewId();
+const long UGS_editorFrame::ID_GAUGE1 = wxNewId();
+const long UGS_editorFrame::ID_PANEL4 = wxNewId();
+const long UGS_editorFrame::ID_STATICTEXT8 = wxNewId();
+const long UGS_editorFrame::ID_STATICTEXT9 = wxNewId();
+const long UGS_editorFrame::ID_PANEL5 = wxNewId();
+const long UGS_editorFrame::ID_PANEL3 = wxNewId();
+const long UGS_editorFrame::ID_BUTTON3 = wxNewId();
 const long UGS_editorFrame::ID_PANEL1 = wxNewId();
 const long UGS_editorFrame::idMenuQuit = wxNewId();
 const long UGS_editorFrame::idMenuAbout = wxNewId();
@@ -80,9 +89,12 @@ UGS_editorFrame::UGS_editorFrame(wxWindow* parent,wxWindowID id)
     wxMenuItem* MenuItem2;
 
     Create(parent, wxID_ANY, _("Ultimate Guitar Show - Editor"), wxDefaultPosition, wxDefaultSize, wxDEFAULT_FRAME_STYLE, _T("wxID_ANY"));
-    SetClientSize(wxSize(543,539));
+    SetClientSize(wxSize(961,503));
     Move(wxPoint(-1,-1));
     Panel1 = new wxPanel(this, ID_PANEL1, wxPoint(0,8), wxSize(528,494), wxTAB_TRAVERSAL, _T("ID_PANEL1"));
+    Panel1->SetBackgroundColour(wxSystemSettings::GetColour(wxSYS_COLOUR_ACTIVEBORDER));
+    Panel2 = new wxPanel(Panel1, ID_PANEL2, wxPoint(32,104), wxSize(480,320), wxBORDER_DOUBLE|wxTAB_TRAVERSAL, _T("ID_PANEL2"));
+    Panel2->SetBackgroundColour(wxSystemSettings::GetColour(wxSYS_COLOUR_INACTIVECAPTION));
     StaticText1 = new wxStaticText(Panel1, ID_STATICTEXT1, _("ULTIMATE GUITAR SHOW EDITOR"), wxPoint(72,40), wxSize(416,40), 0, _T("ID_STATICTEXT1"));
     wxFont StaticText1Font(18,wxFONTFAMILY_TELETYPE,wxFONTSTYLE_NORMAL,wxFONTWEIGHT_BOLD,false,_T("Nimbus Mono PS"),wxFONTENCODING_DEFAULT);
     StaticText1->SetFont(StaticText1Font);
@@ -112,7 +124,6 @@ UGS_editorFrame::UGS_editorFrame(wxWindow* parent,wxWindowID id)
     TextCtrl3 = new wxTextCtrl(Panel1, ID_TEXTCTRL3, _("C://files/audio"), wxPoint(176,360), wxSize(248,34), 0, wxDefaultValidator, _T("ID_TEXTCTRL3"));
     TextCtrl3->Disable();
     Button1 = new wxButton(Panel1, ID_BUTTON1, _("..."), wxPoint(432,360), wxSize(37,34), 0, wxDefaultValidator, _T("ID_BUTTON1"));
-    Button2 = new wxButton(Panel1, ID_BUTTON2, _("Iniciar"), wxPoint(200,440), wxSize(160,34), 0, wxDefaultValidator, _T("ID_BUTTON2"));
     CheckBox3 = new wxCheckBox(Panel1, ID_CHECKBOX3, _("Dificil"), wxPoint(380,310), wxDefaultSize, 0, wxDefaultValidator, _T("ID_CHECKBOX3"));
     CheckBox3->SetValue(false);
     CheckBox2 = new wxCheckBox(Panel1, ID_CHECKBOX2, _("Medio"), wxPoint(280,310), wxDefaultSize, 0, wxDefaultValidator, _T("ID_CHECKBOX2"));
@@ -120,7 +131,22 @@ UGS_editorFrame::UGS_editorFrame(wxWindow* parent,wxWindowID id)
     CheckBox1 = new wxCheckBox(Panel1, ID_CHECKBOX1, _("Facil"), wxPoint(190,310), wxDefaultSize, 0, wxDefaultValidator, _T("ID_CHECKBOX1"));
     CheckBox1->SetValue(false);
     StaticLine1 = new wxStaticLine(Panel1, ID_STATICLINE1, wxPoint(50,65), wxSize(400,-1), wxLI_HORIZONTAL, _T("ID_STATICLINE1"));
-    StaticBox1 = new wxStaticBox(Panel1, ID_STATICBOX1, _("     Dados da Faixa    "), wxPoint(24,96), wxSize(496,328), 0, _T("ID_STATICBOX1"));
+    Panel3 = new wxPanel(Panel1, ID_PANEL3, wxPoint(536,104), wxSize(400,272), wxBORDER_DOUBLE|wxTAB_TRAVERSAL, _T("ID_PANEL3"));
+    Panel3->SetBackgroundColour(wxSystemSettings::GetColour(wxSYS_COLOUR_INACTIVECAPTION));
+    Panel4 = new wxPanel(Panel3, ID_PANEL4, wxPoint(24,24), wxSize(352,87), wxBORDER_DOUBLE|wxTAB_TRAVERSAL, _T("ID_PANEL4"));
+    Button2 = new wxButton(Panel4, ID_BUTTON2, _("Play"), wxPoint(16,16), wxSize(63,34), 0, wxDefaultValidator, _T("ID_BUTTON2"));
+    StaticText7 = new wxStaticText(Panel4, ID_STATICTEXT7, _("00:00 / 03:34"), wxPoint(96,24), wxSize(176,23), 0, _T("ID_STATICTEXT7"));
+    wxFont StaticText7Font(17,wxFONTFAMILY_SWISS,wxFONTSTYLE_NORMAL,wxFONTWEIGHT_NORMAL,false,_T("Sans"),wxFONTENCODING_DEFAULT);
+    StaticText7->SetFont(StaticText7Font);
+    Gauge1 = new wxGauge(Panel4, ID_GAUGE1, 100, wxPoint(16,41), wxSize(311,28), 0, wxDefaultValidator, _T("ID_GAUGE1"));
+    Gauge1->SetValue(65);
+    StaticText8 = new wxStaticText(Panel3, ID_STATICTEXT8, _("Acordes:\n  1  A Y\n  2  S U\n  3  D I  \n  4  F O \n  5  G P\n"), wxPoint(40,125), wxSize(64,135), 0, _T("ID_STATICTEXT8"));
+    Panel5 = new wxPanel(Panel3, ID_PANEL5, wxPoint(176,136), wxSize(128,111), wxBORDER_DOUBLE|wxTAB_TRAVERSAL, _T("ID_PANEL5"));
+    Panel5->SetBackgroundColour(wxSystemSettings::GetColour(wxSYS_COLOUR_HIGHLIGHT));
+    StaticText9 = new wxStaticText(Panel5, ID_STATICTEXT9, _("1"), wxPoint(42,32), wxSize(55,63), 0, _T("ID_STATICTEXT9"));
+    wxFont StaticText9Font(56,wxFONTFAMILY_TELETYPE,wxFONTSTYLE_NORMAL,wxFONTWEIGHT_BOLD,false,_T("Nimbus Mono PS"),wxFONTENCODING_DEFAULT);
+    StaticText9->SetFont(StaticText9Font);
+    Button3 = new wxButton(Panel1, ID_BUTTON3, _("Salvar Edicao"), wxPoint(536,392), wxSize(400,34), 0, wxDefaultValidator, _T("ID_BUTTON3"));
     MenuBar1 = new wxMenuBar();
     Menu1 = new wxMenu();
     MenuItem1 = new wxMenuItem(Menu1, idMenuQuit, _("Quit\tAlt-F4"), _("Quit the application"), wxITEM_NORMAL);
