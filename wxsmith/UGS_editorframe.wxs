@@ -1,0 +1,133 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<wxsmith>
+	<object class="wxFrame" name="UGS_editorFrame">
+		<title>Ultimate Guitar Show - Editor</title>
+		<centered>1</centered>
+		<pos>-1,-1</pos>
+		<size>543,539</size>
+		<id_arg>0</id_arg>
+		<object class="wxPanel" name="ID_PANEL1" variable="Panel1" member="yes">
+			<pos>0,8</pos>
+			<size>528,494</size>
+			<object class="wxStaticText" name="ID_STATICTEXT1" variable="StaticText1" member="yes">
+				<label>ULTIMATE GUITAR SHOW EDITOR</label>
+				<pos>72,40</pos>
+				<size>416,40</size>
+				<font>
+					<size>18</size>
+					<style>normal</style>
+					<weight>bold</weight>
+					<underlined>0</underlined>
+					<family>teletype</family>
+					<face>Nimbus Mono PS</face>
+				</font>
+			</object>
+			<object class="wxTextCtrl" name="ID_TEXTCTRL1" variable="TextCtrl1" member="yes">
+				<pos>144,136</pos>
+				<size>328,34</size>
+			</object>
+			<object class="wxStaticText" name="ID_STATICTEXT2" variable="StaticText2" member="yes">
+				<label>Artista</label>
+				<pos>65,144</pos>
+			</object>
+			<object class="wxTextCtrl" name="ID_TEXTCTRL2" variable="TextCtrl2" member="yes">
+				<pos>144,192</pos>
+				<size>328,34</size>
+			</object>
+			<object class="wxStaticText" name="ID_STATICTEXT3" variable="StaticText3" member="yes">
+				<label>Musica</label>
+				<pos>65,200</pos>
+			</object>
+			<object class="wxChoice" name="ID_CHOICE1" variable="Choice1" member="yes">
+				<content>
+					<item>Guitarra 1</item>
+					<item>Guitarra 2</item>
+					<item>Baixo</item>
+					<item>Bateria</item>
+					<item>Sanfona</item>
+					<item>Zabumba</item>
+					<item>Triangulo</item>
+					<item>Sax</item>
+					<item>Violao</item>
+					<item>Cavaquinho</item>
+					<item>Ukulele</item>
+					<item>Trompete</item>
+					<item>Sampler</item>
+					<item>Piano</item>
+					<item>Teclado</item>
+				</content>
+				<pos>176,248</pos>
+				<size>296,34</size>
+			</object>
+			<object class="wxStaticText" name="ID_STATICTEXT4" variable="StaticText4" member="yes">
+				<label>Instrumento</label>
+				<pos>65,256</pos>
+			</object>
+			<object class="wxStaticText" name="ID_STATICTEXT5" variable="StaticText5" member="yes">
+				<label>Dificuldade</label>
+				<pos>65,310</pos>
+			</object>
+			<object class="wxStaticText" name="ID_STATICTEXT6" variable="StaticText6" member="yes">
+				<label>Audio .ogg</label>
+				<pos>65,365</pos>
+			</object>
+			<object class="wxTextCtrl" name="ID_TEXTCTRL3" variable="TextCtrl3" member="yes">
+				<value>C://files/audio</value>
+				<pos>176,360</pos>
+				<size>248,34</size>
+				<enabled>0</enabled>
+			</object>
+			<object class="wxButton" name="ID_BUTTON1" variable="Button1" member="yes">
+				<label>...</label>
+				<pos>432,360</pos>
+				<size>37,34</size>
+			</object>
+			<object class="wxButton" name="ID_BUTTON2" variable="Button2" member="yes">
+				<label>Iniciar</label>
+				<pos>200,440</pos>
+				<size>160,34</size>
+			</object>
+			<object class="wxCheckBox" name="ID_CHECKBOX3" variable="CheckBox3" member="yes">
+				<label>Dificil</label>
+				<pos>380,310</pos>
+			</object>
+			<object class="wxCheckBox" name="ID_CHECKBOX2" variable="CheckBox2" member="yes">
+				<label>Medio</label>
+				<pos>280,310</pos>
+			</object>
+			<object class="wxCheckBox" name="ID_CHECKBOX1" variable="CheckBox1" member="yes">
+				<label>Facil</label>
+				<pos>190,310</pos>
+			</object>
+			<object class="wxStaticLine" name="ID_STATICLINE1" variable="StaticLine1" member="yes">
+				<pos>50,65</pos>
+				<size>400,-1</size>
+			</object>
+			<object class="wxStaticBox" name="ID_STATICBOX1" variable="StaticBox1" member="yes">
+				<label>     Dados da Faixa    </label>
+				<pos>24,96</pos>
+				<size>496,328</size>
+			</object>
+		</object>
+		<object class="wxMenuBar" variable="MenuBar1" member="no">
+			<object class="wxMenu" variable="Menu1" member="no">
+				<label>&amp;File</label>
+				<object class="wxMenuItem" name="idMenuQuit" variable="MenuItem1" member="no">
+					<label>Quit</label>
+					<accel>Alt-F4</accel>
+					<help>Quit the application</help>
+					<handler function="OnQuit" entry="EVT_MENU" />
+				</object>
+			</object>
+			<object class="wxMenu" variable="Menu2" member="no">
+				<label>Help</label>
+				<object class="wxMenuItem" name="idMenuAbout" variable="MenuItem2" member="no">
+					<label>About</label>
+					<accel>F1</accel>
+					<help>Show info about this application</help>
+					<handler function="OnAbout" entry="EVT_MENU" />
+				</object>
+			</object>
+		</object>
+	</object>
+</wxsmith>

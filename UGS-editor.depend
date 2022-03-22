@@ -1,0 +1,28 @@
+# depslib dependency file v1.0
+1647893330 source:/home/marco/Documentos/TCC/Jogos/UGS-editor/UGS_editorApp.cpp
+	"UGS_editorApp.h"
+	"UGS_editorMain.h"
+	<wx/image.h>
+
+1647893330 /home/marco/Documentos/TCC/Jogos/UGS-editor/UGS_editorApp.h
+	<wx/app.h>
+
+1647908054 /home/marco/Documentos/TCC/Jogos/UGS-editor/UGS_editorMain.h
+	<wx/button.h>
+	<wx/checkbox.h>
+	<wx/choice.h>
+	<wx/frame.h>
+	<wx/menu.h>
+	<wx/panel.h>
+	<wx/statbox.h>
+	<wx/statline.h>
+	<wx/stattext.h>
+	<wx/textctrl.h>
+
+1647908169 source:/home/marco/Documentos/TCC/Jogos/UGS-editor/UGS_editorMain.cpp
+	"UGS_editorMain.h"
+	<wx/msgdlg.h>
+	<wx/font.h>
+	<wx/intl.h>
+	<wx/string.h>
+
