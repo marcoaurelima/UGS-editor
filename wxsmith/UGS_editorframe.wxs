@@ -4,17 +4,62 @@
 		<title>Ultimate Guitar Show - Editor</title>
 		<centered>1</centered>
 		<pos>-1,-1</pos>
-		<size>961,503</size>
+		<size>961,575</size>
 		<id_arg>0</id_arg>
 		<object class="wxPanel" name="ID_PANEL1" variable="Panel1" member="yes">
 			<pos>0,8</pos>
 			<size>528,494</size>
 			<bg>wxSYS_COLOUR_ACTIVEBORDER</bg>
 			<object class="wxPanel" name="ID_PANEL2" variable="Panel2" member="yes">
-				<pos>32,104</pos>
-				<size>480,320</size>
+				<pos>32,90</pos>
+				<size>480,430</size>
 				<bg>wxSYS_COLOUR_INACTIVECAPTION</bg>
 				<style>wxBORDER_DOUBLE|wxTAB_TRAVERSAL</style>
+				<object class="wxStaticText" name="ID_STATICTEXT10" variable="StaticText10" member="yes">
+					<label>Card (148x148)</label>
+					<pos>50,280</pos>
+				</object>
+				<object class="wxTextCtrl" name="ID_TEXTCTRL4" variable="TextCtrl4" member="yes">
+					<value>C://files/card</value>
+					<pos>168,273</pos>
+					<size>225,34</size>
+					<enabled>0</enabled>
+				</object>
+				<object class="wxButton" name="ID_BUTTON4" variable="Button4" member="yes">
+					<label>...</label>
+					<pos>400,272</pos>
+					<size>37,34</size>
+				</object>
+				<object class="wxTextCtrl" name="ID_TEXTCTRL5" variable="TextCtrl5" member="yes">
+					<value>C://files/logo</value>
+					<pos>168,316</pos>
+					<size>225,34</size>
+					<enabled>0</enabled>
+				</object>
+				<object class="wxTextCtrl" name="ID_TEXTCTRL6" variable="TextCtrl6" member="yes">
+					<value>C://files/poster</value>
+					<pos>168,359</pos>
+					<size>225,34</size>
+					<enabled>0</enabled>
+				</object>
+				<object class="wxButton" name="ID_BUTTON5" variable="Button5" member="yes">
+					<label>...</label>
+					<pos>400,312</pos>
+					<size>39,34</size>
+				</object>
+				<object class="wxButton" name="ID_BUTTON6" variable="Button6" member="yes">
+					<label>...</label>
+					<pos>400,360</pos>
+					<size>39,34</size>
+				</object>
+				<object class="wxStaticText" name="ID_STATICTEXT11" variable="StaticText11" member="yes">
+					<label>Logo (246x246)</label>
+					<pos>45,322</pos>
+				</object>
+				<object class="wxStaticText" name="ID_STATICTEXT12" variable="StaticText12" member="yes">
+					<label>Poster (1368x769)</label>
+					<pos>30,364</pos>
+				</object>
 			</object>
 			<object class="wxStaticText" name="ID_STATICTEXT1" variable="StaticText1" member="yes">
 				<label>ULTIMATE GUITAR SHOW EDITOR</label>
@@ -30,20 +75,20 @@
 				</font>
 			</object>
 			<object class="wxTextCtrl" name="ID_TEXTCTRL1" variable="TextCtrl1" member="yes">
-				<pos>144,136</pos>
-				<size>328,34</size>
+				<pos>136,136</pos>
+				<size>336,34</size>
 			</object>
 			<object class="wxStaticText" name="ID_STATICTEXT2" variable="StaticText2" member="yes">
 				<label>Artista</label>
-				<pos>65,144</pos>
+				<pos>65,140</pos>
 			</object>
 			<object class="wxTextCtrl" name="ID_TEXTCTRL2" variable="TextCtrl2" member="yes">
-				<pos>144,192</pos>
-				<size>328,34</size>
+				<pos>136,180</pos>
+				<size>336,34</size>
 			</object>
 			<object class="wxStaticText" name="ID_STATICTEXT3" variable="StaticText3" member="yes">
 				<label>Musica</label>
-				<pos>65,200</pos>
+				<pos>65,185</pos>
 			</object>
 			<object class="wxChoice" name="ID_CHOICE1" variable="Choice1" member="yes">
 				<content>
@@ -63,50 +108,50 @@
 					<item>Piano</item>
 					<item>Teclado</item>
 				</content>
-				<pos>176,248</pos>
+				<pos>176,225</pos>
 				<size>296,34</size>
 			</object>
 			<object class="wxStaticText" name="ID_STATICTEXT4" variable="StaticText4" member="yes">
 				<label>Instrumento</label>
-				<pos>65,256</pos>
+				<pos>65,230</pos>
 			</object>
 			<object class="wxStaticText" name="ID_STATICTEXT5" variable="StaticText5" member="yes">
 				<label>Dificuldade</label>
-				<pos>65,310</pos>
+				<pos>65,280</pos>
 			</object>
 			<object class="wxStaticText" name="ID_STATICTEXT6" variable="StaticText6" member="yes">
 				<label>Audio .ogg</label>
-				<pos>65,365</pos>
+				<pos>65,322</pos>
 			</object>
 			<object class="wxTextCtrl" name="ID_TEXTCTRL3" variable="TextCtrl3" member="yes">
 				<value>C://files/audio</value>
-				<pos>176,360</pos>
-				<size>248,34</size>
+				<pos>160,320</pos>
+				<size>264,34</size>
 				<enabled>0</enabled>
 			</object>
 			<object class="wxButton" name="ID_BUTTON1" variable="Button1" member="yes">
 				<label>...</label>
-				<pos>432,360</pos>
+				<pos>432,320</pos>
 				<size>37,34</size>
 			</object>
 			<object class="wxCheckBox" name="ID_CHECKBOX3" variable="CheckBox3" member="yes">
 				<label>Dificil</label>
-				<pos>380,310</pos>
+				<pos>380,280</pos>
 			</object>
 			<object class="wxCheckBox" name="ID_CHECKBOX2" variable="CheckBox2" member="yes">
 				<label>Medio</label>
-				<pos>280,310</pos>
+				<pos>285,280</pos>
 			</object>
 			<object class="wxCheckBox" name="ID_CHECKBOX1" variable="CheckBox1" member="yes">
 				<label>Facil</label>
-				<pos>190,310</pos>
+				<pos>190,280</pos>
 			</object>
 			<object class="wxStaticLine" name="ID_STATICLINE1" variable="StaticLine1" member="yes">
 				<pos>50,65</pos>
 				<size>400,-1</size>
 			</object>
 			<object class="wxPanel" name="ID_PANEL3" variable="Panel3" member="yes">
-				<pos>536,104</pos>
+				<pos>536,90</pos>
 				<size>400,272</size>
 				<bg>wxSYS_COLOUR_INACTIVECAPTION</bg>
 				<style>wxBORDER_DOUBLE|wxTAB_TRAVERSAL</style>
@@ -166,8 +211,18 @@
 			</object>
 			<object class="wxButton" name="ID_BUTTON3" variable="Button3" member="yes">
 				<label>Salvar Edicao</label>
-				<pos>536,392</pos>
-				<size>400,34</size>
+				<pos>768,480</pos>
+				<size>160,34</size>
+			</object>
+			<object class="wxButton" name="ID_BUTTON7" variable="Button7" member="yes">
+				<label>Reiniciar</label>
+				<pos>768,384</pos>
+				<size>160,34</size>
+			</object>
+			<object class="wxButton" name="ID_BUTTON8" variable="Button8" member="yes">
+				<label>Cancelar</label>
+				<pos>768,432</pos>
+				<size>160,34</size>
 			</object>
 		</object>
 		<object class="wxMenuBar" variable="MenuBar1" member="no">

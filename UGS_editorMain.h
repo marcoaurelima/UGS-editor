@@ -38,6 +38,15 @@ class UGS_editorFrame: public wxFrame
         //*)
 
         //(*Identifiers(UGS_editorFrame)
+        static const long ID_STATICTEXT10;
+        static const long ID_TEXTCTRL4;
+        static const long ID_BUTTON4;
+        static const long ID_TEXTCTRL5;
+        static const long ID_TEXTCTRL6;
+        static const long ID_BUTTON5;
+        static const long ID_BUTTON6;
+        static const long ID_STATICTEXT11;
+        static const long ID_STATICTEXT12;
         static const long ID_PANEL2;
         static const long ID_STATICTEXT1;
         static const long ID_TEXTCTRL1;
@@ -63,6 +72,8 @@ class UGS_editorFrame: public wxFrame
         static const long ID_PANEL5;
         static const long ID_PANEL3;
         static const long ID_BUTTON3;
+        static const long ID_BUTTON7;
+        static const long ID_BUTTON8;
         static const long ID_PANEL1;
         static const long idMenuQuit;
         static const long idMenuAbout;
@@ -72,6 +83,11 @@ class UGS_editorFrame: public wxFrame
         wxButton* Button1;
         wxButton* Button2;
         wxButton* Button3;
+        wxButton* Button4;
+        wxButton* Button5;
+        wxButton* Button6;
+        wxButton* Button7;
+        wxButton* Button8;
         wxCheckBox* CheckBox1;
         wxCheckBox* CheckBox2;
         wxCheckBox* CheckBox3;
@@ -83,6 +99,9 @@ class UGS_editorFrame: public wxFrame
         wxPanel* Panel4;
         wxPanel* Panel5;
         wxStaticLine* StaticLine1;
+        wxStaticText* StaticText10;
+        wxStaticText* StaticText11;
+        wxStaticText* StaticText12;
         wxStaticText* StaticText1;
         wxStaticText* StaticText2;
         wxStaticText* StaticText3;
@@ -95,6 +114,9 @@ class UGS_editorFrame: public wxFrame
         wxTextCtrl* TextCtrl1;
         wxTextCtrl* TextCtrl2;
         wxTextCtrl* TextCtrl3;
+        wxTextCtrl* TextCtrl4;
+        wxTextCtrl* TextCtrl5;
+        wxTextCtrl* TextCtrl6;
         //*)
 
         DECLARE_EVENT_TABLE()
