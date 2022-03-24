@@ -10,6 +10,8 @@
 #include "UGS_editorMain.h"
 #include <wx/msgdlg.h>
 
+//#include "FileDialog1.h"
+
 //(*InternalHeaders(UGS_editorFrame)
 #include <wx/font.h>
 #include <wx/intl.h>
@@ -122,12 +124,12 @@ UGS_editorFrame::UGS_editorFrame(wxWindow* parent,wxWindowID id)
     Panel2 = new wxPanel(Panel1, ID_PANEL2, wxPoint(32,90), wxSize(480,430), wxBORDER_DOUBLE|wxTAB_TRAVERSAL, _T("ID_PANEL2"));
     Panel2->SetBackgroundColour(wxSystemSettings::GetColour(wxSYS_COLOUR_INACTIVECAPTION));
     StaticText10 = new wxStaticText(Panel2, ID_STATICTEXT10, _("Card (148x148)"), wxPoint(50,280), wxDefaultSize, 0, _T("ID_STATICTEXT10"));
-    TextCtrl4 = new wxTextCtrl(Panel2, ID_TEXTCTRL4, _("C://files/card"), wxPoint(168,273), wxSize(225,34), 0, wxDefaultValidator, _T("ID_TEXTCTRL4"));
+    TextCtrl4 = new wxTextCtrl(Panel2, ID_TEXTCTRL4, wxEmptyString, wxPoint(168,273), wxSize(225,34), 0, wxDefaultValidator, _T("ID_TEXTCTRL4"));
     TextCtrl4->Disable();
     Button4 = new wxButton(Panel2, ID_BUTTON4, _("..."), wxPoint(400,272), wxSize(37,34), 0, wxDefaultValidator, _T("ID_BUTTON4"));
-    TextCtrl5 = new wxTextCtrl(Panel2, ID_TEXTCTRL5, _("C://files/logo"), wxPoint(168,316), wxSize(225,34), 0, wxDefaultValidator, _T("ID_TEXTCTRL5"));
+    TextCtrl5 = new wxTextCtrl(Panel2, ID_TEXTCTRL5, wxEmptyString, wxPoint(168,316), wxSize(225,34), 0, wxDefaultValidator, _T("ID_TEXTCTRL5"));
     TextCtrl5->Disable();
-    TextCtrl6 = new wxTextCtrl(Panel2, ID_TEXTCTRL6, _("C://files/poster"), wxPoint(168,359), wxSize(225,34), 0, wxDefaultValidator, _T("ID_TEXTCTRL6"));
+    TextCtrl6 = new wxTextCtrl(Panel2, ID_TEXTCTRL6, wxEmptyString, wxPoint(168,359), wxSize(225,34), 0, wxDefaultValidator, _T("ID_TEXTCTRL6"));
     TextCtrl6->Disable();
     Button5 = new wxButton(Panel2, ID_BUTTON5, _("..."), wxPoint(400,316), wxSize(37,34), 0, wxDefaultValidator, _T("ID_BUTTON5"));
     Button6 = new wxButton(Panel2, ID_BUTTON6, _("..."), wxPoint(400,360), wxSize(37,34), 0, wxDefaultValidator, _T("ID_BUTTON6"));
@@ -159,7 +161,7 @@ UGS_editorFrame::UGS_editorFrame(wxWindow* parent,wxWindowID id)
     StaticText4 = new wxStaticText(Panel1, ID_STATICTEXT4, _("Instrumento"), wxPoint(65,230), wxDefaultSize, 0, _T("ID_STATICTEXT4"));
     StaticText5 = new wxStaticText(Panel1, ID_STATICTEXT5, _("Dificuldade"), wxPoint(65,280), wxDefaultSize, 0, _T("ID_STATICTEXT5"));
     StaticText6 = new wxStaticText(Panel1, ID_STATICTEXT6, _("Audio .ogg"), wxPoint(65,322), wxDefaultSize, 0, _T("ID_STATICTEXT6"));
-    TextCtrl3 = new wxTextCtrl(Panel1, ID_TEXTCTRL3, _("C://files/audio"), wxPoint(160,320), wxSize(266,34), 0, wxDefaultValidator, _T("ID_TEXTCTRL3"));
+    TextCtrl3 = new wxTextCtrl(Panel1, ID_TEXTCTRL3, wxEmptyString, wxPoint(160,320), wxSize(266,34), 0, wxDefaultValidator, _T("ID_TEXTCTRL3"));
     TextCtrl3->Disable();
     Button1 = new wxButton(Panel1, ID_BUTTON1, _("..."), wxPoint(432,320), wxSize(37,34), 0, wxDefaultValidator, _T("ID_BUTTON1"));
     CheckBox3 = new wxCheckBox(Panel1, ID_CHECKBOX3, _("Dificil"), wxPoint(380,280), wxDefaultSize, 0, wxDefaultValidator, _T("ID_CHECKBOX3"));
@@ -226,8 +228,14 @@ UGS_editorFrame::UGS_editorFrame(wxWindow* parent,wxWindowID id)
     Menu2->Append(MenuItem2);
     MenuBar1->Append(Menu2, _("Ajuda"));
     SetMenuBar(MenuBar1);
+    FileDialog1 = new wxFileDialog(this, _("Select file"), wxEmptyString, wxEmptyString, _("*.ogg"), wxFD_DEFAULT_STYLE, wxDefaultPosition, wxDefaultSize, _T("wxFileDialog"));
+    FileDialog2 = new wxFileDialog(this, _("Select file"), wxEmptyString, wxEmptyString, _("*.png"), wxFD_DEFAULT_STYLE, wxDefaultPosition, wxDefaultSize, _T("wxFileDialog"));
     Center();
 
+    Connect(ID_BUTTON4,wxEVT_COMMAND_BUTTON_CLICKED,(wxObjectEventFunction)&UGS_editorFrame::OnButton4Click);
+    Connect(ID_BUTTON5,wxEVT_COMMAND_BUTTON_CLICKED,(wxObjectEventFunction)&UGS_editorFrame::OnButton5Click);
+    Connect(ID_BUTTON6,wxEVT_COMMAND_BUTTON_CLICKED,(wxObjectEventFunction)&UGS_editorFrame::OnButton6Click);
+    Connect(ID_BUTTON1,wxEVT_COMMAND_BUTTON_CLICKED,(wxObjectEventFunction)&UGS_editorFrame::OnButton1Click);
     Connect(idMenuQuit,wxEVT_COMMAND_MENU_SELECTED,(wxObjectEventFunction)&UGS_editorFrame::OnQuit);
     Connect(idMenuAbout,wxEVT_COMMAND_MENU_SELECTED,(wxObjectEventFunction)&UGS_editorFrame::OnAbout);
     //*)
@@ -248,4 +256,44 @@ void UGS_editorFrame::OnAbout(wxCommandEvent& event)
 {
     wxString msg = "       Autor: Marco Aurelio Lima \nhttps://github.com/marcoaurelima";
     wxMessageBox(msg, _("Sobre"));
+}
+
+void UGS_editorFrame::OnButton1Click(wxCommandEvent& event)
+{
+    auto res = FileDialog1->ShowModal();
+    if(res == wxID_CANCEL)
+        return;
+
+    wxString path = FileDialog1->GetPath();
+    TextCtrl3->SetValue(path);
+}
+
+void UGS_editorFrame::OnButton4Click(wxCommandEvent& event)
+{
+    auto res = FileDialog2->ShowModal();
+    if(res == wxID_CANCEL)
+        return;
+
+    wxString path = FileDialog2->GetPath();
+    TextCtrl4->SetValue(path);
+}
+
+void UGS_editorFrame::OnButton5Click(wxCommandEvent& event)
+{
+    auto res = FileDialog2->ShowModal();
+    if(res == wxID_CANCEL)
+        return;
+
+    wxString path = FileDialog2->GetPath();
+    TextCtrl5->SetValue(path);
+}
+
+void UGS_editorFrame::OnButton6Click(wxCommandEvent& event)
+{
+    auto res = FileDialog2->ShowModal();
+    if(res == wxID_CANCEL)
+        return;
+
+    wxString path = FileDialog2->GetPath();
+    TextCtrl6->SetValue(path);
 }

@@ -20,7 +20,6 @@
 					<pos>50,280</pos>
 				</object>
 				<object class="wxTextCtrl" name="ID_TEXTCTRL4" variable="TextCtrl4" member="yes">
-					<value>C://files/card</value>
 					<pos>168,273</pos>
 					<size>225,34</size>
 					<enabled>0</enabled>
@@ -29,15 +28,14 @@
 					<label>...</label>
 					<pos>400,272</pos>
 					<size>37,34</size>
+					<handler function="OnButton4Click" entry="EVT_BUTTON" />
 				</object>
 				<object class="wxTextCtrl" name="ID_TEXTCTRL5" variable="TextCtrl5" member="yes">
-					<value>C://files/logo</value>
 					<pos>168,316</pos>
 					<size>225,34</size>
 					<enabled>0</enabled>
 				</object>
 				<object class="wxTextCtrl" name="ID_TEXTCTRL6" variable="TextCtrl6" member="yes">
-					<value>C://files/poster</value>
 					<pos>168,359</pos>
 					<size>225,34</size>
 					<enabled>0</enabled>
@@ -46,11 +44,13 @@
 					<label>...</label>
 					<pos>400,316</pos>
 					<size>37,34</size>
+					<handler function="OnButton5Click" entry="EVT_BUTTON" />
 				</object>
 				<object class="wxButton" name="ID_BUTTON6" variable="Button6" member="yes">
 					<label>...</label>
 					<pos>400,360</pos>
 					<size>37,34</size>
+					<handler function="OnButton6Click" entry="EVT_BUTTON" />
 				</object>
 				<object class="wxStaticText" name="ID_STATICTEXT11" variable="StaticText11" member="yes">
 					<label>Logo (246x246)</label>
@@ -124,7 +124,6 @@
 				<pos>65,322</pos>
 			</object>
 			<object class="wxTextCtrl" name="ID_TEXTCTRL3" variable="TextCtrl3" member="yes">
-				<value>C://files/audio</value>
 				<pos>160,320</pos>
 				<size>266,34</size>
 				<enabled>0</enabled>
@@ -133,6 +132,7 @@
 				<label>...</label>
 				<pos>432,320</pos>
 				<size>37,34</size>
+				<handler function="OnButton1Click" entry="EVT_BUTTON" />
 			</object>
 			<object class="wxCheckBox" name="ID_CHECKBOX3" variable="CheckBox3" member="yes">
 				<label>Dificil</label>
@@ -333,6 +333,14 @@
 					<handler function="OnAbout" entry="EVT_MENU" />
 				</object>
 			</object>
+		</object>
+		<object class="wxFileDialog" variable="FileDialog1" member="yes">
+			<message>Select file</message>
+			<wildcard>*.ogg</wildcard>
+		</object>
+		<object class="wxFileDialog" variable="FileDialog2" member="yes">
+			<message>Select file</message>
+			<wildcard>*.png</wildcard>
 		</object>
 	</object>
 </wxsmith>

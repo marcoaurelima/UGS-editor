@@ -14,6 +14,7 @@
 #include <wx/button.h>
 #include <wx/checkbox.h>
 #include <wx/choice.h>
+#include <wx/filedlg.h>
 #include <wx/frame.h>
 #include <wx/gauge.h>
 #include <wx/menu.h>
@@ -35,6 +36,10 @@ class UGS_editorFrame: public wxFrame
         //(*Handlers(UGS_editorFrame)
         void OnQuit(wxCommandEvent& event);
         void OnAbout(wxCommandEvent& event);
+        void OnButton1Click(wxCommandEvent& event);
+        void OnButton4Click(wxCommandEvent& event);
+        void OnButton5Click(wxCommandEvent& event);
+        void OnButton6Click(wxCommandEvent& event);
         //*)
 
         //(*Identifiers(UGS_editorFrame)
@@ -116,6 +121,8 @@ class UGS_editorFrame: public wxFrame
         wxCheckBox* CheckBox2;
         wxCheckBox* CheckBox3;
         wxChoice* Choice1;
+        wxFileDialog* FileDialog1;
+        wxFileDialog* FileDialog2;
         wxGauge* Gauge1;
         wxPanel* Panel10;
         wxPanel* Panel1;
