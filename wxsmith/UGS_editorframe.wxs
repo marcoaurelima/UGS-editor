@@ -152,12 +152,12 @@
 			</object>
 			<object class="wxPanel" name="ID_PANEL3" variable="Panel3" member="yes">
 				<pos>536,90</pos>
-				<size>400,272</size>
+				<size>390,272</size>
 				<bg>wxSYS_COLOUR_INACTIVECAPTION</bg>
 				<style>wxBORDER_DOUBLE|wxTAB_TRAVERSAL</style>
 				<object class="wxPanel" name="ID_PANEL4" variable="Panel4" member="yes">
 					<pos>24,24</pos>
-					<size>352,87</size>
+					<size>340,87</size>
 					<bg>wxSYS_COLOUR_SCROLLBAR</bg>
 					<style>wxBORDER_DOUBLE|wxTAB_TRAVERSAL</style>
 					<object class="wxButton" name="ID_BUTTON2" variable="Button2" member="yes">
@@ -181,32 +181,34 @@
 					<object class="wxGauge" name="ID_GAUGE1" variable="Gauge1" member="yes">
 						<value>65</value>
 						<pos>16,41</pos>
-						<size>311,28</size>
+						<size>306,28</size>
 					</object>
-				</object>
-				<object class="wxStaticText" name="ID_STATICTEXT8" variable="StaticText8" member="yes">
-					<label>Acordes:&#x0A;  1  A Y&#x0A;  2  S U&#x0A;  3  D I  &#x0A;  4  F O &#x0A;  5  G P&#x0A;</label>
-					<pos>40,125</pos>
-					<size>64,135</size>
 				</object>
 				<object class="wxPanel" name="ID_PANEL5" variable="Panel5" member="yes">
-					<pos>176,136</pos>
-					<size>128,111</size>
-					<bg>wxSYS_COLOUR_HIGHLIGHT</bg>
+					<pos>25,120</pos>
+					<size>58,111</size>
+					<bg>#E90A9A</bg>
 					<style>wxBORDER_DOUBLE|wxTAB_TRAVERSAL</style>
-					<object class="wxStaticText" name="ID_STATICTEXT9" variable="StaticText9" member="yes">
-						<label>1</label>
-						<pos>42,32</pos>
-						<size>55,63</size>
-						<font>
-							<size>56</size>
-							<style>normal</style>
-							<weight>bold</weight>
-							<underlined>0</underlined>
-							<family>teletype</family>
-							<face>Nimbus Mono PS</face>
-						</font>
-					</object>
+				</object>
+				<object class="wxPanel" name="ID_PANEL6" variable="Panel6" member="yes">
+					<pos>95,120</pos>
+					<size>58,111</size>
+					<style>wxBORDER_DOUBLE|wxTAB_TRAVERSAL</style>
+				</object>
+				<object class="wxPanel" name="ID_PANEL7" variable="Panel7" member="yes">
+					<pos>165,120</pos>
+					<size>58,111</size>
+					<style>wxBORDER_DOUBLE|wxTAB_TRAVERSAL</style>
+				</object>
+				<object class="wxPanel" name="ID_PANEL8" variable="Panel8" member="yes">
+					<pos>235,120</pos>
+					<size>58,111</size>
+					<style>wxBORDER_DOUBLE|wxTAB_TRAVERSAL</style>
+				</object>
+				<object class="wxPanel" name="ID_PANEL9" variable="Panel9" member="yes">
+					<pos>305,120</pos>
+					<size>58,111</size>
+					<style>wxBORDER_DOUBLE|wxTAB_TRAVERSAL</style>
 				</object>
 			</object>
 			<object class="wxButton" name="ID_BUTTON3" variable="Button3" member="yes">
