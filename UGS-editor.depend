@@ -7,7 +7,7 @@
 1647893330 /home/marco/Documentos/TCC/Jogos/UGS-editor/UGS_editorApp.h
 	<wx/app.h>
 
-1648081441 /home/marco/Documentos/TCC/Jogos/UGS-editor/UGS_editorMain.h
+1648087863 /home/marco/Documentos/TCC/Jogos/UGS-editor/UGS_editorMain.h
 	<wx/button.h>
 	<wx/checkbox.h>
 	<wx/choice.h>
@@ -19,7 +19,7 @@
 	<wx/stattext.h>
 	<wx/textctrl.h>
 
-1647916714 source:/home/marco/Documentos/TCC/Jogos/UGS-editor/UGS_editorMain.cpp
+1648087749 source:/home/marco/Documentos/TCC/Jogos/UGS-editor/UGS_editorMain.cpp
 	"UGS_editorMain.h"
 	<wx/msgdlg.h>
 	<wx/font.h>
