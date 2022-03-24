@@ -166,24 +166,28 @@ UGS_editorFrame::UGS_editorFrame(wxWindow* parent,wxWindowID id)
     StaticText7->SetFont(StaticText7Font);
     Gauge1 = new wxGauge(Panel4, ID_GAUGE1, 100, wxPoint(16,41), wxSize(306,28), 0, wxDefaultValidator, _T("ID_GAUGE1"));
     Gauge1->SetValue(65);
-    Panel5 = new wxPanel(Panel3, ID_PANEL5, wxPoint(25,120), wxSize(58,111), wxBORDER_DOUBLE|wxTAB_TRAVERSAL, _T("ID_PANEL5"));
-    Panel5->SetBackgroundColour(wxColour(233,10,154));
-    Panel6 = new wxPanel(Panel3, ID_PANEL6, wxPoint(95,120), wxSize(58,111), wxBORDER_DOUBLE|wxTAB_TRAVERSAL, _T("ID_PANEL6"));
-    Panel7 = new wxPanel(Panel3, ID_PANEL7, wxPoint(165,120), wxSize(58,111), wxBORDER_DOUBLE|wxTAB_TRAVERSAL, _T("ID_PANEL7"));
-    Panel8 = new wxPanel(Panel3, ID_PANEL8, wxPoint(235,120), wxSize(58,111), wxBORDER_DOUBLE|wxTAB_TRAVERSAL, _T("ID_PANEL8"));
-    Panel9 = new wxPanel(Panel3, ID_PANEL9, wxPoint(305,120), wxSize(58,111), wxBORDER_DOUBLE|wxTAB_TRAVERSAL, _T("ID_PANEL9"));
+    Panel5 = new wxPanel(Panel3, ID_PANEL5, wxPoint(25,130), wxSize(58,90), wxBORDER_DOUBLE|wxTAB_TRAVERSAL, _T("ID_PANEL5"));
+    Panel5->SetBackgroundColour(wxColour(61,233,10));
+    Panel6 = new wxPanel(Panel3, ID_PANEL6, wxPoint(95,130), wxSize(58,90), wxBORDER_DOUBLE|wxTAB_TRAVERSAL, _T("ID_PANEL6"));
+    Panel6->SetBackgroundColour(wxColour(255,1,0));
+    Panel7 = new wxPanel(Panel3, ID_PANEL7, wxPoint(165,130), wxSize(58,90), wxBORDER_DOUBLE|wxTAB_TRAVERSAL, _T("ID_PANEL7"));
+    Panel7->SetBackgroundColour(wxColour(255,224,0));
+    Panel8 = new wxPanel(Panel3, ID_PANEL8, wxPoint(235,130), wxSize(58,90), wxBORDER_DOUBLE|wxTAB_TRAVERSAL, _T("ID_PANEL8"));
+    Panel8->SetBackgroundColour(wxColour(0,119,255));
+    Panel9 = new wxPanel(Panel3, ID_PANEL9, wxPoint(305,130), wxSize(58,90), wxBORDER_DOUBLE|wxTAB_TRAVERSAL, _T("ID_PANEL9"));
+    Panel9->SetBackgroundColour(wxColour(255,108,0));
     Button3 = new wxButton(Panel1, ID_BUTTON3, _("Salvar Edicao"), wxPoint(768,480), wxSize(160,34), 0, wxDefaultValidator, _T("ID_BUTTON3"));
     Button7 = new wxButton(Panel1, ID_BUTTON7, _("Reiniciar"), wxPoint(768,384), wxSize(160,34), 0, wxDefaultValidator, _T("ID_BUTTON7"));
     Button8 = new wxButton(Panel1, ID_BUTTON8, _("Cancelar"), wxPoint(768,432), wxSize(160,34), 0, wxDefaultValidator, _T("ID_BUTTON8"));
     MenuBar1 = new wxMenuBar();
     Menu1 = new wxMenu();
-    MenuItem1 = new wxMenuItem(Menu1, idMenuQuit, _("Quit\tAlt-F4"), _("Quit the application"), wxITEM_NORMAL);
+    MenuItem1 = new wxMenuItem(Menu1, idMenuQuit, _("Sair\tAlt-F4"), _("Quit the application"), wxITEM_NORMAL);
     Menu1->Append(MenuItem1);
-    MenuBar1->Append(Menu1, _("&File"));
+    MenuBar1->Append(Menu1, _("&Arquivo"));
     Menu2 = new wxMenu();
-    MenuItem2 = new wxMenuItem(Menu2, idMenuAbout, _("About\tF1"), _("Show info about this application"), wxITEM_NORMAL);
+    MenuItem2 = new wxMenuItem(Menu2, idMenuAbout, _("Sobre\tF1"), _("Show info about this application"), wxITEM_NORMAL);
     Menu2->Append(MenuItem2);
-    MenuBar1->Append(Menu2, _("Help"));
+    MenuBar1->Append(Menu2, _("Ajuda"));
     SetMenuBar(MenuBar1);
     Center();
 
@@ -205,6 +209,6 @@ void UGS_editorFrame::OnQuit(wxCommandEvent& event)
 
 void UGS_editorFrame::OnAbout(wxCommandEvent& event)
 {
-    wxString msg = wxbuildinfo(long_f);
-    wxMessageBox(msg, _("Welcome to..."));
+    wxString msg = "       Autor: Marco Aurelio Lima \nhttps://github.com/marcoaurelima";
+    wxMessageBox(msg, _("Sobre"));
 }

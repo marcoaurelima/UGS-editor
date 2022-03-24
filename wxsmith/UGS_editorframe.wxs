@@ -185,29 +185,33 @@
 					</object>
 				</object>
 				<object class="wxPanel" name="ID_PANEL5" variable="Panel5" member="yes">
-					<pos>25,120</pos>
-					<size>58,111</size>
-					<bg>#E90A9A</bg>
+					<pos>25,130</pos>
+					<size>58,90</size>
+					<bg>#3DE90A</bg>
 					<style>wxBORDER_DOUBLE|wxTAB_TRAVERSAL</style>
 				</object>
 				<object class="wxPanel" name="ID_PANEL6" variable="Panel6" member="yes">
-					<pos>95,120</pos>
-					<size>58,111</size>
+					<pos>95,130</pos>
+					<size>58,90</size>
+					<bg>#FF0100</bg>
 					<style>wxBORDER_DOUBLE|wxTAB_TRAVERSAL</style>
 				</object>
 				<object class="wxPanel" name="ID_PANEL7" variable="Panel7" member="yes">
-					<pos>165,120</pos>
-					<size>58,111</size>
+					<pos>165,130</pos>
+					<size>58,90</size>
+					<bg>#FFE000</bg>
 					<style>wxBORDER_DOUBLE|wxTAB_TRAVERSAL</style>
 				</object>
 				<object class="wxPanel" name="ID_PANEL8" variable="Panel8" member="yes">
-					<pos>235,120</pos>
-					<size>58,111</size>
+					<pos>235,130</pos>
+					<size>58,90</size>
+					<bg>#0077FF</bg>
 					<style>wxBORDER_DOUBLE|wxTAB_TRAVERSAL</style>
 				</object>
 				<object class="wxPanel" name="ID_PANEL9" variable="Panel9" member="yes">
-					<pos>305,120</pos>
-					<size>58,111</size>
+					<pos>305,130</pos>
+					<size>58,90</size>
+					<bg>#FF6C00</bg>
 					<style>wxBORDER_DOUBLE|wxTAB_TRAVERSAL</style>
 				</object>
 			</object>
@@ -229,18 +233,18 @@
 		</object>
 		<object class="wxMenuBar" variable="MenuBar1" member="no">
 			<object class="wxMenu" variable="Menu1" member="no">
-				<label>&amp;File</label>
+				<label>&amp;Arquivo</label>
 				<object class="wxMenuItem" name="idMenuQuit" variable="MenuItem1" member="no">
-					<label>Quit</label>
+					<label>Sair</label>
 					<accel>Alt-F4</accel>
 					<help>Quit the application</help>
 					<handler function="OnQuit" entry="EVT_MENU" />
 				</object>
 			</object>
 			<object class="wxMenu" variable="Menu2" member="no">
-				<label>Help</label>
+				<label>Ajuda</label>
 				<object class="wxMenuItem" name="idMenuAbout" variable="MenuItem2" member="no">
-					<label>About</label>
+					<label>Sobre</label>
 					<accel>F1</accel>
 					<help>Show info about this application</help>
 					<handler function="OnAbout" entry="EVT_MENU" />
