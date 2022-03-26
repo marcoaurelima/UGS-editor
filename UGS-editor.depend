@@ -609,7 +609,7 @@
 
 1585059103 /usr/include/wx-3.0/wx/gtk/app.h
 
-1648329625 /home/marco/Documentos/TCC/UGS-editor/UGS_editorMain.h
+1648337563 /home/marco/Documentos/TCC/UGS-editor/UGS_editorMain.h
 	<wx/button.h>
 	<wx/checkbox.h>
 	<wx/choice.h>
@@ -1232,7 +1232,7 @@
 
 1585059103 /usr/include/wx-3.0/wx/gtk/stattext.h
 
-1648329865 source:/home/marco/Documentos/TCC/UGS-editor/UGS_editorMain.cpp
+1648334956 source:/home/marco/Documentos/TCC/UGS-editor/UGS_editorMain.cpp
 	"UGS_editorMain.h"
 	<wx/msgdlg.h>
 	<wx/font.h>
@@ -1266,7 +1266,7 @@
 	"wx/colour.h"
 	"wx/font.h"
 
-1648329665 source:/home/marco/Documentos/TCC/UGS-editor/src/Player.cpp
+1648331402 source:/home/marco/Documentos/TCC/UGS-editor/src/Player.cpp
 	"Player.h"
 
 1648330804 /home/marco/Documentos/TCC/UGS-editor/include/Player.h

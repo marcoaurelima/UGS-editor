@@ -179,7 +179,7 @@ UGS_editorFrame::UGS_editorFrame(wxWindow* parent,wxWindowID id)
     StaticText7 = new wxStaticText(Panel4, ID_STATICTEXT7, _("00:00 / 03:34"), wxPoint(104,17), wxSize(176,31), 0, _T("ID_STATICTEXT7"));
     wxFont StaticText7Font(17,wxFONTFAMILY_SWISS,wxFONTSTYLE_NORMAL,wxFONTWEIGHT_NORMAL,false,_T("Sans"),wxFONTENCODING_DEFAULT);
     StaticText7->SetFont(StaticText7Font);
-    Gauge1 = new wxGauge(Panel4, ID_GAUGE1, 100, wxPoint(16,41), wxSize(306,28), 0, wxDefaultValidator, _T("ID_GAUGE1"));
+    Gauge1 = new wxGauge(Panel4, ID_GAUGE1, 100, wxPoint(17,56), wxSize(306,14), 0, wxDefaultValidator, _T("ID_GAUGE1"));
     Gauge1->SetValue(65);
     Panel5 = new wxPanel(Panel3, ID_PANEL5, wxPoint(25,130), wxSize(58,90), 0, _T("ID_PANEL5"));
     Panel5->SetBackgroundColour(wxColour(61,233,10));
@@ -231,7 +231,7 @@ UGS_editorFrame::UGS_editorFrame(wxWindow* parent,wxWindowID id)
     FileDialog1 = new wxFileDialog(this, _("Select file"), wxEmptyString, wxEmptyString, _("*.ogg"), wxFD_DEFAULT_STYLE, wxDefaultPosition, wxDefaultSize, _T("wxFileDialog"));
     FileDialog2 = new wxFileDialog(this, _("Select file"), wxEmptyString, wxEmptyString, _("*.png"), wxFD_DEFAULT_STYLE, wxDefaultPosition, wxDefaultSize, _T("wxFileDialog"));
     Timer1.SetOwner(this, ID_TIMER1);
-    Timer1.Start(500, false);
+    Timer1.Start(100, false);
     Center();
 
     Connect(ID_BUTTON4,wxEVT_COMMAND_BUTTON_CLICKED,(wxObjectEventFunction)&UGS_editorFrame::OnButton4Click);

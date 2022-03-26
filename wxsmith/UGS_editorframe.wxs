@@ -181,8 +181,8 @@
 					</object>
 					<object class="wxGauge" name="ID_GAUGE1" variable="Gauge1" member="yes">
 						<value>65</value>
-						<pos>16,41</pos>
-						<size>306,28</size>
+						<pos>17,56</pos>
+						<size>306,14</size>
 					</object>
 				</object>
 				<object class="wxPanel" name="ID_PANEL5" variable="Panel5" member="yes">
@@ -345,7 +345,7 @@
 			<wildcard>*.png</wildcard>
 		</object>
 		<object class="wxTimer" name="ID_TIMER1" variable="Timer1" member="yes">
-			<interval>500</interval>
+			<interval>100</interval>
 			<handler function="OnTimer1Trigger" entry="EVT_TIMER" />
 		</object>
 	</object>

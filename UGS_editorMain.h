@@ -165,6 +165,7 @@ class UGS_editorFrame: public wxFrame
 
         Player* player;
 
+
         DECLARE_EVENT_TABLE()
 };
 
