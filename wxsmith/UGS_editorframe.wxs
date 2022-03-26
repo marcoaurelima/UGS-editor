@@ -13,7 +13,7 @@
 			<object class="wxPanel" name="ID_PANEL2" variable="Panel2" member="yes">
 				<pos>32,90</pos>
 				<size>480,430</size>
-				<bg>wxSYS_COLOUR_INACTIVECAPTION</bg>
+				<bg>wxSYS_COLOUR_MENUBAR</bg>
 				<style>wxBORDER_DOUBLE|wxTAB_TRAVERSAL</style>
 				<object class="wxStaticText" name="ID_STATICTEXT10" variable="StaticText10" member="yes">
 					<label>Card (148x148)</label>
@@ -153,7 +153,7 @@
 			<object class="wxPanel" name="ID_PANEL3" variable="Panel3" member="yes">
 				<pos>536,90</pos>
 				<size>390,350</size>
-				<bg>wxSYS_COLOUR_INACTIVECAPTION</bg>
+				<bg>wxSYS_COLOUR_MENUBAR</bg>
 				<style>wxBORDER_DOUBLE|wxTAB_TRAVERSAL</style>
 				<object class="wxPanel" name="ID_PANEL4" variable="Panel4" member="yes">
 					<pos>24,24</pos>
@@ -164,6 +164,7 @@
 						<label>Iniciar</label>
 						<pos>16,16</pos>
 						<size>70,34</size>
+						<enabled>0</enabled>
 					</object>
 					<object class="wxStaticText" name="ID_STATICTEXT7" variable="StaticText7" member="yes">
 						<label>00:00 / 03:34</label>
@@ -188,31 +189,31 @@
 					<pos>25,130</pos>
 					<size>58,90</size>
 					<bg>#3DE90A</bg>
-					<style>wxBORDER_DOUBLE|wxTAB_TRAVERSAL</style>
+					<style>0</style>
 				</object>
 				<object class="wxPanel" name="ID_PANEL6" variable="Panel6" member="yes">
 					<pos>95,130</pos>
 					<size>58,90</size>
 					<bg>#FF0100</bg>
-					<style>wxBORDER_DOUBLE|wxTAB_TRAVERSAL</style>
+					<style>0</style>
 				</object>
 				<object class="wxPanel" name="ID_PANEL7" variable="Panel7" member="yes">
 					<pos>165,130</pos>
 					<size>58,90</size>
 					<bg>#FFE000</bg>
-					<style>wxBORDER_DOUBLE|wxTAB_TRAVERSAL</style>
+					<style>0</style>
 				</object>
 				<object class="wxPanel" name="ID_PANEL8" variable="Panel8" member="yes">
 					<pos>235,130</pos>
 					<size>58,90</size>
 					<bg>#0077FF</bg>
-					<style>wxBORDER_DOUBLE|wxTAB_TRAVERSAL</style>
+					<style>0</style>
 				</object>
 				<object class="wxPanel" name="ID_PANEL9" variable="Panel9" member="yes">
 					<pos>305,130</pos>
 					<size>58,90</size>
 					<bg>#FF6C00</bg>
-					<style>wxBORDER_DOUBLE|wxTAB_TRAVERSAL</style>
+					<style>0</style>
 				</object>
 				<object class="wxStaticText" name="ID_STATICTEXT8" variable="StaticText8" member="yes">
 					<label>Notas</label>
@@ -300,7 +301,7 @@
 			<object class="wxPanel" name="ID_PANEL10" variable="Panel10" member="yes">
 				<pos>536,456</pos>
 				<size>390,64</size>
-				<bg>wxSYS_COLOUR_INACTIVECAPTION</bg>
+				<bg>wxSYS_COLOUR_MENUBAR</bg>
 				<style>wxBORDER_DOUBLE|wxTAB_TRAVERSAL</style>
 				<object class="wxButton" name="ID_BUTTON7" variable="Button7" member="yes">
 					<label>Descartar Alteracoes</label>
