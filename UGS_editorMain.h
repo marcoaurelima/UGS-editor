@@ -40,6 +40,7 @@ class UGS_editorFrame: public wxFrame
         void OnButton4Click(wxCommandEvent& event);
         void OnButton5Click(wxCommandEvent& event);
         void OnButton6Click(wxCommandEvent& event);
+        void OnButton2Click(wxCommandEvent& event);
         //*)
 
         //(*Identifiers(UGS_editorFrame)

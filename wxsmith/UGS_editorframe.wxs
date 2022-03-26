@@ -164,7 +164,7 @@
 						<label>Iniciar</label>
 						<pos>16,16</pos>
 						<size>70,34</size>
-						<enabled>0</enabled>
+						<handler function="OnButton2Click" entry="EVT_BUTTON" />
 					</object>
 					<object class="wxStaticText" name="ID_STATICTEXT7" variable="StaticText7" member="yes">
 						<label>00:00 / 03:34</label>

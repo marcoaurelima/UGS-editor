@@ -10,7 +10,7 @@
 #include "UGS_editorMain.h"
 #include <wx/msgdlg.h>
 
-//#include "FileDialog1.h"
+#include <SFML/Audio.hpp>
 
 //(*InternalHeaders(UGS_editorFrame)
 #include <wx/font.h>
@@ -176,7 +176,6 @@ UGS_editorFrame::UGS_editorFrame(wxWindow* parent,wxWindowID id)
     Panel4 = new wxPanel(Panel3, ID_PANEL4, wxPoint(24,24), wxSize(340,87), wxBORDER_DOUBLE|wxTAB_TRAVERSAL, _T("ID_PANEL4"));
     Panel4->SetBackgroundColour(wxSystemSettings::GetColour(wxSYS_COLOUR_SCROLLBAR));
     Button2 = new wxButton(Panel4, ID_BUTTON2, _("Iniciar"), wxPoint(16,16), wxSize(70,34), 0, wxDefaultValidator, _T("ID_BUTTON2"));
-    Button2->Disable();
     StaticText7 = new wxStaticText(Panel4, ID_STATICTEXT7, _("00:00 / 03:34"), wxPoint(104,17), wxSize(176,31), 0, _T("ID_STATICTEXT7"));
     wxFont StaticText7Font(17,wxFONTFAMILY_SWISS,wxFONTSTYLE_NORMAL,wxFONTWEIGHT_NORMAL,false,_T("Sans"),wxFONTENCODING_DEFAULT);
     StaticText7->SetFont(StaticText7Font);
@@ -237,6 +236,7 @@ UGS_editorFrame::UGS_editorFrame(wxWindow* parent,wxWindowID id)
     Connect(ID_BUTTON5,wxEVT_COMMAND_BUTTON_CLICKED,(wxObjectEventFunction)&UGS_editorFrame::OnButton5Click);
     Connect(ID_BUTTON6,wxEVT_COMMAND_BUTTON_CLICKED,(wxObjectEventFunction)&UGS_editorFrame::OnButton6Click);
     Connect(ID_BUTTON1,wxEVT_COMMAND_BUTTON_CLICKED,(wxObjectEventFunction)&UGS_editorFrame::OnButton1Click);
+    Connect(ID_BUTTON2,wxEVT_COMMAND_BUTTON_CLICKED,(wxObjectEventFunction)&UGS_editorFrame::OnButton2Click);
     Connect(idMenuQuit,wxEVT_COMMAND_MENU_SELECTED,(wxObjectEventFunction)&UGS_editorFrame::OnQuit);
     Connect(idMenuAbout,wxEVT_COMMAND_MENU_SELECTED,(wxObjectEventFunction)&UGS_editorFrame::OnAbout);
     //*)
@@ -298,3 +298,23 @@ void UGS_editorFrame::OnButton6Click(wxCommandEvent& event)
     wxString path = FileDialog2->GetPath();
     TextCtrl6->SetValue(path);
 }
+
+void UGS_editorFrame::OnButton2Click(wxCommandEvent& event)
+{
+    std::cout << "entrando na fincao\n";
+
+    sf::Music* music = new sf::Music();
+
+    std::string path = TextCtrl3->GetValue().ToStdString();
+
+    bool res = music->openFromFile(path);
+
+    if(!res){ std::cout << "erro ao abrir o arquivo"; }
+
+    music->play();
+}
+
+
+
+
+
