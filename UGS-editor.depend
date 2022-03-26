@@ -1230,10 +1230,10 @@
 
 1585059103 /usr/include/wx-3.0/wx/gtk/stattext.h
 
-1648325045 source:/home/marco/Documentos/TCC/UGS-editor/UGS_editorMain.cpp
+1648328035 source:/home/marco/Documentos/TCC/UGS-editor/UGS_editorMain.cpp
 	"UGS_editorMain.h"
 	<wx/msgdlg.h>
-	<SFML/Audio.hpp>
+	"Player.h"
 	<wx/font.h>
 	<wx/intl.h>
 	<wx/settings.h>
@@ -1264,4 +1264,10 @@
 1585059103 /usr/include/wx-3.0/wx/settings.h
 	"wx/colour.h"
 	"wx/font.h"
+
+1648327980 source:/home/marco/Documentos/TCC/UGS-editor/src/Player.cpp
+	"Player.h"
+
+1648327970 /home/marco/Documentos/TCC/UGS-editor/include/Player.h
+	<SFML/Audio.hpp>
 

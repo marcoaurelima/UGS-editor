@@ -10,7 +10,9 @@
 #include "UGS_editorMain.h"
 #include <wx/msgdlg.h>
 
-#include <SFML/Audio.hpp>
+#include "Player.h"
+
+Player* player = new Player();
 
 //(*InternalHeaders(UGS_editorFrame)
 #include <wx/font.h>
@@ -246,6 +248,7 @@ UGS_editorFrame::~UGS_editorFrame()
 {
     //(*Destroy(UGS_editorFrame)
     //*)
+    delete player;
 }
 
 void UGS_editorFrame::OnQuit(wxCommandEvent& event)
@@ -301,17 +304,11 @@ void UGS_editorFrame::OnButton6Click(wxCommandEvent& event)
 
 void UGS_editorFrame::OnButton2Click(wxCommandEvent& event)
 {
-    std::cout << "entrando na fincao\n";
-
-    sf::Music* music = new sf::Music();
-
     std::string path = TextCtrl3->GetValue().ToStdString();
 
-    bool res = music->openFromFile(path);
+    player->openFile(path);
+    player->play();
 
-    if(!res){ std::cout << "erro ao abrir o arquivo"; }
-
-    music->play();
 }
 
 
