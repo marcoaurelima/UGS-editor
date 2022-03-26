@@ -312,6 +312,7 @@
 					<label>Exportar Faixa</label>
 					<pos>232,15</pos>
 					<size>128,34</size>
+					<handler function="OnButton3Click" entry="EVT_BUTTON" />
 				</object>
 			</object>
 		</object>
@@ -342,6 +343,10 @@
 		<object class="wxFileDialog" variable="FileDialog2" member="yes">
 			<message>Select file</message>
 			<wildcard>*.png</wildcard>
+		</object>
+		<object class="wxTimer" name="ID_TIMER1" variable="Timer1" member="yes">
+			<interval>500</interval>
+			<handler function="OnTimer1Trigger" entry="EVT_TIMER" />
 		</object>
 	</object>
 </wxsmith>

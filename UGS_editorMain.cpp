@@ -10,9 +10,6 @@
 #include "UGS_editorMain.h"
 #include <wx/msgdlg.h>
 
-#include "Player.h"
-
-Player* player = new Player();
 
 //(*InternalHeaders(UGS_editorFrame)
 #include <wx/font.h>
@@ -102,6 +99,7 @@ const long UGS_editorFrame::ID_PANEL10 = wxNewId();
 const long UGS_editorFrame::ID_PANEL1 = wxNewId();
 const long UGS_editorFrame::idMenuQuit = wxNewId();
 const long UGS_editorFrame::idMenuAbout = wxNewId();
+const long UGS_editorFrame::ID_TIMER1 = wxNewId();
 //*)
 
 BEGIN_EVENT_TABLE(UGS_editorFrame,wxFrame)
@@ -232,6 +230,8 @@ UGS_editorFrame::UGS_editorFrame(wxWindow* parent,wxWindowID id)
     SetMenuBar(MenuBar1);
     FileDialog1 = new wxFileDialog(this, _("Select file"), wxEmptyString, wxEmptyString, _("*.ogg"), wxFD_DEFAULT_STYLE, wxDefaultPosition, wxDefaultSize, _T("wxFileDialog"));
     FileDialog2 = new wxFileDialog(this, _("Select file"), wxEmptyString, wxEmptyString, _("*.png"), wxFD_DEFAULT_STYLE, wxDefaultPosition, wxDefaultSize, _T("wxFileDialog"));
+    Timer1.SetOwner(this, ID_TIMER1);
+    Timer1.Start(500, false);
     Center();
 
     Connect(ID_BUTTON4,wxEVT_COMMAND_BUTTON_CLICKED,(wxObjectEventFunction)&UGS_editorFrame::OnButton4Click);
@@ -239,10 +239,18 @@ UGS_editorFrame::UGS_editorFrame(wxWindow* parent,wxWindowID id)
     Connect(ID_BUTTON6,wxEVT_COMMAND_BUTTON_CLICKED,(wxObjectEventFunction)&UGS_editorFrame::OnButton6Click);
     Connect(ID_BUTTON1,wxEVT_COMMAND_BUTTON_CLICKED,(wxObjectEventFunction)&UGS_editorFrame::OnButton1Click);
     Connect(ID_BUTTON2,wxEVT_COMMAND_BUTTON_CLICKED,(wxObjectEventFunction)&UGS_editorFrame::OnButton2Click);
+    Connect(ID_BUTTON3,wxEVT_COMMAND_BUTTON_CLICKED,(wxObjectEventFunction)&UGS_editorFrame::OnButton3Click);
     Connect(idMenuQuit,wxEVT_COMMAND_MENU_SELECTED,(wxObjectEventFunction)&UGS_editorFrame::OnQuit);
     Connect(idMenuAbout,wxEVT_COMMAND_MENU_SELECTED,(wxObjectEventFunction)&UGS_editorFrame::OnAbout);
+    Connect(ID_TIMER1,wxEVT_TIMER,(wxObjectEventFunction)&UGS_editorFrame::OnTimer1Trigger);
     //*)
+
+    player = new Player();
+
 }
+
+
+
 
 UGS_editorFrame::~UGS_editorFrame()
 {
@@ -315,3 +323,16 @@ void UGS_editorFrame::OnButton2Click(wxCommandEvent& event)
 
 
 
+
+void UGS_editorFrame::OnButton3Click(wxCommandEvent& event)
+{
+    //player->getCurrentTime(StaticText7);
+}
+
+void UGS_editorFrame::OnTimer1Trigger(wxTimerEvent& event)
+{
+    std::string time = player->getCurrentTime();
+    StaticText7->SetLabel(time);
+
+    //std::cout << "intervalo " <<  << "\n";
+}

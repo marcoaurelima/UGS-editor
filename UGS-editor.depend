@@ -609,7 +609,7 @@
 
 1585059103 /usr/include/wx-3.0/wx/gtk/app.h
 
-1648323624 /home/marco/Documentos/TCC/UGS-editor/UGS_editorMain.h
+1648329625 /home/marco/Documentos/TCC/UGS-editor/UGS_editorMain.h
 	<wx/button.h>
 	<wx/checkbox.h>
 	<wx/choice.h>
@@ -621,6 +621,8 @@
 	<wx/statline.h>
 	<wx/stattext.h>
 	<wx/textctrl.h>
+	<wx/timer.h>
+	"Player.h"
 
 1585059103 /usr/include/wx-3.0/wx/button.h
 	"wx/defs.h"
@@ -1230,10 +1232,9 @@
 
 1585059103 /usr/include/wx-3.0/wx/gtk/stattext.h
 
-1648328035 source:/home/marco/Documentos/TCC/UGS-editor/UGS_editorMain.cpp
+1648329865 source:/home/marco/Documentos/TCC/UGS-editor/UGS_editorMain.cpp
 	"UGS_editorMain.h"
 	<wx/msgdlg.h>
-	"Player.h"
 	<wx/font.h>
 	<wx/intl.h>
 	<wx/settings.h>
@@ -1265,9 +1266,28 @@
 	"wx/colour.h"
 	"wx/font.h"
 
-1648327980 source:/home/marco/Documentos/TCC/UGS-editor/src/Player.cpp
+1648329665 source:/home/marco/Documentos/TCC/UGS-editor/src/Player.cpp
 	"Player.h"
 
-1648327970 /home/marco/Documentos/TCC/UGS-editor/include/Player.h
+1648330804 /home/marco/Documentos/TCC/UGS-editor/include/Player.h
+	<wx/stattext.h>
 	<SFML/Audio.hpp>
+	<iostream>
+	<sstream>
+
+1585059103 /usr/include/wx-3.0/wx/timer.h
+	"wx/defs.h"
+	"wx/object.h"
+	"wx/longlong.h"
+	"wx/event.h"
+	"wx/stopwatch.h"
+	"wx/utils.h"
+
+1585059103 /usr/include/wx-3.0/wx/stopwatch.h
+	"wx/defs.h"
+	"wx/longlong.h"
+	"wx/time.h"
+
+1585059103 /usr/include/wx-3.0/wx/time.h
+	"wx/longlong.h"
 
