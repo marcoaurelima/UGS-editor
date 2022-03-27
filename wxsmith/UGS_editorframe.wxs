@@ -89,7 +89,7 @@
 			</object>
 			<object class="wxStaticText" name="ID_STATICTEXT3" variable="StaticText3" member="yes">
 				<label>Musica</label>
-				<pos>65,185</pos>
+				<pos>65,187</pos>
 			</object>
 			<object class="wxChoice" name="ID_CHOICE1" variable="Choice1" member="yes">
 				<content>
