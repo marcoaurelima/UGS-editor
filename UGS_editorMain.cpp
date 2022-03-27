@@ -374,7 +374,7 @@ void UGS_editorFrame::OnTimer1Trigger(wxTimerEvent& event)
     if(player->getMusicStatus() == Status::STOPPED)
     {
         Gauge1->SetRange(3500);
-        Gauge1->SetValue(introPlayedTimeCount);
+        Gauge1->SetValue(3500-introPlayedTimeCount);
         return;
     } else
     {
