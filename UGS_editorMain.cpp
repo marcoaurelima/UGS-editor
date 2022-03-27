@@ -179,8 +179,8 @@ UGS_editorFrame::UGS_editorFrame(wxWindow* parent,wxWindowID id)
     StaticText7 = new wxStaticText(Panel4, ID_STATICTEXT7, _("00:00 / 03:34"), wxPoint(104,17), wxSize(176,31), 0, _T("ID_STATICTEXT7"));
     wxFont StaticText7Font(17,wxFONTFAMILY_SWISS,wxFONTSTYLE_NORMAL,wxFONTWEIGHT_NORMAL,false,_T("Sans"),wxFONTENCODING_DEFAULT);
     StaticText7->SetFont(StaticText7Font);
-    Gauge1 = new wxGauge(Panel4, ID_GAUGE1, 100, wxPoint(17,56), wxSize(306,14), 0, wxDefaultValidator, _T("ID_GAUGE1"));
-    Gauge1->SetValue(65);
+    Gauge1 = new wxGauge(Panel4, ID_GAUGE1, 9999, wxPoint(17,56), wxSize(306,14), 0, wxDefaultValidator, _T("ID_GAUGE1"));
+    Gauge1->SetValue(5000);
     Panel5 = new wxPanel(Panel3, ID_PANEL5, wxPoint(25,130), wxSize(58,90), 0, _T("ID_PANEL5"));
     Panel5->SetBackgroundColour(wxColour(61,233,10));
     Panel6 = new wxPanel(Panel3, ID_PANEL6, wxPoint(95,130), wxSize(58,90), 0, _T("ID_PANEL6"));
@@ -237,6 +237,7 @@ UGS_editorFrame::UGS_editorFrame(wxWindow* parent,wxWindowID id)
     Connect(ID_BUTTON4,wxEVT_COMMAND_BUTTON_CLICKED,(wxObjectEventFunction)&UGS_editorFrame::OnButton4Click);
     Connect(ID_BUTTON5,wxEVT_COMMAND_BUTTON_CLICKED,(wxObjectEventFunction)&UGS_editorFrame::OnButton5Click);
     Connect(ID_BUTTON6,wxEVT_COMMAND_BUTTON_CLICKED,(wxObjectEventFunction)&UGS_editorFrame::OnButton6Click);
+    Panel2->Connect(wxEVT_PAINT,(wxObjectEventFunction)&UGS_editorFrame::OnPanel2Paint,0,this);
     Connect(ID_BUTTON1,wxEVT_COMMAND_BUTTON_CLICKED,(wxObjectEventFunction)&UGS_editorFrame::OnButton1Click);
     Connect(ID_BUTTON2,wxEVT_COMMAND_BUTTON_CLICKED,(wxObjectEventFunction)&UGS_editorFrame::OnButton2Click);
     Connect(ID_BUTTON3,wxEVT_COMMAND_BUTTON_CLICKED,(wxObjectEventFunction)&UGS_editorFrame::OnButton3Click);
@@ -278,6 +279,11 @@ void UGS_editorFrame::OnButton1Click(wxCommandEvent& event)
 
     wxString path = FileDialog1->GetPath();
     TextCtrl3->SetValue(path);
+
+    player->openFile(path.ToStdString());
+
+    int time = player->getTotalTime();
+    Gauge1->SetRange(time);
 }
 
 void UGS_editorFrame::OnButton4Click(wxCommandEvent& event)
@@ -312,16 +318,8 @@ void UGS_editorFrame::OnButton6Click(wxCommandEvent& event)
 
 void UGS_editorFrame::OnButton2Click(wxCommandEvent& event)
 {
-    std::string path = TextCtrl3->GetValue().ToStdString();
-
-    player->openFile(path);
     player->play();
-
 }
-
-
-
-
 
 
 void UGS_editorFrame::OnButton3Click(wxCommandEvent& event)
@@ -331,8 +329,13 @@ void UGS_editorFrame::OnButton3Click(wxCommandEvent& event)
 
 void UGS_editorFrame::OnTimer1Trigger(wxTimerEvent& event)
 {
-    std::string time = player->getCurrentTime();
-    StaticText7->SetLabel(time);
+    std::string timeStr = player->getCurrentTime();
+    StaticText7->SetLabel(timeStr);
 
-    //std::cout << "intervalo " <<  << "\n";
+    int timeInt = player->getCurrentTimeInt();
+    Gauge1->SetValue(timeInt);
+}
+
+void UGS_editorFrame::OnPanel2Paint(wxPaintEvent& event)
+{
 }

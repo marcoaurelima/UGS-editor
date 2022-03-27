@@ -13,7 +13,9 @@ class Player
         virtual ~Player();
 
         void openFile(std::string path);
+        int getTotalTime();
         std::string getCurrentTime();
+        int getCurrentTimeInt();
         void play();
         void pause();
         void stop();
