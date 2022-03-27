@@ -182,8 +182,7 @@
 						</font>
 					</object>
 					<object class="wxGauge" name="ID_GAUGE1" variable="Gauge1" member="yes">
-						<value>5000</value>
-						<range>9999</range>
+						<range>3000</range>
 						<pos>17,56</pos>
 						<size>306,14</size>
 					</object>

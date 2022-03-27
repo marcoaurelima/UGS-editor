@@ -15,6 +15,13 @@ bool Player::openFile(std::string path)
     return music.openFromFile(path);
 }
 
+Status Player::getMusicStatus()
+{
+    if(music.getStatus() == sf::SoundSource::Playing){ return Status::PLAYING; }
+    if(music.getStatus() == sf::SoundSource::Paused) { return Status::PAUSED;  }
+    return Status::STOPPED;
+}
+
 std::string Player::getCurrentTime()
 {
     int currentTime = static_cast<int>(music.getPlayingOffset().asSeconds());
@@ -45,6 +52,12 @@ int Player::getTotalTime()
 {
     int totalTime = static_cast<int>(music.getDuration().asSeconds());
     return totalTime;
+}
+
+void Player::playIntro()
+{
+    intro.openFromFile("resources/intro.ogg");
+    intro.play();
 }
 
 void Player::play()

@@ -6,6 +6,8 @@
 #include <iostream>
 #include <sstream>
 
+enum class Status{ PLAYING, PAUSED, STOPPED };
+
 class Player
 {
     public:
@@ -16,6 +18,8 @@ class Player
         int getTotalTime();
         std::string getCurrentTime();
         int getCurrentTimeInt();
+        Status getMusicStatus();
+        void playIntro();
         void play();
         void pause();
         void stop();
@@ -23,6 +27,7 @@ class Player
     protected:
 
     private:
+        sf::Music intro;
         sf::Music music;
         std::string path;
 };

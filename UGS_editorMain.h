@@ -166,7 +166,8 @@ class UGS_editorFrame: public wxFrame
         //*)
 
         Player* player;
-
+        bool introPlayed = false;
+        int introPlayedTimeCount = 0;
 
         DECLARE_EVENT_TABLE()
 };

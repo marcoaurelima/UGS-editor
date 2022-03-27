@@ -180,8 +180,7 @@ UGS_editorFrame::UGS_editorFrame(wxWindow* parent,wxWindowID id)
     StaticText7 = new wxStaticText(Panel4, ID_STATICTEXT7, _("00:00 / 03:34"), wxPoint(104,17), wxSize(176,31), 0, _T("ID_STATICTEXT7"));
     wxFont StaticText7Font(17,wxFONTFAMILY_SWISS,wxFONTSTYLE_NORMAL,wxFONTWEIGHT_NORMAL,false,_T("Sans"),wxFONTENCODING_DEFAULT);
     StaticText7->SetFont(StaticText7Font);
-    Gauge1 = new wxGauge(Panel4, ID_GAUGE1, 9999, wxPoint(17,56), wxSize(306,14), 0, wxDefaultValidator, _T("ID_GAUGE1"));
-    Gauge1->SetValue(5000);
+    Gauge1 = new wxGauge(Panel4, ID_GAUGE1, 100, wxPoint(17,56), wxSize(306,14), 0, wxDefaultValidator, _T("ID_GAUGE1"));
     Panel5 = new wxPanel(Panel3, ID_PANEL5, wxPoint(25,130), wxSize(58,90), 0, _T("ID_PANEL5"));
     Panel5->SetBackgroundColour(wxColour(61,233,10));
     Panel6 = new wxPanel(Panel3, ID_PANEL6, wxPoint(95,130), wxSize(58,90), 0, _T("ID_PANEL6"));
@@ -340,7 +339,15 @@ void UGS_editorFrame::OnButton2Click(wxCommandEvent& event)
 
     if(Button2->GetLabel() == "Play")
     {
-        player->play();
+        if(player->getMusicStatus() == Status::STOPPED)
+        {
+            player->playIntro();
+            introPlayed = true;
+        } else if(player->getMusicStatus() == Status::PAUSED)
+        {
+            player->play();
+        }
+
         Button2->SetLabel("Pause");
     } else
     if(Button2->GetLabel() == "Pause")
@@ -358,6 +365,19 @@ void UGS_editorFrame::OnButton3Click(wxCommandEvent& event)
 
 void UGS_editorFrame::OnTimer1Trigger(wxTimerEvent& event)
 {
+    if(introPlayed && (introPlayedTimeCount += 100) > 3500)
+    {
+        player->play();
+        introPlayed = false;
+    }
+
+    if(player->getMusicStatus() == Status::STOPPED)
+    {
+        Gauge1->SetRange(3500);
+        Gauge1->SetValue(introPlayedTimeCount);
+        return;
+    }
+
     std::string timeStr = player->getCurrentTime();
     StaticText7->SetLabel(timeStr);
 
@@ -374,4 +394,5 @@ void UGS_editorFrame::OnButton7Click(wxCommandEvent& event)
     player->stop();
     Button2->SetLabel("Play");
     Button7->Show(false);
+    introPlayedTimeCount = 0;
 }
