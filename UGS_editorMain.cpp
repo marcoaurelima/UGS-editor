@@ -274,6 +274,17 @@ void UGS_editorFrame::OnAbout(wxCommandEvent& event)
     wxMessageBox(msg, _("Sobre"));
 }
 
+std::string shortenPath(std::string path, int finalSize)
+{
+    int half = (finalSize/3)-1;
+
+    std::stringstream ss;
+    ss << path.substr(0, half) << "..." << path.substr(path.size()-(half*2)-1, path.size()-1);
+
+    return ss.str();
+
+}
+
 void UGS_editorFrame::OnButton1Click(wxCommandEvent& event)
 {
     auto res = FileDialog1->ShowModal();
@@ -281,7 +292,7 @@ void UGS_editorFrame::OnButton1Click(wxCommandEvent& event)
         return;
 
     wxString path = FileDialog1->GetPath();
-    TextCtrl3->SetValue(path);
+    TextCtrl3->SetValue(shortenPath(path.ToStdString(), 34));
 
     bool opened = player->openFile(path.ToStdString());
     if(!opened){ wxMessageBox(wxT("ERRO"), wxT("Não foi possível abrir o arquivo."), wxICON_ERROR); return;}
@@ -299,7 +310,7 @@ void UGS_editorFrame::OnButton4Click(wxCommandEvent& event)
         return;
 
     wxString path = FileDialog2->GetPath();
-    TextCtrl4->SetValue(path);
+    TextCtrl4->SetValue(shortenPath(path.ToStdString(), 28));
 }
 
 void UGS_editorFrame::OnButton5Click(wxCommandEvent& event)
@@ -309,7 +320,7 @@ void UGS_editorFrame::OnButton5Click(wxCommandEvent& event)
         return;
 
     wxString path = FileDialog2->GetPath();
-    TextCtrl5->SetValue(path);
+    TextCtrl5->SetValue(shortenPath(path.ToStdString(), 28));
 }
 
 void UGS_editorFrame::OnButton6Click(wxCommandEvent& event)
@@ -319,7 +330,7 @@ void UGS_editorFrame::OnButton6Click(wxCommandEvent& event)
         return;
 
     wxString path = FileDialog2->GetPath();
-    TextCtrl6->SetValue(path);
+    TextCtrl6->SetValue(shortenPath(path.ToStdString(), 28));
 }
 
 void UGS_editorFrame::OnButton2Click(wxCommandEvent& event)
