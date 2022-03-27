@@ -177,10 +177,10 @@ UGS_editorFrame::UGS_editorFrame(wxWindow* parent,wxWindowID id)
     Panel4->SetBackgroundColour(wxSystemSettings::GetColour(wxSYS_COLOUR_SCROLLBAR));
     Button2 = new wxButton(Panel4, ID_BUTTON2, _("Play"), wxPoint(16,16), wxSize(70,34), 0, wxDefaultValidator, _T("ID_BUTTON2"));
     Button2->Disable();
-    StaticText7 = new wxStaticText(Panel4, ID_STATICTEXT7, _("00:00 / 03:34"), wxPoint(104,17), wxSize(176,31), 0, _T("ID_STATICTEXT7"));
+    StaticText7 = new wxStaticText(Panel4, ID_STATICTEXT7, _("00:00 / 00:00"), wxPoint(104,17), wxSize(176,31), 0, _T("ID_STATICTEXT7"));
     wxFont StaticText7Font(17,wxFONTFAMILY_SWISS,wxFONTSTYLE_NORMAL,wxFONTWEIGHT_NORMAL,false,_T("Sans"),wxFONTENCODING_DEFAULT);
     StaticText7->SetFont(StaticText7Font);
-    Gauge1 = new wxGauge(Panel4, ID_GAUGE1, 100, wxPoint(17,56), wxSize(306,14), 0, wxDefaultValidator, _T("ID_GAUGE1"));
+    Gauge1 = new wxGauge(Panel4, ID_GAUGE1, 3000, wxPoint(17,56), wxSize(306,14), 0, wxDefaultValidator, _T("ID_GAUGE1"));
     Panel5 = new wxPanel(Panel3, ID_PANEL5, wxPoint(25,130), wxSize(58,90), 0, _T("ID_PANEL5"));
     Panel5->SetBackgroundColour(wxColour(61,233,10));
     Panel6 = new wxPanel(Panel3, ID_PANEL6, wxPoint(95,130), wxSize(58,90), 0, _T("ID_PANEL6"));
@@ -398,5 +398,6 @@ void UGS_editorFrame::OnButton7Click(wxCommandEvent& event)
     player->stop();
     Button2->SetLabel("Play");
     Button7->Show(false);
+    StaticText7->SetLabel("00:00 / 00:00");
     introPlayedTimeCount = 0;
 }

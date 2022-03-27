@@ -34,7 +34,7 @@ std::string Player::getCurrentTime()
 
     std::stringstream ss;
     ss << cMin.substr(cMin.size()-2, cMin.size()-1) << ":" << cSec.substr(cSec.size()-2, cSec.size()-1)
-       << "/"
+       << " / "
        << tMin.substr(tMin.size()-2, tMin.size()-1) << ":" << tSec.substr(tSec.size()-2, tSec.size()-1);
 
 

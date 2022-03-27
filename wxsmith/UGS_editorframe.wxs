@@ -169,7 +169,7 @@
 						<handler function="OnButton2Click" entry="EVT_BUTTON" />
 					</object>
 					<object class="wxStaticText" name="ID_STATICTEXT7" variable="StaticText7" member="yes">
-						<label>00:00 / 03:34</label>
+						<label>00:00 / 00:00</label>
 						<pos>104,17</pos>
 						<size>176,31</size>
 						<font>
