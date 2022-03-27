@@ -376,6 +376,10 @@ void UGS_editorFrame::OnTimer1Trigger(wxTimerEvent& event)
         Gauge1->SetRange(3500);
         Gauge1->SetValue(introPlayedTimeCount);
         return;
+    } else
+    {
+        int time = player->getTotalTime();
+        Gauge1->SetRange(time);
     }
 
     std::string timeStr = player->getCurrentTime();
