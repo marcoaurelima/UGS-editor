@@ -364,5 +364,6 @@ void UGS_editorFrame::OnPanel2Paint(wxPaintEvent& event)
 void UGS_editorFrame::OnButton7Click(wxCommandEvent& event)
 {
     player->stop();
+    Button2->SetLabel("Play");
     Button7->Show(false);
 }
