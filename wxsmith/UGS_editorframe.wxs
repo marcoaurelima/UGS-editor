@@ -153,7 +153,7 @@
 			</object>
 			<object class="wxPanel" name="ID_PANEL3" variable="Panel3" member="yes">
 				<pos>536,90</pos>
-				<size>390,350</size>
+				<size>390,366</size>
 				<bg>wxSYS_COLOUR_MENUBAR</bg>
 				<style>wxBORDER_DOUBLE|wxTAB_TRAVERSAL</style>
 				<object class="wxPanel" name="ID_PANEL4" variable="Panel4" member="yes">
@@ -190,31 +190,31 @@
 				<object class="wxPanel" name="ID_PANEL5" variable="Panel5" member="yes">
 					<pos>25,130</pos>
 					<size>58,90</size>
-					<bg>#3DE90A</bg>
+					<bg>wxSYS_COLOUR_BTNSHADOW</bg>
 					<style>0</style>
 				</object>
 				<object class="wxPanel" name="ID_PANEL6" variable="Panel6" member="yes">
 					<pos>95,130</pos>
 					<size>58,90</size>
-					<bg>#FF0100</bg>
+					<bg>wxSYS_COLOUR_BTNSHADOW</bg>
 					<style>0</style>
 				</object>
 				<object class="wxPanel" name="ID_PANEL7" variable="Panel7" member="yes">
 					<pos>165,130</pos>
 					<size>58,90</size>
-					<bg>#FFE000</bg>
+					<bg>wxSYS_COLOUR_BTNSHADOW</bg>
 					<style>0</style>
 				</object>
 				<object class="wxPanel" name="ID_PANEL8" variable="Panel8" member="yes">
 					<pos>235,130</pos>
 					<size>58,90</size>
-					<bg>#0077FF</bg>
+					<bg>wxSYS_COLOUR_BTNSHADOW</bg>
 					<style>0</style>
 				</object>
 				<object class="wxPanel" name="ID_PANEL9" variable="Panel9" member="yes">
 					<pos>305,130</pos>
 					<size>58,90</size>
-					<bg>#FF6C00</bg>
+					<bg>wxSYS_COLOUR_BTNSHADOW</bg>
 					<style>0</style>
 				</object>
 				<object class="wxStaticText" name="ID_STATICTEXT8" variable="StaticText8" member="yes">
@@ -296,25 +296,42 @@
 					<style>wxBORDER_DOUBLE</style>
 				</object>
 				<object class="wxStaticLine" name="ID_STATICLINE2" variable="StaticLine2" member="yes">
-					<pos>35,322</pos>
+					<pos>35,305</pos>
 					<size>320,2</size>
+				</object>
+				<object class="wxTextCtrl" name="ID_TEXTCTRL7" variable="TextCtrl7" member="yes">
+					<pos>288,320</pos>
+					<size>70,34</size>
+					<font>
+						<size>18</size>
+						<style>normal</style>
+						<weight>normal</weight>
+						<underlined>0</underlined>
+						<family>swiss</family>
+						<face>Sans</face>
+					</font>
+					<style>wxTE_CENTRE</style>
+				</object>
+				<object class="wxStaticText" name="ID_STATICTEXT13" variable="StaticText13" member="yes">
+					<label>Campo para teclas</label>
+					<pos>152,328</pos>
 				</object>
 			</object>
 			<object class="wxPanel" name="ID_PANEL10" variable="Panel10" member="yes">
-				<pos>536,456</pos>
-				<size>390,64</size>
+				<pos>536,464</pos>
+				<size>390,56</size>
 				<bg>wxSYS_COLOUR_MENUBAR</bg>
 				<style>wxBORDER_DOUBLE|wxTAB_TRAVERSAL</style>
 				<object class="wxButton" name="ID_BUTTON7" variable="Button7" member="yes">
 					<label>Descartar Alteracoes</label>
-					<pos>26,14</pos>
+					<pos>26,10</pos>
 					<size>165,34</size>
 					<hidden>1</hidden>
 					<handler function="OnButton7Click" entry="EVT_BUTTON" />
 				</object>
 				<object class="wxButton" name="ID_BUTTON3" variable="Button3" member="yes">
 					<label>Exportar Faixa</label>
-					<pos>232,15</pos>
+					<pos>232,10</pos>
 					<size>128,34</size>
 					<handler function="OnButton3Click" entry="EVT_BUTTON" />
 				</object>
