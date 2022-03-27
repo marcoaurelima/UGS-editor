@@ -175,7 +175,8 @@ UGS_editorFrame::UGS_editorFrame(wxWindow* parent,wxWindowID id)
     Panel3->SetBackgroundColour(wxSystemSettings::GetColour(wxSYS_COLOUR_MENUBAR));
     Panel4 = new wxPanel(Panel3, ID_PANEL4, wxPoint(24,24), wxSize(340,87), wxBORDER_DOUBLE|wxTAB_TRAVERSAL, _T("ID_PANEL4"));
     Panel4->SetBackgroundColour(wxSystemSettings::GetColour(wxSYS_COLOUR_SCROLLBAR));
-    Button2 = new wxButton(Panel4, ID_BUTTON2, _("Iniciar"), wxPoint(16,16), wxSize(70,34), 0, wxDefaultValidator, _T("ID_BUTTON2"));
+    Button2 = new wxButton(Panel4, ID_BUTTON2, _("Play"), wxPoint(16,16), wxSize(70,34), 0, wxDefaultValidator, _T("ID_BUTTON2"));
+    Button2->Disable();
     StaticText7 = new wxStaticText(Panel4, ID_STATICTEXT7, _("00:00 / 03:34"), wxPoint(104,17), wxSize(176,31), 0, _T("ID_STATICTEXT7"));
     wxFont StaticText7Font(17,wxFONTFAMILY_SWISS,wxFONTSTYLE_NORMAL,wxFONTWEIGHT_NORMAL,false,_T("Sans"),wxFONTENCODING_DEFAULT);
     StaticText7->SetFont(StaticText7Font);
@@ -217,6 +218,7 @@ UGS_editorFrame::UGS_editorFrame(wxWindow* parent,wxWindowID id)
     Panel10 = new wxPanel(Panel1, ID_PANEL10, wxPoint(536,456), wxSize(390,64), wxBORDER_DOUBLE|wxTAB_TRAVERSAL, _T("ID_PANEL10"));
     Panel10->SetBackgroundColour(wxSystemSettings::GetColour(wxSYS_COLOUR_MENUBAR));
     Button7 = new wxButton(Panel10, ID_BUTTON7, _("Descartar Alteracoes"), wxPoint(26,14), wxSize(165,34), 0, wxDefaultValidator, _T("ID_BUTTON7"));
+    Button7->Hide();
     Button3 = new wxButton(Panel10, ID_BUTTON3, _("Exportar Faixa"), wxPoint(232,15), wxSize(128,34), 0, wxDefaultValidator, _T("ID_BUTTON3"));
     MenuBar1 = new wxMenuBar();
     Menu1 = new wxMenu();
@@ -240,6 +242,7 @@ UGS_editorFrame::UGS_editorFrame(wxWindow* parent,wxWindowID id)
     Panel2->Connect(wxEVT_PAINT,(wxObjectEventFunction)&UGS_editorFrame::OnPanel2Paint,0,this);
     Connect(ID_BUTTON1,wxEVT_COMMAND_BUTTON_CLICKED,(wxObjectEventFunction)&UGS_editorFrame::OnButton1Click);
     Connect(ID_BUTTON2,wxEVT_COMMAND_BUTTON_CLICKED,(wxObjectEventFunction)&UGS_editorFrame::OnButton2Click);
+    Connect(ID_BUTTON7,wxEVT_COMMAND_BUTTON_CLICKED,(wxObjectEventFunction)&UGS_editorFrame::OnButton7Click);
     Connect(ID_BUTTON3,wxEVT_COMMAND_BUTTON_CLICKED,(wxObjectEventFunction)&UGS_editorFrame::OnButton3Click);
     Connect(idMenuQuit,wxEVT_COMMAND_MENU_SELECTED,(wxObjectEventFunction)&UGS_editorFrame::OnQuit);
     Connect(idMenuAbout,wxEVT_COMMAND_MENU_SELECTED,(wxObjectEventFunction)&UGS_editorFrame::OnAbout);
@@ -280,10 +283,13 @@ void UGS_editorFrame::OnButton1Click(wxCommandEvent& event)
     wxString path = FileDialog1->GetPath();
     TextCtrl3->SetValue(path);
 
-    player->openFile(path.ToStdString());
+    bool opened = player->openFile(path.ToStdString());
+    if(!opened){ wxMessageBox(wxT("ERRO"), wxT("Não foi possível abrir o arquivo."), wxICON_ERROR); return;}
 
     int time = player->getTotalTime();
     Gauge1->SetRange(time);
+
+    Button2->Enable();
 }
 
 void UGS_editorFrame::OnButton4Click(wxCommandEvent& event)
@@ -318,13 +324,28 @@ void UGS_editorFrame::OnButton6Click(wxCommandEvent& event)
 
 void UGS_editorFrame::OnButton2Click(wxCommandEvent& event)
 {
-    player->play();
+    // Descartar alteracoes
+    Button7->Show(true);
+
+    if(Button2->GetLabel() == "Play")
+    {
+        player->play();
+        Button2->SetLabel("Pause");
+    } else
+    if(Button2->GetLabel() == "Pause")
+    {
+        player->pause();
+        Button2->SetLabel("Play");
+    }
+
+
+
 }
 
 
 void UGS_editorFrame::OnButton3Click(wxCommandEvent& event)
 {
-    //player->getCurrentTime(StaticText7);
+
 }
 
 void UGS_editorFrame::OnTimer1Trigger(wxTimerEvent& event)
@@ -338,4 +359,10 @@ void UGS_editorFrame::OnTimer1Trigger(wxTimerEvent& event)
 
 void UGS_editorFrame::OnPanel2Paint(wxPaintEvent& event)
 {
+}
+
+void UGS_editorFrame::OnButton7Click(wxCommandEvent& event)
+{
+    player->stop();
+    Button7->Show(false);
 }

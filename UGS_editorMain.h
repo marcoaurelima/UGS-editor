@@ -46,6 +46,7 @@ class UGS_editorFrame: public wxFrame
         void OnButton3Click(wxCommandEvent& event);
         void OnTimer1Trigger(wxTimerEvent& event);
         void OnPanel2Paint(wxPaintEvent& event);
+        void OnButton7Click(wxCommandEvent& event);
         //*)
 
         //(*Identifiers(UGS_editorFrame)

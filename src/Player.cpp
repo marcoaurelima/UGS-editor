@@ -10,9 +10,9 @@ Player::~Player()
     //dtor
 }
 
-void Player::openFile(std::string path)
+bool Player::openFile(std::string path)
 {
-    music.openFromFile(path);
+    return music.openFromFile(path);
 }
 
 std::string Player::getCurrentTime()

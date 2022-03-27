@@ -12,7 +12,7 @@ class Player
         Player();
         virtual ~Player();
 
-        void openFile(std::string path);
+        bool openFile(std::string path);
         int getTotalTime();
         std::string getCurrentTime();
         int getCurrentTimeInt();

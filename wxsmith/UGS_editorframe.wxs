@@ -162,9 +162,10 @@
 					<bg>wxSYS_COLOUR_SCROLLBAR</bg>
 					<style>wxBORDER_DOUBLE|wxTAB_TRAVERSAL</style>
 					<object class="wxButton" name="ID_BUTTON2" variable="Button2" member="yes">
-						<label>Iniciar</label>
+						<label>Play</label>
 						<pos>16,16</pos>
 						<size>70,34</size>
+						<enabled>0</enabled>
 						<handler function="OnButton2Click" entry="EVT_BUTTON" />
 					</object>
 					<object class="wxStaticText" name="ID_STATICTEXT7" variable="StaticText7" member="yes">
@@ -309,6 +310,8 @@
 					<label>Descartar Alteracoes</label>
 					<pos>26,14</pos>
 					<size>165,34</size>
+					<hidden>1</hidden>
+					<handler function="OnButton7Click" entry="EVT_BUTTON" />
 				</object>
 				<object class="wxButton" name="ID_BUTTON3" variable="Button3" member="yes">
 					<label>Exportar Faixa</label>
