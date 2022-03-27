@@ -141,7 +141,7 @@ UGS_editorFrame::UGS_editorFrame(wxWindow* parent,wxWindowID id)
     TextCtrl1 = new wxTextCtrl(Panel1, ID_TEXTCTRL1, wxEmptyString, wxPoint(136,136), wxSize(336,34), 0, wxDefaultValidator, _T("ID_TEXTCTRL1"));
     StaticText2 = new wxStaticText(Panel1, ID_STATICTEXT2, _("Artista"), wxPoint(65,140), wxDefaultSize, 0, _T("ID_STATICTEXT2"));
     TextCtrl2 = new wxTextCtrl(Panel1, ID_TEXTCTRL2, wxEmptyString, wxPoint(136,180), wxSize(336,34), 0, wxDefaultValidator, _T("ID_TEXTCTRL2"));
-    StaticText3 = new wxStaticText(Panel1, ID_STATICTEXT3, _("Musica"), wxPoint(65,185), wxDefaultSize, 0, _T("ID_STATICTEXT3"));
+    StaticText3 = new wxStaticText(Panel1, ID_STATICTEXT3, _("Musica"), wxPoint(65,187), wxDefaultSize, 0, _T("ID_STATICTEXT3"));
     Choice1 = new wxChoice(Panel1, ID_CHOICE1, wxPoint(176,225), wxSize(296,34), 0, 0, 0, wxDefaultValidator, _T("ID_CHOICE1"));
     Choice1->Append(_("Guitarra 1"));
     Choice1->Append(_("Guitarra 2"));
@@ -158,9 +158,9 @@ UGS_editorFrame::UGS_editorFrame(wxWindow* parent,wxWindowID id)
     Choice1->Append(_("Sampler"));
     Choice1->Append(_("Piano"));
     Choice1->Append(_("Teclado"));
-    StaticText4 = new wxStaticText(Panel1, ID_STATICTEXT4, _("Instrumento"), wxPoint(65,230), wxDefaultSize, 0, _T("ID_STATICTEXT4"));
+    StaticText4 = new wxStaticText(Panel1, ID_STATICTEXT4, _("Instrumento"), wxPoint(65,234), wxDefaultSize, 0, _T("ID_STATICTEXT4"));
     StaticText5 = new wxStaticText(Panel1, ID_STATICTEXT5, _("Dificuldade"), wxPoint(65,280), wxDefaultSize, 0, _T("ID_STATICTEXT5"));
-    StaticText6 = new wxStaticText(Panel1, ID_STATICTEXT6, _("Audio .ogg"), wxPoint(65,322), wxDefaultSize, 0, _T("ID_STATICTEXT6"));
+    StaticText6 = new wxStaticText(Panel1, ID_STATICTEXT6, _("Audio .ogg"), wxPoint(70,327), wxDefaultSize, 0, _T("ID_STATICTEXT6"));
     TextCtrl3 = new wxTextCtrl(Panel1, ID_TEXTCTRL3, wxEmptyString, wxPoint(160,320), wxSize(266,34), 0, wxDefaultValidator, _T("ID_TEXTCTRL3"));
     TextCtrl3->Disable();
     Button1 = new wxButton(Panel1, ID_BUTTON1, _("..."), wxPoint(432,320), wxSize(37,34), 0, wxDefaultValidator, _T("ID_BUTTON1"));
@@ -335,7 +335,7 @@ void UGS_editorFrame::OnButton6Click(wxCommandEvent& event)
 
 void UGS_editorFrame::OnButton2Click(wxCommandEvent& event)
 {
-    // Descartar alteracoes
+    // Botão Descartar alteracoes
     Button7->Show(true);
 
     if(Button2->GetLabel() == "Play")
@@ -348,9 +348,6 @@ void UGS_editorFrame::OnButton2Click(wxCommandEvent& event)
         player->pause();
         Button2->SetLabel("Play");
     }
-
-
-
 }
 
 
