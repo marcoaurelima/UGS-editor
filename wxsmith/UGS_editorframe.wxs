@@ -6,10 +6,13 @@
 		<pos>-1,-1</pos>
 		<size>961,585</size>
 		<id_arg>0</id_arg>
+		<handler function="OnKeyDown" entry="EVT_KEY_DOWN" />
 		<object class="wxPanel" name="ID_PANEL1" variable="Panel1" member="yes">
 			<pos>0,8</pos>
 			<size>528,494</size>
 			<bg>wxSYS_COLOUR_ACTIVEBORDER</bg>
+			<handler function="OnPanel1KeyDown" entry="EVT_KEY_DOWN" />
+			<handler function="OnPanel1KeyUp" entry="EVT_KEY_UP" />
 			<object class="wxPanel" name="ID_PANEL2" variable="Panel2" member="yes">
 				<pos>32,90</pos>
 				<size>480,430</size>
@@ -187,36 +190,6 @@
 						<size>306,14</size>
 					</object>
 				</object>
-				<object class="wxPanel" name="ID_PANEL5" variable="Panel5" member="yes">
-					<pos>25,130</pos>
-					<size>58,90</size>
-					<bg>wxSYS_COLOUR_BTNSHADOW</bg>
-					<style>0</style>
-				</object>
-				<object class="wxPanel" name="ID_PANEL6" variable="Panel6" member="yes">
-					<pos>95,130</pos>
-					<size>58,90</size>
-					<bg>wxSYS_COLOUR_BTNSHADOW</bg>
-					<style>0</style>
-				</object>
-				<object class="wxPanel" name="ID_PANEL7" variable="Panel7" member="yes">
-					<pos>165,130</pos>
-					<size>58,90</size>
-					<bg>wxSYS_COLOUR_BTNSHADOW</bg>
-					<style>0</style>
-				</object>
-				<object class="wxPanel" name="ID_PANEL8" variable="Panel8" member="yes">
-					<pos>235,130</pos>
-					<size>58,90</size>
-					<bg>wxSYS_COLOUR_BTNSHADOW</bg>
-					<style>0</style>
-				</object>
-				<object class="wxPanel" name="ID_PANEL9" variable="Panel9" member="yes">
-					<pos>305,130</pos>
-					<size>58,90</size>
-					<bg>wxSYS_COLOUR_BTNSHADOW</bg>
-					<style>0</style>
-				</object>
 				<object class="wxStaticText" name="ID_STATICTEXT8" variable="StaticText8" member="yes">
 					<label>Notas</label>
 					<pos>30,240</pos>
@@ -303,7 +276,7 @@
 					<pos>288,320</pos>
 					<size>70,34</size>
 					<font>
-						<size>18</size>
+						<size>16</size>
 						<style>normal</style>
 						<weight>normal</weight>
 						<underlined>0</underlined>
@@ -311,10 +284,41 @@
 						<face>Sans</face>
 					</font>
 					<style>wxTE_CENTRE</style>
+					<handler function="OnTextCtrl7Text" entry="EVT_TEXT" />
 				</object>
 				<object class="wxStaticText" name="ID_STATICTEXT13" variable="StaticText13" member="yes">
 					<label>Campo para teclas</label>
 					<pos>152,328</pos>
+				</object>
+				<object class="wxPanel" name="ID_PANEL5" variable="Panel5" member="yes">
+					<pos>33,120</pos>
+					<size>47,88</size>
+					<bg>wxSYS_COLOUR_SCROLLBAR</bg>
+					<style>wxBORDER_DOUBLE|wxTAB_TRAVERSAL</style>
+				</object>
+				<object class="wxPanel" name="ID_PANEL6" variable="Panel6" member="yes">
+					<pos>102,120</pos>
+					<size>47,88</size>
+					<bg>wxSYS_COLOUR_SCROLLBAR</bg>
+					<style>wxBORDER_DOUBLE|wxTAB_TRAVERSAL</style>
+				</object>
+				<object class="wxPanel" name="ID_PANEL7" variable="Panel7" member="yes">
+					<pos>172,120</pos>
+					<size>47,88</size>
+					<bg>wxSYS_COLOUR_SCROLLBAR</bg>
+					<style>wxBORDER_DOUBLE|wxTAB_TRAVERSAL</style>
+				</object>
+				<object class="wxPanel" name="ID_PANEL8" variable="Panel8" member="yes">
+					<pos>240,120</pos>
+					<size>47,88</size>
+					<bg>wxSYS_COLOUR_SCROLLBAR</bg>
+					<style>wxBORDER_DOUBLE|wxTAB_TRAVERSAL</style>
+				</object>
+				<object class="wxPanel" name="ID_PANEL9" variable="Panel9" member="yes">
+					<pos>306,120</pos>
+					<size>47,88</size>
+					<bg>wxSYS_COLOUR_SCROLLBAR</bg>
+					<style>wxBORDER_DOUBLE|wxTAB_TRAVERSAL</style>
 				</object>
 			</object>
 			<object class="wxPanel" name="ID_PANEL10" variable="Panel10" member="yes">
@@ -368,6 +372,10 @@
 		<object class="wxTimer" name="ID_TIMER1" variable="Timer1" member="yes">
 			<interval>100</interval>
 			<handler function="OnTimer1Trigger" entry="EVT_TIMER" />
+		</object>
+		<object class="wxTimer" name="ID_TIMER2" variable="Timer2" member="yes">
+			<interval>125</interval>
+			<handler function="OnTimer2Trigger" entry="EVT_TIMER" />
 		</object>
 	</object>
 </wxsmith>

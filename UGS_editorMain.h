@@ -47,6 +47,11 @@ class UGS_editorFrame: public wxFrame
         void OnTimer1Trigger(wxTimerEvent& event);
         void OnPanel2Paint(wxPaintEvent& event);
         void OnButton7Click(wxCommandEvent& event);
+        void OnTextCtrl7Text(wxCommandEvent& event);
+        void OnTimer2Trigger(wxTimerEvent& event);
+        void OnPanel1KeyUp(wxKeyEvent& event);
+        void OnPanel1KeyDown(wxKeyEvent& event);
+        void OnKeyDown(wxKeyEvent& event);
         //*)
 
         //(*Identifiers(UGS_editorFrame)
@@ -79,11 +84,6 @@ class UGS_editorFrame: public wxFrame
         static const long ID_STATICTEXT7;
         static const long ID_GAUGE1;
         static const long ID_PANEL4;
-        static const long ID_PANEL5;
-        static const long ID_PANEL6;
-        static const long ID_PANEL7;
-        static const long ID_PANEL8;
-        static const long ID_PANEL9;
         static const long ID_STATICTEXT8;
         static const long ID_BUTTON9;
         static const long ID_STATICTEXT9;
@@ -99,6 +99,11 @@ class UGS_editorFrame: public wxFrame
         static const long ID_STATICLINE2;
         static const long ID_TEXTCTRL7;
         static const long ID_STATICTEXT13;
+        static const long ID_PANEL5;
+        static const long ID_PANEL6;
+        static const long ID_PANEL7;
+        static const long ID_PANEL8;
+        static const long ID_PANEL9;
         static const long ID_PANEL3;
         static const long ID_BUTTON7;
         static const long ID_BUTTON3;
@@ -107,6 +112,7 @@ class UGS_editorFrame: public wxFrame
         static const long idMenuQuit;
         static const long idMenuAbout;
         static const long ID_TIMER1;
+        static const long ID_TIMER2;
         //*)
 
         //(*Declarations(UGS_editorFrame)
@@ -167,6 +173,7 @@ class UGS_editorFrame: public wxFrame
         wxTextCtrl* TextCtrl6;
         wxTextCtrl* TextCtrl7;
         wxTimer Timer1;
+        wxTimer Timer2;
         //*)
 
         Player* player;

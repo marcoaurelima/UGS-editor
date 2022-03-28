@@ -74,11 +74,6 @@ const long UGS_editorFrame::ID_BUTTON2 = wxNewId();
 const long UGS_editorFrame::ID_STATICTEXT7 = wxNewId();
 const long UGS_editorFrame::ID_GAUGE1 = wxNewId();
 const long UGS_editorFrame::ID_PANEL4 = wxNewId();
-const long UGS_editorFrame::ID_PANEL5 = wxNewId();
-const long UGS_editorFrame::ID_PANEL6 = wxNewId();
-const long UGS_editorFrame::ID_PANEL7 = wxNewId();
-const long UGS_editorFrame::ID_PANEL8 = wxNewId();
-const long UGS_editorFrame::ID_PANEL9 = wxNewId();
 const long UGS_editorFrame::ID_STATICTEXT8 = wxNewId();
 const long UGS_editorFrame::ID_BUTTON9 = wxNewId();
 const long UGS_editorFrame::ID_STATICTEXT9 = wxNewId();
@@ -94,6 +89,11 @@ const long UGS_editorFrame::ID_BUTTON18 = wxNewId();
 const long UGS_editorFrame::ID_STATICLINE2 = wxNewId();
 const long UGS_editorFrame::ID_TEXTCTRL7 = wxNewId();
 const long UGS_editorFrame::ID_STATICTEXT13 = wxNewId();
+const long UGS_editorFrame::ID_PANEL5 = wxNewId();
+const long UGS_editorFrame::ID_PANEL6 = wxNewId();
+const long UGS_editorFrame::ID_PANEL7 = wxNewId();
+const long UGS_editorFrame::ID_PANEL8 = wxNewId();
+const long UGS_editorFrame::ID_PANEL9 = wxNewId();
 const long UGS_editorFrame::ID_PANEL3 = wxNewId();
 const long UGS_editorFrame::ID_BUTTON7 = wxNewId();
 const long UGS_editorFrame::ID_BUTTON3 = wxNewId();
@@ -102,6 +102,7 @@ const long UGS_editorFrame::ID_PANEL1 = wxNewId();
 const long UGS_editorFrame::idMenuQuit = wxNewId();
 const long UGS_editorFrame::idMenuAbout = wxNewId();
 const long UGS_editorFrame::ID_TIMER1 = wxNewId();
+const long UGS_editorFrame::ID_TIMER2 = wxNewId();
 //*)
 
 BEGIN_EVENT_TABLE(UGS_editorFrame,wxFrame)
@@ -183,16 +184,6 @@ UGS_editorFrame::UGS_editorFrame(wxWindow* parent,wxWindowID id)
     wxFont StaticText7Font(17,wxFONTFAMILY_SWISS,wxFONTSTYLE_NORMAL,wxFONTWEIGHT_NORMAL,false,_T("Sans"),wxFONTENCODING_DEFAULT);
     StaticText7->SetFont(StaticText7Font);
     Gauge1 = new wxGauge(Panel4, ID_GAUGE1, 3000, wxPoint(17,56), wxSize(306,14), 0, wxDefaultValidator, _T("ID_GAUGE1"));
-    Panel5 = new wxPanel(Panel3, ID_PANEL5, wxPoint(25,130), wxSize(58,90), 0, _T("ID_PANEL5"));
-    Panel5->SetBackgroundColour(wxSystemSettings::GetColour(wxSYS_COLOUR_BTNSHADOW));
-    Panel6 = new wxPanel(Panel3, ID_PANEL6, wxPoint(95,130), wxSize(58,90), 0, _T("ID_PANEL6"));
-    Panel6->SetBackgroundColour(wxSystemSettings::GetColour(wxSYS_COLOUR_BTNSHADOW));
-    Panel7 = new wxPanel(Panel3, ID_PANEL7, wxPoint(165,130), wxSize(58,90), 0, _T("ID_PANEL7"));
-    Panel7->SetBackgroundColour(wxSystemSettings::GetColour(wxSYS_COLOUR_BTNSHADOW));
-    Panel8 = new wxPanel(Panel3, ID_PANEL8, wxPoint(235,130), wxSize(58,90), 0, _T("ID_PANEL8"));
-    Panel8->SetBackgroundColour(wxSystemSettings::GetColour(wxSYS_COLOUR_BTNSHADOW));
-    Panel9 = new wxPanel(Panel3, ID_PANEL9, wxPoint(305,130), wxSize(58,90), 0, _T("ID_PANEL9"));
-    Panel9->SetBackgroundColour(wxSystemSettings::GetColour(wxSYS_COLOUR_BTNSHADOW));
     StaticText8 = new wxStaticText(Panel3, ID_STATICTEXT8, _("Notas"), wxPoint(30,240), wxDefaultSize, 0, _T("ID_STATICTEXT8"));
     Button9 = new wxButton(Panel3, ID_BUTTON9, _("1"), wxPoint(85,240), wxSize(47,23), wxBORDER_DOUBLE, wxDefaultValidator, _T("ID_BUTTON9"));
     Button9->Disable();
@@ -217,9 +208,19 @@ UGS_editorFrame::UGS_editorFrame(wxWindow* parent,wxWindowID id)
     Button18->Disable();
     StaticLine2 = new wxStaticLine(Panel3, ID_STATICLINE2, wxPoint(35,305), wxSize(320,2), wxLI_HORIZONTAL, _T("ID_STATICLINE2"));
     TextCtrl7 = new wxTextCtrl(Panel3, ID_TEXTCTRL7, wxEmptyString, wxPoint(288,320), wxSize(70,34), wxTE_CENTRE, wxDefaultValidator, _T("ID_TEXTCTRL7"));
-    wxFont TextCtrl7Font(18,wxFONTFAMILY_SWISS,wxFONTSTYLE_NORMAL,wxFONTWEIGHT_NORMAL,false,_T("Sans"),wxFONTENCODING_DEFAULT);
+    wxFont TextCtrl7Font(16,wxFONTFAMILY_SWISS,wxFONTSTYLE_NORMAL,wxFONTWEIGHT_NORMAL,false,_T("Sans"),wxFONTENCODING_DEFAULT);
     TextCtrl7->SetFont(TextCtrl7Font);
     StaticText13 = new wxStaticText(Panel3, ID_STATICTEXT13, _("Campo para teclas"), wxPoint(152,328), wxDefaultSize, 0, _T("ID_STATICTEXT13"));
+    Panel5 = new wxPanel(Panel3, ID_PANEL5, wxPoint(33,120), wxSize(47,88), wxBORDER_DOUBLE|wxTAB_TRAVERSAL, _T("ID_PANEL5"));
+    Panel5->SetBackgroundColour(wxSystemSettings::GetColour(wxSYS_COLOUR_SCROLLBAR));
+    Panel6 = new wxPanel(Panel3, ID_PANEL6, wxPoint(102,120), wxSize(47,88), wxBORDER_DOUBLE|wxTAB_TRAVERSAL, _T("ID_PANEL6"));
+    Panel6->SetBackgroundColour(wxSystemSettings::GetColour(wxSYS_COLOUR_SCROLLBAR));
+    Panel7 = new wxPanel(Panel3, ID_PANEL7, wxPoint(172,120), wxSize(47,88), wxBORDER_DOUBLE|wxTAB_TRAVERSAL, _T("ID_PANEL7"));
+    Panel7->SetBackgroundColour(wxSystemSettings::GetColour(wxSYS_COLOUR_SCROLLBAR));
+    Panel8 = new wxPanel(Panel3, ID_PANEL8, wxPoint(240,120), wxSize(47,88), wxBORDER_DOUBLE|wxTAB_TRAVERSAL, _T("ID_PANEL8"));
+    Panel8->SetBackgroundColour(wxSystemSettings::GetColour(wxSYS_COLOUR_SCROLLBAR));
+    Panel9 = new wxPanel(Panel3, ID_PANEL9, wxPoint(306,120), wxSize(47,88), wxBORDER_DOUBLE|wxTAB_TRAVERSAL, _T("ID_PANEL9"));
+    Panel9->SetBackgroundColour(wxSystemSettings::GetColour(wxSYS_COLOUR_SCROLLBAR));
     Panel10 = new wxPanel(Panel1, ID_PANEL10, wxPoint(536,464), wxSize(390,56), wxBORDER_DOUBLE|wxTAB_TRAVERSAL, _T("ID_PANEL10"));
     Panel10->SetBackgroundColour(wxSystemSettings::GetColour(wxSYS_COLOUR_MENUBAR));
     Button7 = new wxButton(Panel10, ID_BUTTON7, _("Descartar Alteracoes"), wxPoint(26,10), wxSize(165,34), 0, wxDefaultValidator, _T("ID_BUTTON7"));
@@ -239,6 +240,8 @@ UGS_editorFrame::UGS_editorFrame(wxWindow* parent,wxWindowID id)
     FileDialog2 = new wxFileDialog(this, _("Select file"), wxEmptyString, wxEmptyString, _("*.png"), wxFD_DEFAULT_STYLE, wxDefaultPosition, wxDefaultSize, _T("wxFileDialog"));
     Timer1.SetOwner(this, ID_TIMER1);
     Timer1.Start(100, false);
+    Timer2.SetOwner(this, ID_TIMER2);
+    Timer2.Start(125, false);
     Center();
 
     Connect(ID_BUTTON4,wxEVT_COMMAND_BUTTON_CLICKED,(wxObjectEventFunction)&UGS_editorFrame::OnButton4Click);
@@ -247,11 +250,16 @@ UGS_editorFrame::UGS_editorFrame(wxWindow* parent,wxWindowID id)
     Panel2->Connect(wxEVT_PAINT,(wxObjectEventFunction)&UGS_editorFrame::OnPanel2Paint,0,this);
     Connect(ID_BUTTON1,wxEVT_COMMAND_BUTTON_CLICKED,(wxObjectEventFunction)&UGS_editorFrame::OnButton1Click);
     Connect(ID_BUTTON2,wxEVT_COMMAND_BUTTON_CLICKED,(wxObjectEventFunction)&UGS_editorFrame::OnButton2Click);
+    Connect(ID_TEXTCTRL7,wxEVT_COMMAND_TEXT_UPDATED,(wxObjectEventFunction)&UGS_editorFrame::OnTextCtrl7Text);
     Connect(ID_BUTTON7,wxEVT_COMMAND_BUTTON_CLICKED,(wxObjectEventFunction)&UGS_editorFrame::OnButton7Click);
     Connect(ID_BUTTON3,wxEVT_COMMAND_BUTTON_CLICKED,(wxObjectEventFunction)&UGS_editorFrame::OnButton3Click);
+    Panel1->Connect(wxEVT_KEY_DOWN,(wxObjectEventFunction)&UGS_editorFrame::OnPanel1KeyDown,0,this);
+    Panel1->Connect(wxEVT_KEY_UP,(wxObjectEventFunction)&UGS_editorFrame::OnPanel1KeyUp,0,this);
     Connect(idMenuQuit,wxEVT_COMMAND_MENU_SELECTED,(wxObjectEventFunction)&UGS_editorFrame::OnQuit);
     Connect(idMenuAbout,wxEVT_COMMAND_MENU_SELECTED,(wxObjectEventFunction)&UGS_editorFrame::OnAbout);
     Connect(ID_TIMER1,wxEVT_TIMER,(wxObjectEventFunction)&UGS_editorFrame::OnTimer1Trigger);
+    Connect(ID_TIMER2,wxEVT_TIMER,(wxObjectEventFunction)&UGS_editorFrame::OnTimer2Trigger);
+    Connect(wxEVT_KEY_DOWN,(wxObjectEventFunction)&UGS_editorFrame::OnKeyDown);
     //*)
 
     player = new Player();
@@ -371,6 +379,9 @@ void UGS_editorFrame::OnButton3Click(wxCommandEvent& event)
 
 void UGS_editorFrame::OnTimer1Trigger(wxTimerEvent& event)
 {
+
+
+
     if(introPlayed && (introPlayedTimeCount += 100) > 3500)
     {
         player->play();
@@ -408,4 +419,54 @@ void UGS_editorFrame::OnButton7Click(wxCommandEvent& event)
     Button7->Show(false);
     StaticText7->SetLabel("00:00 / 00:00");
     introPlayedTimeCount = 0;
+}
+
+void UGS_editorFrame::OnTextCtrl7Text(wxCommandEvent& event)
+{
+    wxString c = event.GetString()[event.GetString().size()-1];
+
+
+    if(c == "A")
+    Panel5->SetBackgroundColour(wxColor(61,233,10));
+    if(c == "S")
+    Panel6->SetBackgroundColour(wxColor(255,0,0));
+    if(c == "D")
+    Panel7->SetBackgroundColour(wxColor(255,224,0));
+    if(c == "F")
+    Panel8->SetBackgroundColour(wxColor(0,19,255));
+    if(c == "G")
+    Panel9->SetBackgroundColour(wxColor(255,108,0));
+
+}
+
+
+void UGS_editorFrame::OnTimer2Trigger(wxTimerEvent& event)
+{
+
+    Panel5->SetBackgroundColour(wxColor(72,72,72));
+    Panel6->SetBackgroundColour(wxColor(72,72,72));
+    Panel7->SetBackgroundColour(wxColor(72,72,72));
+    Panel8->SetBackgroundColour(wxColor(72,72,72));
+    Panel9->SetBackgroundColour(wxColor(72,72,72));
+
+
+}
+
+void UGS_editorFrame::OnPanel1KeyUp(wxKeyEvent& event)
+{
+    std::cout << "Keyup\n";
+}
+
+
+
+
+
+void UGS_editorFrame::OnPanel1KeyDown(wxKeyEvent& event)
+{
+    std::cout << "Keyup\n";
+}
+
+void UGS_editorFrame::OnKeyDown(wxKeyEvent& event)
+{
+    std::cout << "Keyup\n";
 }
