@@ -320,6 +320,10 @@
 					<bg>wxSYS_COLOUR_SCROLLBAR</bg>
 					<style>wxBORDER_DOUBLE|wxTAB_TRAVERSAL</style>
 				</object>
+				<object class="wxStaticLine" name="ID_STATICLINE3" variable="StaticLine3" member="yes">
+					<pos>36,224</pos>
+					<size>320,-1</size>
+				</object>
 			</object>
 			<object class="wxPanel" name="ID_PANEL10" variable="Panel10" member="yes">
 				<pos>536,464</pos>

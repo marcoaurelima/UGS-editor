@@ -104,6 +104,7 @@ class UGS_editorFrame: public wxFrame
         static const long ID_PANEL7;
         static const long ID_PANEL8;
         static const long ID_PANEL9;
+        static const long ID_STATICLINE3;
         static const long ID_PANEL3;
         static const long ID_BUTTON7;
         static const long ID_BUTTON3;
@@ -152,6 +153,7 @@ class UGS_editorFrame: public wxFrame
         wxPanel* Panel9;
         wxStaticLine* StaticLine1;
         wxStaticLine* StaticLine2;
+        wxStaticLine* StaticLine3;
         wxStaticText* StaticText10;
         wxStaticText* StaticText11;
         wxStaticText* StaticText12;

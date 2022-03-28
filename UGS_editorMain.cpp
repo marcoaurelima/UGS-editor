@@ -94,6 +94,7 @@ const long UGS_editorFrame::ID_PANEL6 = wxNewId();
 const long UGS_editorFrame::ID_PANEL7 = wxNewId();
 const long UGS_editorFrame::ID_PANEL8 = wxNewId();
 const long UGS_editorFrame::ID_PANEL9 = wxNewId();
+const long UGS_editorFrame::ID_STATICLINE3 = wxNewId();
 const long UGS_editorFrame::ID_PANEL3 = wxNewId();
 const long UGS_editorFrame::ID_BUTTON7 = wxNewId();
 const long UGS_editorFrame::ID_BUTTON3 = wxNewId();
@@ -221,6 +222,7 @@ UGS_editorFrame::UGS_editorFrame(wxWindow* parent,wxWindowID id)
     Panel8->SetBackgroundColour(wxSystemSettings::GetColour(wxSYS_COLOUR_SCROLLBAR));
     Panel9 = new wxPanel(Panel3, ID_PANEL9, wxPoint(306,120), wxSize(47,88), wxBORDER_DOUBLE|wxTAB_TRAVERSAL, _T("ID_PANEL9"));
     Panel9->SetBackgroundColour(wxSystemSettings::GetColour(wxSYS_COLOUR_SCROLLBAR));
+    StaticLine3 = new wxStaticLine(Panel3, ID_STATICLINE3, wxPoint(36,224), wxSize(320,-1), wxLI_HORIZONTAL, _T("ID_STATICLINE3"));
     Panel10 = new wxPanel(Panel1, ID_PANEL10, wxPoint(536,464), wxSize(390,56), wxBORDER_DOUBLE|wxTAB_TRAVERSAL, _T("ID_PANEL10"));
     Panel10->SetBackgroundColour(wxSystemSettings::GetColour(wxSYS_COLOUR_MENUBAR));
     Button7 = new wxButton(Panel10, ID_BUTTON7, _("Descartar Alteracoes"), wxPoint(26,10), wxSize(165,34), 0, wxDefaultValidator, _T("ID_BUTTON7"));
