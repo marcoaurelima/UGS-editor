@@ -76,8 +76,6 @@ const long UGS_editorFrame::ID_PANEL10 = wxNewId();
 const long UGS_editorFrame::ID_PANEL1 = wxNewId();
 const long UGS_editorFrame::idMenuQuit = wxNewId();
 const long UGS_editorFrame::idMenuAbout = wxNewId();
-const long UGS_editorFrame::ID_TIMER1 = wxNewId();
-const long UGS_editorFrame::ID_TIMER2 = wxNewId();
 //*)
 
 BEGIN_EVENT_TABLE(UGS_editorFrame,wxFrame)
@@ -165,10 +163,6 @@ UGS_editorFrame::UGS_editorFrame(wxWindow* parent,wxWindowID id)
     SetMenuBar(MenuBar1);
     FileDialog1 = new wxFileDialog(this, _("Select file"), wxEmptyString, wxEmptyString, _("*.ogg"), wxFD_DEFAULT_STYLE, wxDefaultPosition, wxDefaultSize, _T("wxFileDialog"));
     FileDialog2 = new wxFileDialog(this, _("Select file"), wxEmptyString, wxEmptyString, _("*.png"), wxFD_DEFAULT_STYLE, wxDefaultPosition, wxDefaultSize, _T("wxFileDialog"));
-    Timer1.SetOwner(this, ID_TIMER1);
-    Timer1.Start(100, false);
-    Timer2.SetOwner(this, ID_TIMER2);
-    Timer2.Start(125, false);
     Center();
 
     Connect(ID_BUTTON4,wxEVT_COMMAND_BUTTON_CLICKED,(wxObjectEventFunction)&UGS_editorFrame::OnButton4Click);
@@ -264,5 +258,11 @@ void UGS_editorFrame::OnButton6Click(wxCommandEvent& event)
 
 void UGS_editorFrame::OnButton2Click2(wxCommandEvent& event)
 {
-    system("./edit-seq");
+    std::string trackInfo = "ARTISTA: NIRVANA\nMUSICA:  BREED\nINSTRUMENTO: GUITARRA";
+    std::string trackPath = "song.ogg";
+
+    SequenceEditor seqEdit(trackInfo, trackPath);
+    seqEdit.open();
+
+    //system("./edit-seq");
 }

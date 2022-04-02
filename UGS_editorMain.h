@@ -21,9 +21,10 @@
 #include <wx/statline.h>
 #include <wx/stattext.h>
 #include <wx/textctrl.h>
-#include <wx/timer.h>
 //*)
 #include "Player.h"
+
+#include "SequenceEditor.h"
 
 class UGS_editorFrame: public wxFrame
 {
@@ -43,11 +44,9 @@ class UGS_editorFrame: public wxFrame
         void OnButton6Click(wxCommandEvent& event);
         void OnButton2Click(wxCommandEvent& event);
         void OnButton3Click(wxCommandEvent& event);
-        void OnTimer1Trigger(wxTimerEvent& event);
         void OnPanel2Paint(wxPaintEvent& event);
         void OnButton7Click(wxCommandEvent& event);
         void OnTextCtrl7Text(wxCommandEvent& event);
-        void OnTimer2Trigger(wxTimerEvent& event);
         void OnPanel1KeyUp(wxKeyEvent& event);
         void OnPanel1KeyDown(wxKeyEvent& event);
         void OnKeyDown(wxKeyEvent& event);
@@ -87,8 +86,6 @@ class UGS_editorFrame: public wxFrame
         static const long ID_PANEL1;
         static const long idMenuQuit;
         static const long idMenuAbout;
-        static const long ID_TIMER1;
-        static const long ID_TIMER2;
         //*)
 
         //(*Declarations(UGS_editorFrame)
@@ -123,8 +120,6 @@ class UGS_editorFrame: public wxFrame
         wxTextCtrl* TextCtrl4;
         wxTextCtrl* TextCtrl5;
         wxTextCtrl* TextCtrl6;
-        wxTimer Timer1;
-        wxTimer Timer2;
         //*)
 
         Player* player;
