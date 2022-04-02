@@ -23,7 +23,7 @@ private:
     std::string trackPath;
     const int WIDTH {700};
     const int HEIGHT {500};
-    sf::RenderWindow* window;
+    sf::RenderWindow window;
     sf::Music musicIntro;
     sf::Music music;
     sf::Sprite spriteBg;
@@ -50,7 +50,7 @@ private:
     sf::Text textChords;
     char codeABCDE[3]{'a','b','c'};
 
-    bool mouseColision(auto &sprite, sf::RenderWindow* window);
+    bool mouseColision(auto &sprite, sf::RenderWindow& window);
     std::string segundosParaminutos(int tempoTotal, int segundos);
 };
 

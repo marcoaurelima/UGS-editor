@@ -2,10 +2,10 @@
 
 SequenceEditor::SequenceEditor(std::string trackInfo, std::string trackPath) : trackInfo(trackInfo), trackPath(trackPath)
 {
-    window = new sf::RenderWindow(sf::VideoMode(WIDTH,HEIGHT), "ULTIMATE GUITAR SHOW EDITOR", sf::Style::Close);
+    window.create(sf::VideoMode(WIDTH,HEIGHT), "ULTIMATE GUITAR SHOW EDITOR", sf::Style::Close);
     sf::Vector2i windowPosition((sf::VideoMode::getDesktopMode().width/2 - WIDTH/2), (sf::VideoMode::getDesktopMode().height/2) - (HEIGHT/2));
-    window->setPosition(windowPosition);
-    window->setFramerateLimit(50);
+    window.setPosition(windowPosition);
+    window.setFramerateLimit(50);
 
     music.openFromFile(trackPath);
     musicIntro.openFromFile("src/intro.audi");
@@ -117,22 +117,15 @@ SequenceEditor::SequenceEditor(std::string trackInfo, std::string trackPath) : t
 
 }
 
-bool SequenceEditor::mouseColision(auto &sprite, sf::RenderWindow* window)
+bool SequenceEditor::mouseColision(auto &sprite, sf::RenderWindow& window)
 {
-    /*
-    auto mouse_pos = sf::Mouse::getPosition(&window);
-    auto translated_pos = window->mapPixelToCoords(mouse_pos);
+    auto mouse_pos = sf::Mouse::getPosition(window);
+    auto translated_pos = window.mapPixelToCoords(mouse_pos);
     if(sprite.getGlobalBounds().contains(translated_pos))
     {
         return true;
     }
-    else
-    {
-        return false;
-    }
-    */
     return false;
-
 }
 
 std::string SequenceEditor::segundosParaminutos(int tempoTotal, int segundos)
@@ -167,14 +160,14 @@ std::string SequenceEditor::segundosParaminutos(int tempoTotal, int segundos)
 bool SequenceEditor::open()
 {
 
-    while(window->isOpen())
+    while(window.isOpen())
     {
         sf::Event e;
-        while(window->pollEvent(e))
+        while(window.pollEvent(e))
         {
             if(e.type == sf::Event::Closed)
             {
-                window->close();
+                window.close();
             }
 
             if(e.type == sf::Event::MouseButtonReleased)
@@ -218,12 +211,12 @@ bool SequenceEditor::open()
 
                 if(mouseColision(btCancel, window))
                 {
-                    exit(0);
+                    return false;
                 }
 
                 if(mouseColision(btOk, window))
                 {
-                    exit(0);
+                    return true;
                 }
 
             }
@@ -279,34 +272,33 @@ bool SequenceEditor::open()
 
         textElapsedTime.setString(segundosParaminutos(music.getDuration().asSeconds(), music.getPlayingOffset().asSeconds()));
 
-        window->clear();
-        window->draw(spriteBg);
-        window->draw(durationLine[0]);
-        window->draw(durationLine[1]);
-        window->draw(spriteControlButtons[0]);
-        window->draw(spriteControlButtons[1]);
-        window->draw(spriteControlButtons[2]);
-        window->draw(spriteControlButtons[3]);
-        window->draw(textElapsedTime);
-        window->draw(textTrackInfo);
-        window->draw(textChords);
+        window.clear();
+        window.draw(spriteBg);
+        window.draw(durationLine[0]);
+        window.draw(durationLine[1]);
+        window.draw(spriteControlButtons[0]);
+        window.draw(spriteControlButtons[1]);
+        window.draw(spriteControlButtons[2]);
+        window.draw(spriteControlButtons[3]);
+        window.draw(textElapsedTime);
+        window.draw(textTrackInfo);
+        window.draw(textChords);
 
-        window->draw(btCancel);
-        window->draw(btOk);
-        window->draw(textCancel);
-        window->draw(textOk);
+        window.draw(btCancel);
+        window.draw(btOk);
+        window.draw(textCancel);
+        window.draw(textOk);
 
-        window->draw(weightNote[0]);
-        window->draw(weightNote[1]);
-        window->draw(weightNote[2]);
-        window->draw(weightNote[3]);
+        window.draw(weightNote[0]);
+        window.draw(weightNote[1]);
+        window.draw(weightNote[2]);
+        window.draw(weightNote[3]);
 
-        window->display();
+        window.display();
     }
 }
 
 SequenceEditor::~SequenceEditor()
 {
-    delete(window);
     //dtor
 }

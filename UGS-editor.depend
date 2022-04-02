@@ -1299,7 +1299,7 @@
 1648925347 source:/home/marco/Documentos/TCC/UGS-editor/src/SequenceEditor.cpp
 	"SequenceEditor.h"
 
-1648924932 /home/marco/Documentos/TCC/UGS-editor/include/SequenceEditor.h
+1648926355 /home/marco/Documentos/TCC/UGS-editor/include/SequenceEditor.h
 	<iostream>
 	<sstream>
 	<SFML/Graphics.hpp>
