@@ -28,13 +28,14 @@
 	<wx/settings.h>
 	<wx/string.h>
 
-1648319177 source:/home/marco/Documentos/TCC/UGS-editor/UGS_editorApp.cpp
+1648926967 source:/home/marco/Documentos/TCC/UGS-editor/UGS_editorApp.cpp
 	"UGS_editorApp.h"
 	"UGS_editorMain.h"
 	<wx/image.h>
 
-1648319177 /home/marco/Documentos/TCC/UGS-editor/UGS_editorApp.h
+1648926878 /home/marco/Documentos/TCC/UGS-editor/UGS_editorApp.h
 	<wx/app.h>
+	"include/SequenceEditor.h"
 
 1585059103 /usr/include/wx-3.0/wx/app.h
 	"wx/event.h"
@@ -1296,10 +1297,10 @@
 1648435631 /home/marco/Documentos/TCC/UGS-editor/include/SequenceHandler.h
 	<cstdio>
 
-1648925347 source:/home/marco/Documentos/TCC/UGS-editor/src/SequenceEditor.cpp
+1648927349 source:/home/marco/Documentos/TCC/UGS-editor/src/SequenceEditor.cpp
 	"SequenceEditor.h"
 
-1648926355 /home/marco/Documentos/TCC/UGS-editor/include/SequenceEditor.h
+1648927093 /home/marco/Documentos/TCC/UGS-editor/include/SequenceEditor.h
 	<iostream>
 	<sstream>
 	<SFML/Graphics.hpp>

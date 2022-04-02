@@ -9,6 +9,7 @@
 
 #include "UGS_editorApp.h"
 
+
 //(*AppHeaders
 #include "UGS_editorMain.h"
 #include <wx/image.h>
@@ -18,6 +19,12 @@ IMPLEMENT_APP(UGS_editorApp);
 
 bool UGS_editorApp::OnInit()
 {
+    std::string trackInfo = "ARTISTA: NIRVANA\nMUSICA:  BREED\nINSTRUMENTO: GUITARRA";
+    std::string trackPath = "song.ogg";
+    SequenceEditor seqEdit(trackInfo, trackPath);
+    seqEdit.open();
+    exit(0);
+
     //(*AppInitialize
     bool wxsOK = true;
     wxInitAllImageHandlers();

@@ -51,7 +51,7 @@ private:
     char codeABCDE[3]{'a','b','c'};
 
     bool mouseColision(auto &sprite, sf::RenderWindow& window);
-    std::string segundosParaminutos(int tempoTotal, int segundos);
+    std::string secToMin(int tempoTotal, int segundos);
 };
 
 #endif // SEQUENCEEDITOR_H

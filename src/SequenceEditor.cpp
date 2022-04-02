@@ -104,9 +104,9 @@ SequenceEditor::SequenceEditor(std::string trackInfo, std::string trackPath) : t
     for(unsigned i=0; i<4; i++)
     {
         weightNote[i].setSize(sf::Vector2f(80,25));
-        weightNote[i].setFillColor(sf::Color(255,255,0, 80));
-        weightNote[i].setOutlineColor(sf::Color::Blue);
-        weightNote[i].setOutlineThickness(1);
+        weightNote[i].setFillColor(sf::Color(0,255,0, 80));
+        weightNote[i].setOutlineColor(sf::Color(0,100,0, 200));
+        weightNote[i].setOutlineThickness(2);
         weightNote[i].setPosition((85 * i) + 185, 370);
     }
 
@@ -128,7 +128,7 @@ bool SequenceEditor::mouseColision(auto &sprite, sf::RenderWindow& window)
     return false;
 }
 
-std::string SequenceEditor::segundosParaminutos(int tempoTotal, int segundos)
+std::string SequenceEditor::secToMin(int tempoTotal, int segundos)
 {
     std::stringstream ss;
     //ss << segundos/60 << ":" << segundos%60 << " / " << tempoTotal/60 << ":" << tempoTotal%60;
@@ -166,6 +166,10 @@ bool SequenceEditor::open()
         while(window.pollEvent(e))
         {
             if(e.type == sf::Event::Closed)
+            {
+                window.close();
+            }
+            if(sf::Keyboard::isKeyPressed(sf::Keyboard::Escape))
             {
                 window.close();
             }
@@ -226,7 +230,6 @@ bool SequenceEditor::open()
 
                 if(mouseColision(btCancel, window))
                 {
-
                     btCancel.setFillColor(sf::Color(0,0,180,255));
                 }
                 else
@@ -244,6 +247,43 @@ bool SequenceEditor::open()
                 }
             }
 
+            if(e.type == sf::Event::KeyPressed)
+            {
+                if(sf::Keyboard::isKeyPressed(sf::Keyboard::A) ||
+                    sf::Keyboard::isKeyPressed(sf::Keyboard::U))
+                {
+                    weightNote[0].setFillColor(sf::Color(0, 255,0,255));
+                }
+                else if(sf::Keyboard::isKeyPressed(sf::Keyboard::S) ||
+                    sf::Keyboard::isKeyPressed(sf::Keyboard::I))
+                {
+                    weightNote[0].setFillColor(sf::Color(0, 255,0,255));
+                    weightNote[1].setFillColor(sf::Color(0, 255,0,255));
+                }
+                else if(sf::Keyboard::isKeyPressed(sf::Keyboard::D) ||
+                    sf::Keyboard::isKeyPressed(sf::Keyboard::O))
+                {
+                    weightNote[0].setFillColor(sf::Color(0, 255,0,255));
+                    weightNote[1].setFillColor(sf::Color(0, 255,0,255));
+                    weightNote[2].setFillColor(sf::Color(0, 255,0,255));
+                }
+                else if(sf::Keyboard::isKeyPressed(sf::Keyboard::F) ||
+                    sf::Keyboard::isKeyPressed(sf::Keyboard::P))
+                {
+                    weightNote[0].setFillColor(sf::Color(0, 255,0,255));
+                    weightNote[1].setFillColor(sf::Color(0, 255,0,255));
+                    weightNote[2].setFillColor(sf::Color(0, 255,0,255));
+                    weightNote[3].setFillColor(sf::Color(0, 255,0,255));
+                }
+            }
+
+            if(e.type == sf::Event::KeyReleased)
+            {
+                weightNote[0].setFillColor(sf::Color(0, 255,0,80));
+                weightNote[1].setFillColor(sf::Color(0, 255,0,80));
+                weightNote[2].setFillColor(sf::Color(0, 255,0,80));
+                weightNote[3].setFillColor(sf::Color(0, 255,0,80));
+            }
         }
 
 
@@ -269,8 +309,7 @@ bool SequenceEditor::open()
             musicIntro.stop();
         }
 
-
-        textElapsedTime.setString(segundosParaminutos(music.getDuration().asSeconds(), music.getPlayingOffset().asSeconds()));
+        textElapsedTime.setString(secToMin(music.getDuration().asSeconds(), music.getPlayingOffset().asSeconds()));
 
         window.clear();
         window.draw(spriteBg);

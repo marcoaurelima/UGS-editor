@@ -12,6 +12,9 @@
 
 #include <wx/app.h>
 
+
+#include "include/SequenceEditor.h"
+
 class UGS_editorApp : public wxApp
 {
     public:
