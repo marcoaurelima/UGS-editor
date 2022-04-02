@@ -41,17 +41,22 @@ private:
     bool shift[4];
     std::vector<std::string> vectorNotes;
     std::vector<std::string> vectorNotes2;
-    float noteInitialTime = 0;
-    float noteFinalTime = 0;
-    int tamMinimal = 50;
+
     sf::Texture textureBg;
     sf::Text textElapsedTime;
     sf::Text textTrackInfo;
     sf::Text textChords;
-    char codeABCDE[3]{'a','b','c'};
+
+    int noteTimeSize = 50; // Bends abaixo desse valor são considerados notas
+    float initialTimeBend = 0;
+    float finalTimeBend = 0;
+    int chordWeight = 1; // Peso do acorde; se for 0 significa que é uma nota e não um acorde.
+
 
     bool mouseColision(auto &sprite, sf::RenderWindow& window);
     std::string secToMin(int tempoTotal, int segundos);
+
+    FILE* file;
 };
 
 #endif // SEQUENCEEDITOR_H

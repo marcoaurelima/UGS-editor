@@ -1297,10 +1297,10 @@
 1648435631 /home/marco/Documentos/TCC/UGS-editor/include/SequenceHandler.h
 	<cstdio>
 
-1648927349 source:/home/marco/Documentos/TCC/UGS-editor/src/SequenceEditor.cpp
+1648932185 source:/home/marco/Documentos/TCC/UGS-editor/src/SequenceEditor.cpp
 	"SequenceEditor.h"
 
-1648927093 /home/marco/Documentos/TCC/UGS-editor/include/SequenceEditor.h
+1648931868 /home/marco/Documentos/TCC/UGS-editor/include/SequenceEditor.h
 	<iostream>
 	<sstream>
 	<SFML/Graphics.hpp>

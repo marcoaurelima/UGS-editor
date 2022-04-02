@@ -66,7 +66,7 @@ SequenceEditor::SequenceEditor(std::string trackInfo, std::string trackPath) : t
     textTrackInfo.setString(trackInfo);
     textTrackInfo.setLineSpacing(1.5);
 
-    chords="ACORDES:    A-Y:1  S-U:2  D-I:3  F-O:4  ";
+    chords="ACORDES:    A-U:1  S-I:2  D-O:3  F-P:4  ";
     //sf::Text textChords;
     textChords.setFont(font);
     textChords.setCharacterSize(17);
@@ -114,6 +114,10 @@ SequenceEditor::SequenceEditor(std::string trackInfo, std::string trackPath) : t
     shift[0]=false;
     shift[1]=false;
     shift[2]=false;
+
+    file = fopen("exports/brute-sequence.txt", "w");
+    fclose(file);
+    file = fopen("exports/brute-sequence.txt", "a");
 
 }
 
@@ -249,27 +253,36 @@ bool SequenceEditor::open()
 
             if(e.type == sf::Event::KeyPressed)
             {
-                if(sf::Keyboard::isKeyPressed(sf::Keyboard::A) ||
-                    sf::Keyboard::isKeyPressed(sf::Keyboard::U))
+                if((sf::Keyboard::isKeyPressed(sf::Keyboard::A) ||
+                    sf::Keyboard::isKeyPressed(sf::Keyboard::U)) && shift[0])
                 {
+                    std::cout << "Botao A pressionado...\n";
+                    shift[0] = false;
                     weightNote[0].setFillColor(sf::Color(0, 255,0,255));
+                    //fprintf(file, "%f %d %f", )
                 }
-                else if(sf::Keyboard::isKeyPressed(sf::Keyboard::S) ||
-                    sf::Keyboard::isKeyPressed(sf::Keyboard::I))
+                else if((sf::Keyboard::isKeyPressed(sf::Keyboard::S) ||
+                    sf::Keyboard::isKeyPressed(sf::Keyboard::I)) && shift[1])
                 {
+                    std::cout << "Botao S pressionado...\n";
+                    shift[1] = false;
                     weightNote[0].setFillColor(sf::Color(0, 255,0,255));
                     weightNote[1].setFillColor(sf::Color(0, 255,0,255));
                 }
-                else if(sf::Keyboard::isKeyPressed(sf::Keyboard::D) ||
-                    sf::Keyboard::isKeyPressed(sf::Keyboard::O))
+                else if((sf::Keyboard::isKeyPressed(sf::Keyboard::D) ||
+                    sf::Keyboard::isKeyPressed(sf::Keyboard::O)) && shift[2])
                 {
+                    std::cout << "Botao D pressionado...\n";
+                    shift[2] = false;
                     weightNote[0].setFillColor(sf::Color(0, 255,0,255));
                     weightNote[1].setFillColor(sf::Color(0, 255,0,255));
                     weightNote[2].setFillColor(sf::Color(0, 255,0,255));
                 }
-                else if(sf::Keyboard::isKeyPressed(sf::Keyboard::F) ||
-                    sf::Keyboard::isKeyPressed(sf::Keyboard::P))
+                else if((sf::Keyboard::isKeyPressed(sf::Keyboard::F) ||
+                    sf::Keyboard::isKeyPressed(sf::Keyboard::P)) && shift[3])
                 {
+                    std::cout << "Botao F pressionado...\n";
+                    shift[3] = false;
                     weightNote[0].setFillColor(sf::Color(0, 255,0,255));
                     weightNote[1].setFillColor(sf::Color(0, 255,0,255));
                     weightNote[2].setFillColor(sf::Color(0, 255,0,255));
@@ -279,6 +292,11 @@ bool SequenceEditor::open()
 
             if(e.type == sf::Event::KeyReleased)
             {
+                std::cout << "Botao solto...\n";
+                shift[0] = true;
+                shift[1] = true;
+                shift[2] = true;
+                shift[3] = true;
                 weightNote[0].setFillColor(sf::Color(0, 255,0,80));
                 weightNote[1].setFillColor(sf::Color(0, 255,0,80));
                 weightNote[2].setFillColor(sf::Color(0, 255,0,80));
@@ -335,9 +353,13 @@ bool SequenceEditor::open()
 
         window.display();
     }
+
+    return false;
 }
 
 SequenceEditor::~SequenceEditor()
 {
+    fclose(file);
+    free(file);
     //dtor
 }
