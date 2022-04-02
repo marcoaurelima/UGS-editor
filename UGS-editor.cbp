@@ -44,8 +44,8 @@
 		<Unit filename="UGS_editorApp.h" />
 		<Unit filename="UGS_editorMain.cpp" />
 		<Unit filename="UGS_editorMain.h" />
-		<Unit filename="include/Player.h" />
-		<Unit filename="src/Player.cpp" />
+		<Unit filename="include/SequenceEditor.h" />
+		<Unit filename="src/SequenceEditor.cpp" />
 		<Unit filename="wxsmith/UGS_editorframe.wxs" />
 		<Extensions>
 			<wxsmith version="1">
