@@ -12,7 +12,6 @@
 
 //(*Headers(UGS_editorFrame)
 #include <wx/button.h>
-#include <wx/checkbox.h>
 #include <wx/choice.h>
 #include <wx/filedlg.h>
 #include <wx/frame.h>
@@ -22,6 +21,9 @@
 #include <wx/stattext.h>
 #include <wx/textctrl.h>
 //*)
+
+#include <fstream>
+
 #include "Player.h"
 
 #include "SequenceEditor.h"
@@ -67,21 +69,19 @@ class UGS_editorFrame: public wxFrame
         static const long ID_TEXTCTRL1;
         static const long ID_TEXTCTRL2;
         static const long ID_CHOICE1;
-        static const long ID_CHECKBOX3;
-        static const long ID_CHECKBOX2;
-        static const long ID_CHECKBOX1;
         static const long ID_TEXTCTRL3;
         static const long ID_STATICTEXT2;
         static const long ID_STATICTEXT3;
         static const long ID_STATICTEXT4;
-        static const long ID_STATICTEXT5;
         static const long ID_STATICTEXT6;
         static const long ID_BUTTON1;
+        static const long ID_STATICTEXT5;
+        static const long ID_TEXTCTRL7;
+        static const long ID_BUTTON2;
         static const long ID_PANEL2;
         static const long ID_STATICTEXT1;
         static const long ID_STATICLINE1;
         static const long ID_BUTTON3;
-        static const long ID_BUTTON2;
         static const long ID_PANEL10;
         static const long ID_PANEL1;
         static const long idMenuQuit;
@@ -95,9 +95,6 @@ class UGS_editorFrame: public wxFrame
         wxButton* Button4;
         wxButton* Button5;
         wxButton* Button6;
-        wxCheckBox* CheckBox1;
-        wxCheckBox* CheckBox2;
-        wxCheckBox* CheckBox3;
         wxChoice* Choice1;
         wxFileDialog* FileDialog1;
         wxFileDialog* FileDialog2;
@@ -120,6 +117,7 @@ class UGS_editorFrame: public wxFrame
         wxTextCtrl* TextCtrl4;
         wxTextCtrl* TextCtrl5;
         wxTextCtrl* TextCtrl6;
+        wxTextCtrl* TextCtrl7;
         //*)
 
         Player* player;

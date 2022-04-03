@@ -308,14 +308,13 @@ bool SequenceEditor::open()
             {
                 if(music.getStatus() == sf::SoundSource::Playing)
                 {
-                    // Margem de segurança para os bends não atropelarem uns aos outros
-                    const float SAFE_MARGIN = 0.15;
+                    const float SAFE_MARGIN = 0.15; // Margem de segurança para os bends não atropelarem uns aos outros
 
                     finalTimeBend = music.getPlayingOffset().asSeconds();
 
                     bruteSequence << initialTimeBend << " " << chordWeight << " " << ((finalTimeBend - initialTimeBend)-SAFE_MARGIN) << "\n";
 
-                    std::cout << initialTimeBend << " " << chordWeight << " " << (finalTimeBend - initialTimeBend) << "\n";
+                    //std::cout << initialTimeBend << " " << chordWeight << " " << (finalTimeBend - initialTimeBend) << "\n";
                 }
 
                 // Botão "Salvar"

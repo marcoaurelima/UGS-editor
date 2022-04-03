@@ -57,21 +57,19 @@ const long UGS_editorFrame::ID_STATICTEXT12 = wxNewId();
 const long UGS_editorFrame::ID_TEXTCTRL1 = wxNewId();
 const long UGS_editorFrame::ID_TEXTCTRL2 = wxNewId();
 const long UGS_editorFrame::ID_CHOICE1 = wxNewId();
-const long UGS_editorFrame::ID_CHECKBOX3 = wxNewId();
-const long UGS_editorFrame::ID_CHECKBOX2 = wxNewId();
-const long UGS_editorFrame::ID_CHECKBOX1 = wxNewId();
 const long UGS_editorFrame::ID_TEXTCTRL3 = wxNewId();
 const long UGS_editorFrame::ID_STATICTEXT2 = wxNewId();
 const long UGS_editorFrame::ID_STATICTEXT3 = wxNewId();
 const long UGS_editorFrame::ID_STATICTEXT4 = wxNewId();
-const long UGS_editorFrame::ID_STATICTEXT5 = wxNewId();
 const long UGS_editorFrame::ID_STATICTEXT6 = wxNewId();
 const long UGS_editorFrame::ID_BUTTON1 = wxNewId();
+const long UGS_editorFrame::ID_STATICTEXT5 = wxNewId();
+const long UGS_editorFrame::ID_TEXTCTRL7 = wxNewId();
+const long UGS_editorFrame::ID_BUTTON2 = wxNewId();
 const long UGS_editorFrame::ID_PANEL2 = wxNewId();
 const long UGS_editorFrame::ID_STATICTEXT1 = wxNewId();
 const long UGS_editorFrame::ID_STATICLINE1 = wxNewId();
 const long UGS_editorFrame::ID_BUTTON3 = wxNewId();
-const long UGS_editorFrame::ID_BUTTON2 = wxNewId();
 const long UGS_editorFrame::ID_PANEL10 = wxNewId();
 const long UGS_editorFrame::ID_PANEL1 = wxNewId();
 const long UGS_editorFrame::idMenuQuit = wxNewId();
@@ -99,18 +97,18 @@ UGS_editorFrame::UGS_editorFrame(wxWindow* parent,wxWindowID id)
     Panel1->SetBackgroundColour(wxSystemSettings::GetColour(wxSYS_COLOUR_ACTIVEBORDER));
     Panel2 = new wxPanel(Panel1, ID_PANEL2, wxPoint(32,72), wxSize(480,424), wxBORDER_DOUBLE|wxTAB_TRAVERSAL, _T("ID_PANEL2"));
     Panel2->SetBackgroundColour(wxSystemSettings::GetColour(wxSYS_COLOUR_MENUBAR));
-    StaticText10 = new wxStaticText(Panel2, ID_STATICTEXT10, _("Card (148x148)"), wxPoint(48,224), wxDefaultSize, 0, _T("ID_STATICTEXT10"));
-    TextCtrl4 = new wxTextCtrl(Panel2, ID_TEXTCTRL4, wxEmptyString, wxPoint(168,216), wxSize(225,34), 0, wxDefaultValidator, _T("ID_TEXTCTRL4"));
+    StaticText10 = new wxStaticText(Panel2, ID_STATICTEXT10, _("Card (148x148)"), wxPoint(48,184), wxDefaultSize, 0, _T("ID_STATICTEXT10"));
+    TextCtrl4 = new wxTextCtrl(Panel2, ID_TEXTCTRL4, wxEmptyString, wxPoint(168,176), wxSize(225,34), 0, wxDefaultValidator, _T("ID_TEXTCTRL4"));
     TextCtrl4->Disable();
-    Button4 = new wxButton(Panel2, ID_BUTTON4, _("..."), wxPoint(400,216), wxSize(37,34), 0, wxDefaultValidator, _T("ID_BUTTON4"));
-    TextCtrl5 = new wxTextCtrl(Panel2, ID_TEXTCTRL5, wxEmptyString, wxPoint(168,264), wxSize(225,34), 0, wxDefaultValidator, _T("ID_TEXTCTRL5"));
+    Button4 = new wxButton(Panel2, ID_BUTTON4, _("..."), wxPoint(400,176), wxSize(37,34), 0, wxDefaultValidator, _T("ID_BUTTON4"));
+    TextCtrl5 = new wxTextCtrl(Panel2, ID_TEXTCTRL5, wxEmptyString, wxPoint(168,224), wxSize(225,34), 0, wxDefaultValidator, _T("ID_TEXTCTRL5"));
     TextCtrl5->Disable();
-    TextCtrl6 = new wxTextCtrl(Panel2, ID_TEXTCTRL6, wxEmptyString, wxPoint(168,312), wxSize(225,34), 0, wxDefaultValidator, _T("ID_TEXTCTRL6"));
+    TextCtrl6 = new wxTextCtrl(Panel2, ID_TEXTCTRL6, wxEmptyString, wxPoint(168,272), wxSize(225,34), 0, wxDefaultValidator, _T("ID_TEXTCTRL6"));
     TextCtrl6->Disable();
-    Button5 = new wxButton(Panel2, ID_BUTTON5, _("..."), wxPoint(400,264), wxSize(37,34), 0, wxDefaultValidator, _T("ID_BUTTON5"));
-    Button6 = new wxButton(Panel2, ID_BUTTON6, _("..."), wxPoint(400,312), wxSize(37,34), 0, wxDefaultValidator, _T("ID_BUTTON6"));
-    StaticText11 = new wxStaticText(Panel2, ID_STATICTEXT11, _("Logo (246x246)"), wxPoint(48,272), wxDefaultSize, 0, _T("ID_STATICTEXT11"));
-    StaticText12 = new wxStaticText(Panel2, ID_STATICTEXT12, _("Poster (1368x769)"), wxPoint(32,320), wxDefaultSize, 0, _T("ID_STATICTEXT12"));
+    Button5 = new wxButton(Panel2, ID_BUTTON5, _("..."), wxPoint(400,224), wxSize(37,34), 0, wxDefaultValidator, _T("ID_BUTTON5"));
+    Button6 = new wxButton(Panel2, ID_BUTTON6, _("..."), wxPoint(400,272), wxSize(37,34), 0, wxDefaultValidator, _T("ID_BUTTON6"));
+    StaticText11 = new wxStaticText(Panel2, ID_STATICTEXT11, _("Logo (246x246)"), wxPoint(48,240), wxDefaultSize, 0, _T("ID_STATICTEXT11"));
+    StaticText12 = new wxStaticText(Panel2, ID_STATICTEXT12, _("Poster (1368x769)"), wxPoint(32,280), wxDefaultSize, 0, _T("ID_STATICTEXT12"));
     TextCtrl1 = new wxTextCtrl(Panel2, ID_TEXTCTRL1, wxEmptyString, wxPoint(104,32), wxSize(336,34), 0, wxDefaultValidator, _T("ID_TEXTCTRL1"));
     TextCtrl2 = new wxTextCtrl(Panel2, ID_TEXTCTRL2, wxEmptyString, wxPoint(104,80), wxSize(336,34), 0, wxDefaultValidator, _T("ID_TEXTCTRL2"));
     Choice1 = new wxChoice(Panel2, ID_CHOICE1, wxPoint(144,128), wxSize(296,34), 0, 0, 0, wxDefaultValidator, _T("ID_CHOICE1"));
@@ -129,28 +127,26 @@ UGS_editorFrame::UGS_editorFrame(wxWindow* parent,wxWindowID id)
     Choice1->Append(_("Sampler"));
     Choice1->Append(_("Piano"));
     Choice1->Append(_("Teclado"));
-    CheckBox3 = new wxCheckBox(Panel2, ID_CHECKBOX3, _("Dificil"), wxPoint(352,176), wxDefaultSize, 0, wxDefaultValidator, _T("ID_CHECKBOX3"));
-    CheckBox3->SetValue(true);
-    CheckBox2 = new wxCheckBox(Panel2, ID_CHECKBOX2, _("Medio"), wxPoint(256,176), wxDefaultSize, 0, wxDefaultValidator, _T("ID_CHECKBOX2"));
-    CheckBox2->SetValue(true);
-    CheckBox1 = new wxCheckBox(Panel2, ID_CHECKBOX1, _("Facil"), wxPoint(160,176), wxDefaultSize, 0, wxDefaultValidator, _T("ID_CHECKBOX1"));
-    CheckBox1->SetValue(true);
-    TextCtrl3 = new wxTextCtrl(Panel2, ID_TEXTCTRL3, wxEmptyString, wxPoint(120,361), wxSize(275,34), 0, wxDefaultValidator, _T("ID_TEXTCTRL3"));
+    TextCtrl3 = new wxTextCtrl(Panel2, ID_TEXTCTRL3, wxEmptyString, wxPoint(120,320), wxSize(275,34), 0, wxDefaultValidator, _T("ID_TEXTCTRL3"));
     TextCtrl3->Disable();
     StaticText2 = new wxStaticText(Panel2, ID_STATICTEXT2, _("Artista"), wxPoint(40,40), wxDefaultSize, 0, _T("ID_STATICTEXT2"));
     StaticText3 = new wxStaticText(Panel2, ID_STATICTEXT3, _("Musica"), wxPoint(40,88), wxDefaultSize, 0, _T("ID_STATICTEXT3"));
     StaticText4 = new wxStaticText(Panel2, ID_STATICTEXT4, _("Instrumento"), wxPoint(40,136), wxDefaultSize, 0, _T("ID_STATICTEXT4"));
-    StaticText5 = new wxStaticText(Panel2, ID_STATICTEXT5, _("Dificuldade"), wxPoint(48,180), wxDefaultSize, 0, _T("ID_STATICTEXT5"));
-    StaticText6 = new wxStaticText(Panel2, ID_STATICTEXT6, _("Audio .ogg"), wxPoint(32,368), wxDefaultSize, 0, _T("ID_STATICTEXT6"));
-    Button1 = new wxButton(Panel2, ID_BUTTON1, _("..."), wxPoint(400,360), wxSize(37,34), 0, wxDefaultValidator, _T("ID_BUTTON1"));
+    StaticText6 = new wxStaticText(Panel2, ID_STATICTEXT6, _("Audio .ogg"), wxPoint(32,328), wxDefaultSize, 0, _T("ID_STATICTEXT6"));
+    Button1 = new wxButton(Panel2, ID_BUTTON1, _("..."), wxPoint(400,320), wxSize(37,34), 0, wxDefaultValidator, _T("ID_BUTTON1"));
+    StaticText5 = new wxStaticText(Panel2, ID_STATICTEXT5, _("Arquivo de sequencia bruta"), wxPoint(24,376), wxDefaultSize, 0, _T("ID_STATICTEXT5"));
+    TextCtrl7 = new wxTextCtrl(Panel2, ID_TEXTCTRL7, _("Ausente"), wxPoint(224,368), wxSize(111,34), wxTE_CENTRE, wxDefaultValidator, _T("ID_TEXTCTRL7"));
+    TextCtrl7->Disable();
+    TextCtrl7->SetForegroundColour(wxColour(223,22,24));
+    TextCtrl7->SetBackgroundColour(wxSystemSettings::GetColour(wxSYS_COLOUR_3DDKSHADOW));
+    Button2 = new wxButton(Panel2, ID_BUTTON2, _("Gerar"), wxPoint(344,369), wxSize(95,34), 0, wxDefaultValidator, _T("ID_BUTTON2"));
     StaticText1 = new wxStaticText(Panel1, ID_STATICTEXT1, _("ULTIMATE GUITAR SHOW EDITOR"), wxPoint(72,35), wxSize(416,40), 0, _T("ID_STATICTEXT1"));
     wxFont StaticText1Font(18,wxFONTFAMILY_TELETYPE,wxFONTSTYLE_NORMAL,wxFONTWEIGHT_BOLD,false,_T("Nimbus Mono PS"),wxFONTENCODING_DEFAULT);
     StaticText1->SetFont(StaticText1Font);
     StaticLine1 = new wxStaticLine(Panel1, ID_STATICLINE1, wxPoint(50,60), wxSize(400,-1), wxLI_HORIZONTAL, _T("ID_STATICLINE1"));
     Panel10 = new wxPanel(Panel1, ID_PANEL10, wxPoint(32,510), wxSize(480,56), wxBORDER_DOUBLE|wxTAB_TRAVERSAL, _T("ID_PANEL10"));
     Panel10->SetBackgroundColour(wxSystemSettings::GetColour(wxSYS_COLOUR_MENUBAR));
-    Button3 = new wxButton(Panel10, ID_BUTTON3, _("Exportar Faixa"), wxPoint(288,10), wxSize(153,34), 0, wxDefaultValidator, _T("ID_BUTTON3"));
-    Button2 = new wxButton(Panel10, ID_BUTTON2, _("Editar sequencia"), wxPoint(40,10), wxSize(207,34), 0, wxDefaultValidator, _T("ID_BUTTON2"));
+    Button3 = new wxButton(Panel10, ID_BUTTON3, _("Exportar Fase"), wxPoint(288,10), wxSize(153,34), 0, wxDefaultValidator, _T("ID_BUTTON3"));
     MenuBar1 = new wxMenuBar();
     Menu1 = new wxMenu();
     MenuItem1 = new wxMenuItem(Menu1, idMenuQuit, _("Sair\tAlt-F4"), _("Quit the application"), wxITEM_NORMAL);
@@ -262,7 +258,14 @@ void UGS_editorFrame::OnButton2Click2(wxCommandEvent& event)
     std::string trackPath = "song.ogg";
 
     SequenceEditor seqEdit(trackInfo, trackPath);
-    seqEdit.open();
+    bool res = seqEdit.open();
+
+    std::ifstream file("exports/brute-sequence.txt");
+    if(file.is_open())
+    {
+        TextCtrl7->SetValue("Presente");
+        TextCtrl7->SetForegroundColour(wxColor(0,255,0));
+    }
 
     //system("./edit-seq");
 }
