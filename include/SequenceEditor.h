@@ -2,6 +2,7 @@
 #define SEQUENCEEDITOR_H
 
 #include <iostream>
+#include <fstream>
 #include <sstream>
 #include <SFML/Graphics.hpp>
 #include <SFML/Audio.hpp>
@@ -38,9 +39,8 @@ private:
     sf::RectangleShape btOk;
     sf::Text textOk;
     sf::RectangleShape weightNote[4];
-    bool shift[4];
-    std::vector<std::string> vectorNotes;
-    std::vector<std::string> vectorNotes2;
+    bool shift[4]{true};
+    std::stringstream bruteSequence;
 
     sf::Texture textureBg;
     sf::Text textElapsedTime;
@@ -56,7 +56,6 @@ private:
     bool mouseColision(auto &sprite, sf::RenderWindow& window);
     std::string secToMin(int tempoTotal, int segundos);
 
-    FILE* file;
 };
 
 #endif // SEQUENCEEDITOR_H

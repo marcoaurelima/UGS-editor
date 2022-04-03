@@ -115,10 +115,7 @@ SequenceEditor::SequenceEditor(std::string trackInfo, std::string trackPath) : t
     shift[1]=false;
     shift[2]=false;
 
-    file = fopen("exports/brute-sequence.txt", "w");
-    fclose(file);
-    file = fopen("exports/brute-sequence.txt", "a");
-
+    remove("exports/brute-sequence.txt");
 }
 
 bool SequenceEditor::mouseColision(auto &sprite, sf::RenderWindow& window)
@@ -211,7 +208,9 @@ bool SequenceEditor::open()
                 {
                     if(spriteControlButtons[3].getColor().a != 100)
                     {
-                        std::cout << "Botão salvar...\n";
+                        std::ofstream file("exports/brute-sequence.txt");
+                        file << bruteSequence.str();
+                        file.close();
                     }
 
                     spriteControlButtons[3].setColor(sf::Color(255,255,255,100));
@@ -256,43 +255,60 @@ bool SequenceEditor::open()
                 if((sf::Keyboard::isKeyPressed(sf::Keyboard::A) ||
                     sf::Keyboard::isKeyPressed(sf::Keyboard::U)) && shift[0])
                 {
-                    std::cout << "Botao A pressionado...\n";
+                    //std::cout << "Botao A pressionado...\n";
                     shift[0] = false;
                     weightNote[0].setFillColor(sf::Color(0, 255,0,255));
+
+                    initialTimeBend = music.getPlayingOffset().asSeconds();
+                    chordWeight = 1;
                     //fprintf(file, "%f %d %f", )
                 }
                 else if((sf::Keyboard::isKeyPressed(sf::Keyboard::S) ||
                     sf::Keyboard::isKeyPressed(sf::Keyboard::I)) && shift[1])
                 {
-                    std::cout << "Botao S pressionado...\n";
+                    //std::cout << "Botao S pressionado...\n";
                     shift[1] = false;
                     weightNote[0].setFillColor(sf::Color(0, 255,0,255));
                     weightNote[1].setFillColor(sf::Color(0, 255,0,255));
+
+                    initialTimeBend = music.getPlayingOffset().asSeconds();
+                    chordWeight = 2;
                 }
                 else if((sf::Keyboard::isKeyPressed(sf::Keyboard::D) ||
                     sf::Keyboard::isKeyPressed(sf::Keyboard::O)) && shift[2])
                 {
-                    std::cout << "Botao D pressionado...\n";
+                    //std::cout << "Botao D pressionado...\n";
                     shift[2] = false;
                     weightNote[0].setFillColor(sf::Color(0, 255,0,255));
                     weightNote[1].setFillColor(sf::Color(0, 255,0,255));
                     weightNote[2].setFillColor(sf::Color(0, 255,0,255));
+
+                    initialTimeBend = music.getPlayingOffset().asSeconds();
+                    chordWeight = 3;
                 }
                 else if((sf::Keyboard::isKeyPressed(sf::Keyboard::F) ||
                     sf::Keyboard::isKeyPressed(sf::Keyboard::P)) && shift[3])
                 {
-                    std::cout << "Botao F pressionado...\n";
+                    //std::cout << "Botao F pressionado...\n";
                     shift[3] = false;
                     weightNote[0].setFillColor(sf::Color(0, 255,0,255));
                     weightNote[1].setFillColor(sf::Color(0, 255,0,255));
                     weightNote[2].setFillColor(sf::Color(0, 255,0,255));
                     weightNote[3].setFillColor(sf::Color(0, 255,0,255));
+
+                    initialTimeBend = music.getPlayingOffset().asSeconds();
+                    chordWeight = 4;
                 }
             }
 
             if(e.type == sf::Event::KeyReleased)
             {
-                std::cout << "Botao solto...\n";
+                finalTimeBend = music.getPlayingOffset().asSeconds();
+                bruteSequence << initialTimeBend << " " << chordWeight << " " << (finalTimeBend - initialTimeBend) << "\n";
+
+                // Botão "Salvar"
+                spriteControlButtons[3].setColor(sf::Color(255,255,255,255));
+
                 shift[0] = true;
                 shift[1] = true;
                 shift[2] = true;
@@ -359,7 +375,5 @@ bool SequenceEditor::open()
 
 SequenceEditor::~SequenceEditor()
 {
-    fclose(file);
-    free(file);
     //dtor
 }
