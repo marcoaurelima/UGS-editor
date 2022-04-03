@@ -377,16 +377,20 @@ void UGS_editorFrame::OnButton3Click1(wxCommandEvent& event)
         }
     }
 
+    std::string instrument = std::to_string(Choice1->GetSelection());
 
-    file = fopen("exports/brute-sequence-facil.txt", "w");
+    std::string pathEasy = "exports/0/" + instrument + ".txt";
+    file = fopen(pathEasy.c_str(), "w");
     fputs(sequenceEasy.str().c_str(), file);
     fclose(file);
 
-    file = fopen("exports/brute-sequence-medio.txt", "w");
+    std::string pathMedium = "exports/1/" + instrument + ".txt";
+    file = fopen(pathMedium.c_str(), "w");
     fputs(sequenceMedium.str().c_str(), file);
     fclose(file);
 
-    file = fopen("exports/brute-sequence-dificil.txt", "w");
+    std::string pathHard = "exports/2/" + instrument + ".txt";
+    file = fopen(pathHard.c_str(), "w");
     fputs(sequenceHard.str().c_str(), file);
     fclose(file);
 
