@@ -610,7 +610,7 @@
 
 1585059103 /usr/include/wx-3.0/wx/gtk/app.h
 
-1649012943 /home/marco/Documentos/TCC/UGS-editor/UGS_editorMain.h
+1649017199 /home/marco/Documentos/TCC/UGS-editor/UGS_editorMain.h
 	<wx/button.h>
 	<wx/choice.h>
 	<wx/filedlg.h>
@@ -621,6 +621,7 @@
 	<wx/stattext.h>
 	<wx/textctrl.h>
 	<fstream>
+	<random>
 	"Player.h"
 	"SequenceEditor.h"
 
@@ -1232,7 +1233,7 @@
 
 1585059103 /usr/include/wx-3.0/wx/gtk/stattext.h
 
-1649012461 source:/home/marco/Documentos/TCC/UGS-editor/UGS_editorMain.cpp
+1649020557 source:/home/marco/Documentos/TCC/UGS-editor/UGS_editorMain.cpp
 	"UGS_editorMain.h"
 	<wx/msgdlg.h>
 	<wx/font.h>

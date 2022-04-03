@@ -23,6 +23,7 @@
 //*)
 
 #include <fstream>
+#include <random>
 
 #include "Player.h"
 
@@ -54,6 +55,7 @@ class UGS_editorFrame: public wxFrame
         void OnKeyDown(wxKeyEvent& event);
         void OnButton2Click1(wxCommandEvent& event);
         void OnButton2Click2(wxCommandEvent& event);
+        void OnButton3Click1(wxCommandEvent& event);
         //*)
 
         //(*Identifiers(UGS_editorFrame)

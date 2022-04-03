@@ -162,6 +162,7 @@
 					<label>Exportar Fase</label>
 					<pos>288,10</pos>
 					<size>153,34</size>
+					<handler function="OnButton3Click1" entry="EVT_BUTTON" />
 				</object>
 			</object>
 		</object>

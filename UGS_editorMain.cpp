@@ -166,6 +166,7 @@ UGS_editorFrame::UGS_editorFrame(wxWindow* parent,wxWindowID id)
     Connect(ID_BUTTON6,wxEVT_COMMAND_BUTTON_CLICKED,(wxObjectEventFunction)&UGS_editorFrame::OnButton6Click);
     Connect(ID_BUTTON1,wxEVT_COMMAND_BUTTON_CLICKED,(wxObjectEventFunction)&UGS_editorFrame::OnButton1Click);
     Connect(ID_BUTTON2,wxEVT_COMMAND_BUTTON_CLICKED,(wxObjectEventFunction)&UGS_editorFrame::OnButton2Click2);
+    Connect(ID_BUTTON3,wxEVT_COMMAND_BUTTON_CLICKED,(wxObjectEventFunction)&UGS_editorFrame::OnButton3Click1);
     Connect(idMenuQuit,wxEVT_COMMAND_MENU_SELECTED,(wxObjectEventFunction)&UGS_editorFrame::OnQuit);
     Connect(idMenuAbout,wxEVT_COMMAND_MENU_SELECTED,(wxObjectEventFunction)&UGS_editorFrame::OnAbout);
     //*)
@@ -287,3 +288,104 @@ void UGS_editorFrame::OnButton2Click2(wxCommandEvent& event)
     }
 
 }
+
+int getRandInt(int range)
+{
+    std::random_device dev;
+    std::mt19937 rng(dev());
+    std::uniform_int_distribution<std::mt19937::result_type> dist6(0,range);
+
+    return dist6(rng);
+}
+
+std::vector<int> genChord(int chordWeight, int dificulty)
+{
+    int chordSize = chordWeight;
+    if(chordSize > 2){ chordSize = 2; }
+
+    std::vector<int> chords;
+
+    // Gerar os acordes
+
+    while(true)
+    {
+        if(chords.size() == (unsigned)chordSize){ break; }
+
+        int tileColor = getRandInt(chordSize);
+
+        bool exists = false;
+        for(auto& i : chords)
+        {
+            if(i == tileColor){ exists = true; }
+        }
+
+        if(!exists)
+        chords.push_back(tileColor);
+    }
+
+    std::cout << "\nAcorde gerado: ";
+    for(auto& i : chords)
+    {
+        std::cout << i << " ";
+    }
+    puts("\n");
+
+    return chords;
+}
+
+void UGS_editorFrame::OnButton3Click1(wxCommandEvent& event)
+{
+    FILE* file = fopen("exports/brute-sequence.txt", "r");
+    if(file == NULL) { wxMessageBox("Arquivo de sequencia bruta inexistente.", "Erro", wxICON_ERROR); return; }
+
+    std::vector<float> seqTime;
+    std::vector<int> seqWeight;
+    std::vector<float> seqBend;
+
+    float a = 0.0;
+    float c = 0.0;
+    int b = 0;
+
+    while(fscanf(file, "%f %d %f", &a, &b, &c) != EOF)
+    {
+        //std::cout << a << " - " << b << " - " << c << "\n";
+        seqTime.push_back(a);
+        seqWeight.push_back(b);
+        seqBend.push_back(c);
+    }
+    fclose(file);
+
+    std::stringstream sequence;
+
+    // Produção da faixa fácil
+    for(unsigned i=0;i<seqTime.size();i++)
+    {
+        auto chords = genChord(seqWeight[i], 0);
+        for(unsigned j=0;j<chords.size();j++)
+        {
+            sequence << seqTime[i] << " " << chords[j] << " " << seqBend[i] << "\n";
+        }
+    }
+
+    file = fopen("exports/brute-sequence-facil.txt", "w");
+    fputs(sequence.str().c_str(), file);
+    fclose(file);
+
+    std::cout << "STREAM:\n" << sequence.str() << "\n";
+
+
+
+
+
+}
+
+
+
+
+
+
+
+
+
+
+
