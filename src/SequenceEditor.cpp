@@ -111,9 +111,10 @@ SequenceEditor::SequenceEditor(std::string trackInfo, std::string trackPath) : t
     }
 
     //bool shift[3];
-    shift[0]=false;
-    shift[1]=false;
-    shift[2]=false;
+    shift[0] = true;
+    shift[1] = true;
+    shift[2] = true;
+    shift[3] = true;
 
     remove("exports/brute-sequence.txt");
 }
@@ -218,6 +219,7 @@ bool SequenceEditor::open()
 
                 if(mouseColision(btCancel, window))
                 {
+                    remove("exports/brute-sequence.txt");
                     return false;
                 }
 
@@ -253,7 +255,7 @@ bool SequenceEditor::open()
             if(e.type == sf::Event::KeyPressed)
             {
                 if((sf::Keyboard::isKeyPressed(sf::Keyboard::A) ||
-                    sf::Keyboard::isKeyPressed(sf::Keyboard::U)) && shift[0])
+                        sf::Keyboard::isKeyPressed(sf::Keyboard::U)) && shift[0])
                 {
                     //std::cout << "Botao A pressionado...\n";
                     shift[0] = false;
@@ -264,7 +266,7 @@ bool SequenceEditor::open()
                     //fprintf(file, "%f %d %f", )
                 }
                 else if((sf::Keyboard::isKeyPressed(sf::Keyboard::S) ||
-                    sf::Keyboard::isKeyPressed(sf::Keyboard::I)) && shift[1])
+                         sf::Keyboard::isKeyPressed(sf::Keyboard::I)) && shift[1])
                 {
                     //std::cout << "Botao S pressionado...\n";
                     shift[1] = false;
@@ -275,7 +277,7 @@ bool SequenceEditor::open()
                     chordWeight = 2;
                 }
                 else if((sf::Keyboard::isKeyPressed(sf::Keyboard::D) ||
-                    sf::Keyboard::isKeyPressed(sf::Keyboard::O)) && shift[2])
+                         sf::Keyboard::isKeyPressed(sf::Keyboard::O)) && shift[2])
                 {
                     //std::cout << "Botao D pressionado...\n";
                     shift[2] = false;
@@ -287,7 +289,7 @@ bool SequenceEditor::open()
                     chordWeight = 3;
                 }
                 else if((sf::Keyboard::isKeyPressed(sf::Keyboard::F) ||
-                    sf::Keyboard::isKeyPressed(sf::Keyboard::P)) && shift[3])
+                         sf::Keyboard::isKeyPressed(sf::Keyboard::P)) && shift[3])
                 {
                     //std::cout << "Botao F pressionado...\n";
                     shift[3] = false;
@@ -303,8 +305,17 @@ bool SequenceEditor::open()
 
             if(e.type == sf::Event::KeyReleased)
             {
-                finalTimeBend = music.getPlayingOffset().asSeconds();
-                bruteSequence << initialTimeBend << " " << chordWeight << " " << (finalTimeBend - initialTimeBend) << "\n";
+                if(music.getStatus() == sf::SoundSource::Playing)
+                {
+                    // Margem de segurança para os bends não atropelarem uns aos outros
+                    const float SAFE_MARGIN = 0.15;
+
+                    finalTimeBend = music.getPlayingOffset().asSeconds();
+
+                    bruteSequence << initialTimeBend << " " << chordWeight << " " << ((finalTimeBend - initialTimeBend)-SAFE_MARGIN) << "\n";
+
+                    std::cout << initialTimeBend << " " << chordWeight << " " << (finalTimeBend - initialTimeBend) << "\n";
+                }
 
                 // Botão "Salvar"
                 spriteControlButtons[3].setColor(sf::Color(255,255,255,255));

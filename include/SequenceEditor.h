@@ -39,7 +39,7 @@ private:
     sf::RectangleShape btOk;
     sf::Text textOk;
     sf::RectangleShape weightNote[4];
-    bool shift[4]{true};
+    bool shift[4];
     std::stringstream bruteSequence;
 
     sf::Texture textureBg;

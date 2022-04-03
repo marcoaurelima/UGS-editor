@@ -1300,7 +1300,7 @@
 1648992084 source:/home/marco/Documentos/TCC/UGS-editor/src/SequenceEditor.cpp
 	"SequenceEditor.h"
 
-1648993474 /home/marco/Documentos/TCC/UGS-editor/include/SequenceEditor.h
+1649004668 /home/marco/Documentos/TCC/UGS-editor/include/SequenceEditor.h
 	<iostream>
 	<fstream>
 	<sstream>
