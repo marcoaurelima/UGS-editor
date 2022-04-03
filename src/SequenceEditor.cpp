@@ -204,6 +204,7 @@ bool SequenceEditor::open()
                     spriteControlButtons[1].setColor(sf::Color(255,255,255,255));
                     music.stop();
                     musicIntro.stop();
+                    bruteSequence.clear();
                 }
                 else if(mouseColision(spriteControlButtons[3], window))
                 {
