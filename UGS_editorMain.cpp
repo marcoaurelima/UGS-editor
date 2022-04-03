@@ -180,7 +180,6 @@ UGS_editorFrame::~UGS_editorFrame()
 {
     //(*Destroy(UGS_editorFrame)
     //*)
-    delete player;
 }
 
 void UGS_editorFrame::OnQuit(wxCommandEvent& event)
@@ -213,6 +212,7 @@ void UGS_editorFrame::OnButton1Click(wxCommandEvent& event)
 
     wxString path = FileDialog1->GetPath();
     TextCtrl3->SetValue(shortenPath(path.ToStdString(), 34));
+    pathAudio = path.ToStdString();
 
     sf::Music music;
     bool opened = music.openFromFile(path.ToStdString());
@@ -228,6 +228,7 @@ void UGS_editorFrame::OnButton4Click(wxCommandEvent& event)
 
     wxString path = FileDialog2->GetPath();
     TextCtrl4->SetValue(shortenPath(path.ToStdString(), 28));
+    pathCard = path.ToStdString();
 }
 
 void UGS_editorFrame::OnButton5Click(wxCommandEvent& event)
@@ -238,6 +239,7 @@ void UGS_editorFrame::OnButton5Click(wxCommandEvent& event)
 
     wxString path = FileDialog2->GetPath();
     TextCtrl5->SetValue(shortenPath(path.ToStdString(), 28));
+    pathLogo = path.ToStdString();
 }
 
 void UGS_editorFrame::OnButton6Click(wxCommandEvent& event)
@@ -248,17 +250,34 @@ void UGS_editorFrame::OnButton6Click(wxCommandEvent& event)
 
     wxString path = FileDialog2->GetPath();
     TextCtrl6->SetValue(shortenPath(path.ToStdString(), 28));
+    pathPoster = path.ToStdString();
 }
 
 
 
 void UGS_editorFrame::OnButton2Click2(wxCommandEvent& event)
 {
-    std::string trackInfo = "ARTISTA: NIRVANA\nMUSICA:  BREED\nINSTRUMENTO: GUITARRA";
-    std::string trackPath = "song.ogg";
+    // Boquear edição se os campos estão faltando
+    bool lock = TextCtrl1->IsEmpty() ||
+                TextCtrl2->IsEmpty() ||
+                TextCtrl3->IsEmpty() ||
+                TextCtrl4->IsEmpty() ||
+                TextCtrl5->IsEmpty() ||
+                TextCtrl6->IsEmpty() ||
+                Choice1->GetSelection() < 0;
+    if(lock){ wxMessageBox("Preencha todos os campos.", "Alerta"); return; }
+
+    std::string artista = TextCtrl1->GetValue().Upper().ToStdString();
+    std::string musica = TextCtrl2->GetValue().Upper().ToStdString();
+    std::string instrumento = Choice1->GetString(0).ToStdString();
+
+    std::string trackInfo = "ARTISTA: " + artista + "\nMUSICA: "  + musica + "\nINSTRUMENTO: " + instrumento;
+    std::string trackPath = pathAudio;
 
     SequenceEditor seqEdit(trackInfo, trackPath);
     bool res = seqEdit.open();
+
+    if(!res){ return; }
 
     std::ifstream file("exports/brute-sequence.txt");
     if(file.is_open())
@@ -267,5 +286,4 @@ void UGS_editorFrame::OnButton2Click2(wxCommandEvent& event)
         TextCtrl7->SetForegroundColour(wxColor(0,255,0));
     }
 
-    //system("./edit-seq");
 }

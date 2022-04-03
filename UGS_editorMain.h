@@ -120,9 +120,10 @@ class UGS_editorFrame: public wxFrame
         wxTextCtrl* TextCtrl7;
         //*)
 
-        Player* player;
-        bool introPlayed = false;
-        int introPlayedTimeCount = 0;
+        std::string pathCard;
+        std::string pathLogo;
+        std::string pathPoster;
+        std::string pathAudio;
 
         DECLARE_EVENT_TABLE()
 };

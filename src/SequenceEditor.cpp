@@ -57,7 +57,7 @@ SequenceEditor::SequenceEditor(std::string trackInfo, std::string trackPath) : t
     textElapsedTime.setString("00:00 / 00:00");
 
 
-    trackInfo="ARTISTA: NIRVANA\nMUSICA:  BREED\nINSTRUMENTO: GUITARRA";
+    //trackInfo="ARTISTA: NIRVANA\nMUSICA:  BREED\nINSTRUMENTO: GUITARRA";
     //sf::Text textTrackInfo;
     textTrackInfo.setFont(font);
     textTrackInfo.setCharacterSize(20);
