@@ -300,18 +300,28 @@ int getRandInt(int range)
 
 std::vector<int> genChord(int chordWeight, int dificulty)
 {
-    int chordSize = chordWeight;
-    if(chordSize > 2){ chordSize = 2; }
-
     std::vector<int> chords;
+    int chordSize = chordWeight;
+    int colorRange = 2;
+    if(dificulty == 0) // FÁCIL
+    {
+        if(chordSize > 2){ chordSize = 2; }
+        colorRange = 2;
+    } else if(dificulty == 1) // MÉDIO
+    {
+        if(chordSize > 4){ chordSize = 4; }
+        colorRange = 3;
+    } else if(dificulty == 2) // DIFÍCIL
+    {
+        colorRange = 4;
+    }
 
     // Gerar os acordes
-
     while(true)
     {
         if(chords.size() == (unsigned)chordSize){ break; }
 
-        int tileColor = getRandInt(chordSize);
+        int tileColor = getRandInt(colorRange);
 
         bool exists = false;
         for(auto& i : chords)
@@ -323,12 +333,6 @@ std::vector<int> genChord(int chordWeight, int dificulty)
         chords.push_back(tileColor);
     }
 
-    std::cout << "\nAcorde gerado: ";
-    for(auto& i : chords)
-    {
-        std::cout << i << " ";
-    }
-    puts("\n");
 
     return chords;
 }
@@ -355,23 +359,40 @@ void UGS_editorFrame::OnButton3Click1(wxCommandEvent& event)
     }
     fclose(file);
 
-    std::stringstream sequence;
+    std::stringstream sequenceEasy;
+    std::stringstream sequenceMedium;
+    std::stringstream sequenceHard;
 
     // Produção da faixa fácil
     for(unsigned i=0;i<seqTime.size();i++)
     {
-        auto chords = genChord(seqWeight[i], 0);
-        for(unsigned j=0;j<chords.size();j++)
+        auto chordsEasy = genChord(seqWeight[i], 0);
+        auto chordsMedium = genChord(seqWeight[i], 1);
+        auto chordsHard = genChord(seqWeight[i], 2);
+        for(unsigned j=0;j<chordsEasy.size();j++)
         {
-            sequence << seqTime[i] << " " << chords[j] << " " << seqBend[i] << "\n";
+            sequenceEasy << seqTime[i] << " " << chordsEasy[j] << " " << seqBend[i] << "\n";
+            sequenceMedium << seqTime[i] << " " << chordsMedium[j] << " " << seqBend[i] << "\n";
+            sequenceHard << seqTime[i] << " " << chordsHard[j] << " " << seqBend[i] << "\n";
         }
     }
 
+
     file = fopen("exports/brute-sequence-facil.txt", "w");
-    fputs(sequence.str().c_str(), file);
+    fputs(sequenceEasy.str().c_str(), file);
     fclose(file);
 
-    std::cout << "STREAM:\n" << sequence.str() << "\n";
+    file = fopen("exports/brute-sequence-medio.txt", "w");
+    fputs(sequenceMedium.str().c_str(), file);
+    fclose(file);
+
+    file = fopen("exports/brute-sequence-dificil.txt", "w");
+    fputs(sequenceHard.str().c_str(), file);
+    fclose(file);
+
+    std::cout << "STREAM FACIL:\n" << sequenceEasy.str() << "\n";
+    std::cout << "STREAM MEDIO:\n" << sequenceMedium.str() << "\n";
+    std::cout << "STREAM DIFICIL:\n" << sequenceHard.str() << "\n";
 
 
 
