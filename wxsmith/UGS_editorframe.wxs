@@ -4,8 +4,9 @@
 		<title>Ultimate Guitar Show - Editor</title>
 		<centered>1</centered>
 		<pos>-1,-1</pos>
-		<size>1053,612</size>
+		<size>1053,538</size>
 		<id_arg>0</id_arg>
+		<handler function="OnClose" entry="EVT_CLOSE" />
 		<object class="wxPanel" name="ID_PANEL1" variable="Panel1" member="yes">
 			<pos>0,8</pos>
 			<size>542,592</size>
@@ -268,10 +269,12 @@
 		<object class="wxFileDialog" variable="FileDialog1" member="yes">
 			<message>Selecione um arquivo de audio</message>
 			<wildcard>*.ogg</wildcard>
+			<style>wxFD_DEFAULT_STYLE|wxFD_CHANGE_DIR</style>
 		</object>
 		<object class="wxFileDialog" variable="FileDialog2" member="yes">
 			<message>Selecione um arquivo de imagem</message>
 			<wildcard>*.png</wildcard>
+			<style>wxFD_DEFAULT_STYLE|wxFD_CHANGE_DIR</style>
 		</object>
 		<object class="wxDirDialog" variable="DirDialog1" member="yes">
 			<message>Select directory</message>

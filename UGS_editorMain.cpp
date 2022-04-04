@@ -106,7 +106,7 @@ UGS_editorFrame::UGS_editorFrame(wxWindow* parent,wxWindowID id)
     wxMenuItem* MenuItem2;
 
     Create(parent, wxID_ANY, _("Ultimate Guitar Show - Editor"), wxDefaultPosition, wxDefaultSize, wxDEFAULT_FRAME_STYLE, _T("wxID_ANY"));
-    SetClientSize(wxSize(1053,612));
+    SetClientSize(wxSize(1053,538));
     Move(wxPoint(-1,-1));
     Panel1 = new wxPanel(this, ID_PANEL1, wxPoint(0,8), wxSize(542,592), wxTAB_TRAVERSAL, _T("ID_PANEL1"));
     Panel1->SetBackgroundColour(wxSystemSettings::GetColour(wxSYS_COLOUR_ACTIVEBORDER));
@@ -196,8 +196,8 @@ UGS_editorFrame::UGS_editorFrame(wxWindow* parent,wxWindowID id)
     Menu2->Append(MenuItem2);
     MenuBar1->Append(Menu2, _("Ajuda"));
     SetMenuBar(MenuBar1);
-    FileDialog1 = new wxFileDialog(this, _("Selecione um arquivo de audio"), wxEmptyString, wxEmptyString, _("*.ogg"), wxFD_DEFAULT_STYLE, wxDefaultPosition, wxDefaultSize, _T("wxFileDialog"));
-    FileDialog2 = new wxFileDialog(this, _("Selecione um arquivo de imagem"), wxEmptyString, wxEmptyString, _("*.png"), wxFD_DEFAULT_STYLE, wxDefaultPosition, wxDefaultSize, _T("wxFileDialog"));
+    FileDialog1 = new wxFileDialog(this, _("Selecione um arquivo de audio"), wxEmptyString, wxEmptyString, _("*.ogg"), wxFD_DEFAULT_STYLE|wxFD_CHANGE_DIR, wxDefaultPosition, wxDefaultSize, _T("wxFileDialog"));
+    FileDialog2 = new wxFileDialog(this, _("Selecione um arquivo de imagem"), wxEmptyString, wxEmptyString, _("*.png"), wxFD_DEFAULT_STYLE|wxFD_CHANGE_DIR, wxDefaultPosition, wxDefaultSize, _T("wxFileDialog"));
     DirDialog1 = new wxDirDialog(this, _("Select directory"), wxEmptyString, wxDD_DEFAULT_STYLE, wxDefaultPosition, wxDefaultSize, _T("wxDirDialog"));
     Center();
 
@@ -212,8 +212,16 @@ UGS_editorFrame::UGS_editorFrame(wxWindow* parent,wxWindowID id)
     Connect(ID_BUTTON9,wxEVT_COMMAND_BUTTON_CLICKED,(wxObjectEventFunction)&UGS_editorFrame::OnButton9Click);
     Connect(idMenuQuit,wxEVT_COMMAND_MENU_SELECTED,(wxObjectEventFunction)&UGS_editorFrame::OnQuit);
     Connect(idMenuAbout,wxEVT_COMMAND_MENU_SELECTED,(wxObjectEventFunction)&UGS_editorFrame::OnAbout);
+    Connect(wxID_ANY,wxEVT_CLOSE_WINDOW,(wxObjectEventFunction)&UGS_editorFrame::OnClose);
     //*)
 
+    std::ifstream file("exports/brute-sequence.txt");
+    if(file.is_open())
+    {
+        TextCtrl7->SetValue("Presente");
+        TextCtrl7->SetForegroundColour(wxColor(0,255,0));
+    }
+    file.close();
 
 }
 
@@ -336,6 +344,7 @@ void UGS_editorFrame::OnButton2Click2(wxCommandEvent& event)
         TextCtrl7->SetValue("Presente");
         TextCtrl7->SetForegroundColour(wxColor(0,255,0));
     }
+    file.close();
 
 }
 
@@ -396,7 +405,12 @@ void UGS_editorFrame::OnButton3Click1(wxCommandEvent& event)
                 TextCtrl4->IsEmpty() ||
                 TextCtrl5->IsEmpty() ||
                 TextCtrl6->IsEmpty() ||
+                TextCtrl7->GetValue() != "Presente" ||
+                TextCtrl8->IsEmpty() ||
+                TextCtrl9->IsEmpty() ||
+                TextCtrl10->IsEmpty() ||
                 Choice1->GetSelection() < 0;
+    if(lock){ wxMessageBox("Preencha todos os campos.", "Alerta"); return; }
 
     if(TextCtrl8->IsEmpty()){ wxMessageBox("Defina uma pasta de saida.", "Erro", wxICON_ERROR); return; }
 
@@ -438,6 +452,7 @@ void UGS_editorFrame::OnButton3Click1(wxCommandEvent& event)
         }
     }
 
+    // SEQUENCIA PARA A PASTA DE EXPORTS
     std::string instrument = std::to_string(Choice1->GetCurrentSelection());
 
     std::string pathEasy = "exports/0/" + instrument + ".txt";
@@ -455,10 +470,44 @@ void UGS_editorFrame::OnButton3Click1(wxCommandEvent& event)
     fputs(sequenceHard.str().c_str(), file);
     fclose(file);
 
-    std::cout << "STREAM FACIL:\n" << sequenceEasy.str() << "\n";
-    std::cout << "STREAM MEDIO:\n" << sequenceMedium.str() << "\n";
-    std::cout << "STREAM DIFICIL:\n" << sequenceHard.str() << "\n";
 
+    // Fazer a transferencia de arquivos
+    // IMAGEM
+    std::stringstream ss;
+    ss.str("");
+    ss << "cp " << pathCard << " " << pathOutput << "/picture/card.png";
+    system(ss.str().c_str());
+
+    ss.str("");
+    ss << "cp " << pathLogo << " " << pathOutput << "/picture/logo.png";
+    system(ss.str().c_str());
+
+    ss.str("");
+    ss << "cp " << pathPoster << " " << pathOutput << "/picture/poster.png";
+    system(ss.str().c_str());
+
+    // AUDIO
+    ss.str("");
+    ss << "cp " << pathAudioBackgroung << " " << pathOutput << "/audio/background.ogg";
+    system(ss.str().c_str());
+
+    ss.str("");
+    ss << "cp " << pathAudioInstrument << " " << pathOutput << "/audio/" << Choice1->GetCurrentSelection() << ".ogg";
+    system(ss.str().c_str());
+
+
+    // SEQUENCIA DO INSTRUMENTO
+    ss.str("");
+    ss << "cp " << pathEasy << " " << pathOutput << "/sequence/0/" << instrument << ".txt";
+    system(ss.str().c_str());
+
+    ss.str("");
+    ss << "cp " << pathMedium << " " << pathOutput << "/sequence/1/" << instrument << ".txt";
+    system(ss.str().c_str());
+
+    ss.str("");
+    ss << "cp " << pathHard << " " << pathOutput << "/sequence/2/" << instrument << ".txt";
+    system(ss.str().c_str());
 
 
 
@@ -559,6 +608,8 @@ void UGS_editorFrame::OnButton7Click1(wxCommandEvent& event)
 
 
     // Inserir informação de intrumento
+    // Procurar entre os 4 se ainda tem vaga
+    // pra outro instrumento.
     int fileEmptyNum = 0;
     for(int i=1;i<=4 && fileEmptyNum==0;i++)
     {
@@ -592,19 +643,6 @@ void UGS_editorFrame::OnButton7Click1(wxCommandEvent& event)
     }
 
 
-    // Fazer a transferencia de arquivos
-    std::stringstream ss;
-    ss.str("");
-    ss << "cp " << pathCard << " " << pathOutput << "/picture/card.png";
-    system(ss.str().c_str());
-
-    ss.str("");
-    ss << "cp " << pathLogo << " " << pathOutput << "/picture/logo.png";
-    system(ss.str().c_str());
-
-    ss.str("");
-    ss << "cp " << pathPoster << " " << pathOutput << "/picture/poster.png";
-    system(ss.str().c_str());
 
 }
 
@@ -656,3 +694,12 @@ void UGS_editorFrame::OnButton9Click(wxCommandEvent& event)
 
 
 
+
+
+void UGS_editorFrame::OnClose(wxCloseEvent& event)
+{
+    // Fazer backup de segurança da ultima edicao
+    system("cp exports/brute-sequence.txt exports/brute-sequence.txt.backup");
+    system(" exports/brute-sequence.txt");
+    Destroy();
+}

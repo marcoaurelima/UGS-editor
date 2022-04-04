@@ -27,6 +27,7 @@ bool UGS_editorApp::OnInit()
     exit(0);
     */
 
+
     //(*AppInitialize
     bool wxsOK = true;
     wxInitAllImageHandlers();

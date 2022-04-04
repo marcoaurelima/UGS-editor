@@ -28,7 +28,7 @@
 	<wx/settings.h>
 	<wx/string.h>
 
-1649009130 source:/home/marco/Documentos/TCC/UGS-editor/UGS_editorApp.cpp
+1649095346 source:/home/marco/Documentos/TCC/UGS-editor/UGS_editorApp.cpp
 	"UGS_editorApp.h"
 	"UGS_editorMain.h"
 	<wx/image.h>
@@ -610,7 +610,7 @@
 
 1585059103 /usr/include/wx-3.0/wx/gtk/app.h
 
-1649090832 /home/marco/Documentos/TCC/UGS-editor/UGS_editorMain.h
+1649095553 /home/marco/Documentos/TCC/UGS-editor/UGS_editorMain.h
 	<wx/button.h>
 	<wx/choice.h>
 	<wx/dirdlg.h>
@@ -1234,7 +1234,7 @@
 
 1585059103 /usr/include/wx-3.0/wx/gtk/stattext.h
 
-1649086317 source:/home/marco/Documentos/TCC/UGS-editor/UGS_editorMain.cpp
+1649096248 source:/home/marco/Documentos/TCC/UGS-editor/UGS_editorMain.cpp
 	"UGS_editorMain.h"
 	<wx/msgdlg.h>
 	<wx/font.h>
