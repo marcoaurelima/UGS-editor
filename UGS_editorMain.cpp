@@ -423,12 +423,14 @@ void UGS_editorFrame::OnButton3Click1(wxCommandEvent& event)
 
 
 
+
 }
 
 
 
 void UGS_editorFrame::OnButton7Click1(wxCommandEvent& event)
 {
+
     std::stringstream instructions;
     instructions << "1. Escolha a pasta que recebera a exportacao.\n" <<
                     "2. Esta pasta tem que estar dentro de /songs,\n" <<
@@ -457,21 +459,102 @@ void UGS_editorFrame::OnButton7Click1(wxCommandEvent& event)
     system(("mkdir " + pathOutput + "/audio").c_str());
     system(("mkdir " + pathOutput + "/picture").c_str());
 
-    std::cout << "path: " << pathOutput;
+    system(("mkdir " + pathOutput + "/info").c_str());
 
-    std::ofstream file;
-    file.open(pathOutput + "/about.txt");
+    std::ifstream ifs;
 
-    file << TextCtrl1->GetValue().Upper().ToStdString() << "\n"
-         << TextCtrl2->GetValue().Upper().ToStdString() << "\n"
-         << audioTotalTime << "\n"
-         << "15\n--\n15\n--\n15\n--\n15\n--\n111";
-    file.close();
-            //TextCtrl2->GetValue().Upper().ToStdString() << "\n";
-    /*
-    FILE* file = fopen((pathOutput + "/about.txt").c_str(), "w");
-    std::string about_txt = TextCtrl1->GetValue().Upper().ToStdString() + "\n" +
-                            TextCtrl2->GetValue().Upper().ToStdString() + "\n";
-    fprintf(file, "%s", about_txt.c_str());*/
+    // Geração de arquivos que ainda não existem
+    ifs.open(pathOutput + "/info/about.txt");
+    if(!ifs.is_open())
+    {
+        std::ofstream ofs;
+        ofs.open(pathOutput + "/info/about.txt");
+        ofs << TextCtrl1->GetValue().Upper().ToStdString() << "\n"
+             << TextCtrl2->GetValue().Upper().ToStdString() << "\n"
+             << audioTotalTime << "\n"
+             << "111\n";
+        ofs.close();
+    }
+    ifs.close();
+
+    ifs.open(pathOutput + "/info/instrument1.txt");
+    if(!ifs.is_open())
+    {
+        std::ofstream ofs;
+        ofs.open(pathOutput + "/info/instrument1.txt");
+        ofs << "15 --";
+        ofs.close();
+    }
+    ifs.close();
+
+    ifs.open(pathOutput + "/info/instrument2.txt");
+    if(!ifs.is_open())
+    {
+        std::ofstream ofs;
+        ofs.open(pathOutput + "/info/instrument2.txt");
+        ofs << "15 --";
+        ofs.close();
+    }
+    ifs.close();
+
+    ifs.open(pathOutput + "/info/instrument3.txt");
+    if(!ifs.is_open())
+    {
+        std::ofstream ofs;
+        ofs.open(pathOutput + "/info/instrument3.txt");
+        ofs << "15 --";
+        ofs.close();
+    }
+    ifs.close();
+
+    ifs.open(pathOutput + "/info/instrument4.txt");
+    if(!ifs.is_open())
+    {
+        std::ofstream ofs;
+        ofs.open(pathOutput + "/info/instrument4.txt");
+        ofs << "15 --";
+        ofs.close();
+    }
+    ifs.close();
+
+
+    // Inserir informação de intrumento
+    int fileEmptyNum = 0;
+    for(int i=1;i<=4 && fileEmptyNum==0;i++)
+    {
+        ifs.open(pathOutput + "/info/instrument" + std::to_string(i) + ".txt");
+        if(ifs.is_open())
+        {
+            std::string buffer;
+            std::getline(ifs, buffer);
+            if(buffer == "15 --")
+            {
+                fileEmptyNum = i;
+            }
+        }
+        ifs.close();
+    }
+
+    if(fileEmptyNum != 0) // Houve algum arquivo disponível entre os 4
+    {
+        StaticText1->SetLabel(Choice1->GetString(Choice1->GetCurrentSelection()));
+        std::ofstream ofs;
+        ofs.open(pathOutput + "/info/instrument" + std::to_string(fileEmptyNum) + ".txt");
+        ofs << Choice1->GetCurrentSelection() << " " << Choice1->GetString(Choice1->GetCurrentSelection()).Upper().ToStdString();
+        ofs.close();
+    } else //
+    {
+        std::stringstream msg;
+        mgs << "Esta musica ja dispoe de 4 instrumentos editados. O limite e' de 4 instrumentos.\n"
+            << "todos os arquivos serao exportados normalmente, mas nao estarao visiveis no jogo.\n"
+            << "Para deixa-los visiveis, basta editar os arquivos de instrumento em /info\npara os instrumentos desejados.";
+        wxMessageBox(mgs.str(), "Aviso");
+    }
+
+    //StaticText1->SetLabel(std::to_string(fileEmptyNum));
+    std::cout << "fileEmptyNum: " << fileEmptyNum;
+
+    // Fazer a transferencia de arquivos
+
 
 }
