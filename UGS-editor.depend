@@ -1234,7 +1234,7 @@
 
 1585059103 /usr/include/wx-3.0/wx/gtk/stattext.h
 
-1649043518 source:/home/marco/Documentos/TCC/UGS-editor/UGS_editorMain.cpp
+1649086317 source:/home/marco/Documentos/TCC/UGS-editor/UGS_editorMain.cpp
 	"UGS_editorMain.h"
 	<wx/msgdlg.h>
 	<wx/font.h>

@@ -289,7 +289,7 @@ void UGS_editorFrame::OnButton2Click2(wxCommandEvent& event)
 
     std::string artista = TextCtrl1->GetValue().Upper().ToStdString();
     std::string musica = TextCtrl2->GetValue().Upper().ToStdString();
-    std::string instrumento = Choice1->GetString(0).ToStdString();
+    std::string instrumento = Choice1->GetString(Choice1->GetCurrentSelection()).Upper().ToStdString();
 
     std::string trackInfo = "ARTISTA: " + artista + "\nMUSICA: "  + musica + "\nINSTRUMENTO: " + instrumento;
     std::string trackPath = pathAudio;
@@ -398,7 +398,7 @@ void UGS_editorFrame::OnButton3Click1(wxCommandEvent& event)
         }
     }
 
-    std::string instrument = std::to_string(Choice1->GetSelection());
+    std::string instrument = std::to_string(Choice1->GetCurrentSelection());
 
     std::string pathEasy = "exports/0/" + instrument + ".txt";
     file = fopen(pathEasy.c_str(), "w");
@@ -545,16 +545,41 @@ void UGS_editorFrame::OnButton7Click1(wxCommandEvent& event)
     } else //
     {
         std::stringstream msg;
-        mgs << "Esta musica ja dispoe de 4 instrumentos editados. O limite e' de 4 instrumentos.\n"
+        msg << "Esta musica ja dispoe de 4 instrumentos editados. O limite e' de 4 instrumentos.\n"
             << "todos os arquivos serao exportados normalmente, mas nao estarao visiveis no jogo.\n"
             << "Para deixa-los visiveis, basta editar os arquivos de instrumento em /info\npara os instrumentos desejados.";
-        wxMessageBox(mgs.str(), "Aviso");
+        wxMessageBox(msg.str(), "Aviso");
     }
 
-    //StaticText1->SetLabel(std::to_string(fileEmptyNum));
-    std::cout << "fileEmptyNum: " << fileEmptyNum;
 
     // Fazer a transferencia de arquivos
+    std::stringstream ss;
+    ss.str("");
+    ss << "cp " << pathCard << " " << pathOutput << "/picture/card.png";
+    system(ss.str().c_str());
 
+    ss.str("");
+    ss << "cp " << pathLogo << " " << pathOutput << "/picture/logo.png";
+    system(ss.str().c_str());
+
+    ss.str("");
+    ss << "cp " << pathPoster << " " << pathOutput << "/picture/poster.png";
+    system(ss.str().c_str());
 
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
