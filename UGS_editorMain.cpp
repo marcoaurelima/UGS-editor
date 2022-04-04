@@ -88,7 +88,6 @@ const long UGS_editorFrame::ID_BUTTON9 = wxNewId();
 const long UGS_editorFrame::ID_PANEL4 = wxNewId();
 const long UGS_editorFrame::ID_PANEL1 = wxNewId();
 const long UGS_editorFrame::idMenuQuit = wxNewId();
-const long UGS_editorFrame::idMenuBackup = wxNewId();
 const long UGS_editorFrame::idMenuAbout = wxNewId();
 //*)
 
@@ -189,18 +188,16 @@ UGS_editorFrame::UGS_editorFrame(wxWindow* parent,wxWindowID id)
     Button9 = new wxButton(Panel4, ID_BUTTON9, _("..."), wxPoint(424,72), wxSize(39,34), 0, wxDefaultValidator, _T("ID_BUTTON9"));
     MenuBar1 = new wxMenuBar();
     Menu1 = new wxMenu();
-    MenuItem1 = new wxMenuItem(Menu1, idMenuBackup, _("Carregar Backup"), _("Quit the application"), wxITEM_NORMAL);
-    MenuItem2 = new wxMenuItem(Menu1, idMenuQuit, _("Sair\tAlt-F4"), _("Quit the application"), wxITEM_NORMAL);
+    MenuItem1 = new wxMenuItem(Menu1, idMenuQuit, _("Carregar Backup\tF2"), _("Carregar Backup"), wxITEM_NORMAL);
     Menu1->Append(MenuItem1);
-    Menu1->Append(MenuItem2);
     MenuBar1->Append(Menu1, _("&Arquivo"));
     Menu2 = new wxMenu();
     MenuItem2 = new wxMenuItem(Menu2, idMenuAbout, _("Sobre\tF1"), _("Show info about this application"), wxITEM_NORMAL);
     Menu2->Append(MenuItem2);
     MenuBar1->Append(Menu2, _("Ajuda"));
     SetMenuBar(MenuBar1);
-    FileDialog1 = new wxFileDialog(this, _("Selecione um arquivo de audio"), wxEmptyString, wxEmptyString, _("*.ogg"), wxFD_DEFAULT_STYLE|wxFD_CHANGE_DIR, wxDefaultPosition, wxDefaultSize, _T("wxFileDialog"));
-    FileDialog2 = new wxFileDialog(this, _("Selecione um arquivo de imagem"), wxEmptyString, wxEmptyString, _("*.png"), wxFD_DEFAULT_STYLE|wxFD_CHANGE_DIR, wxDefaultPosition, wxDefaultSize, _T("wxFileDialog"));
+    FileDialog1 = new wxFileDialog(this, _("Selecione um arquivo de audio"), wxEmptyString, wxEmptyString, _("*.ogg"), wxFD_DEFAULT_STYLE, wxDefaultPosition, wxDefaultSize, _T("wxFileDialog"));
+    FileDialog2 = new wxFileDialog(this, _("Selecione um arquivo de imagem"), wxEmptyString, wxEmptyString, _("*.png"), wxFD_DEFAULT_STYLE, wxDefaultPosition, wxDefaultSize, _T("wxFileDialog"));
     DirDialog1 = new wxDirDialog(this, _("Select directory"), wxEmptyString, wxDD_DEFAULT_STYLE, wxDefaultPosition, wxDefaultSize, _T("wxDirDialog"));
     Center();
 
@@ -213,8 +210,7 @@ UGS_editorFrame::UGS_editorFrame(wxWindow* parent,wxWindowID id)
     Connect(ID_BUTTON6,wxEVT_COMMAND_BUTTON_CLICKED,(wxObjectEventFunction)&UGS_editorFrame::OnButton6Click);
     Connect(ID_BUTTON8,wxEVT_COMMAND_BUTTON_CLICKED,(wxObjectEventFunction)&UGS_editorFrame::OnButton8Click);
     Connect(ID_BUTTON9,wxEVT_COMMAND_BUTTON_CLICKED,(wxObjectEventFunction)&UGS_editorFrame::OnButton9Click);
-    Connect(idMenuQuit,wxEVT_COMMAND_MENU_SELECTED,(wxObjectEventFunction)&UGS_editorFrame::OnQuit);
-    Connect(idMenuBackup,wxEVT_COMMAND_MENU_SELECTED,(wxObjectEventFunction)&UGS_editorFrame::OnBackup);
+    Connect(idMenuQuit,wxEVT_COMMAND_MENU_SELECTED,(wxObjectEventFunction)&UGS_editorFrame::OnBackup);
     Connect(idMenuAbout,wxEVT_COMMAND_MENU_SELECTED,(wxObjectEventFunction)&UGS_editorFrame::OnAbout);
     Connect(wxID_ANY,wxEVT_CLOSE_WINDOW,(wxObjectEventFunction)&UGS_editorFrame::OnClose);
     //*)

@@ -108,7 +108,6 @@ class UGS_editorFrame: public wxFrame
         static const long ID_BUTTON9;
         static const long ID_PANEL4;
         static const long ID_PANEL1;
-        static const long idMenuBackup;
         static const long idMenuQuit;
         static const long idMenuAbout;
         //*)
