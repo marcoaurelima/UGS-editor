@@ -58,6 +58,8 @@ class UGS_editorFrame: public wxFrame
         void OnButton2Click2(wxCommandEvent& event);
         void OnButton3Click1(wxCommandEvent& event);
         void OnButton7Click1(wxCommandEvent& event);
+        void OnButton8Click(wxCommandEvent& event);
+        void OnButton9Click(wxCommandEvent& event);
         //*)
 
         //(*Identifiers(UGS_editorFrame)
@@ -158,7 +160,10 @@ class UGS_editorFrame: public wxFrame
         std::string pathCard;
         std::string pathLogo;
         std::string pathPoster;
-        std::string pathAudio;
+        std::string pathAudio; // Audio orginal
+        std::string pathAudioBackgroung; // Apenas o Bacground
+        std::string pathAudioInstrument; // Apenas o instrumento
+
         std::string audioTotalTime;
         std::string pathOutput;
 
