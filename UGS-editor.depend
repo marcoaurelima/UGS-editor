@@ -610,9 +610,10 @@
 
 1585059103 /usr/include/wx-3.0/wx/gtk/app.h
 
-1649017199 /home/marco/Documentos/TCC/UGS-editor/UGS_editorMain.h
+1649043150 /home/marco/Documentos/TCC/UGS-editor/UGS_editorMain.h
 	<wx/button.h>
 	<wx/choice.h>
+	<wx/dirdlg.h>
 	<wx/filedlg.h>
 	<wx/frame.h>
 	<wx/menu.h>
@@ -1233,7 +1234,7 @@
 
 1585059103 /usr/include/wx-3.0/wx/gtk/stattext.h
 
-1649028013 source:/home/marco/Documentos/TCC/UGS-editor/UGS_editorMain.cpp
+1649043518 source:/home/marco/Documentos/TCC/UGS-editor/UGS_editorMain.cpp
 	"UGS_editorMain.h"
 	<wx/msgdlg.h>
 	<wx/font.h>
@@ -1307,4 +1308,19 @@
 	<sstream>
 	<SFML/Graphics.hpp>
 	<SFML/Audio.hpp>
+
+1585059103 /usr/include/wx-3.0/wx/dirdlg.h
+	"wx/defs.h"
+	"wx/dialog.h"
+	"wx/generic/dirdlgg.h"
+	"wx/generic/dirdlgg.h"
+	"wx/generic/dirdlgg.h"
+	"wx/msw/dirdlg.h"
+	"wx/gtk/dirdlg.h"
+	"wx/generic/dirdlgg.h"
+	"wx/osx/dirdlg.h"
+	"wx/cocoa/dirdlg.h"
+	"wx/generic/dirdlgg.h"
+
+1585059103 /usr/include/wx-3.0/wx/gtk/dirdlg.h
 

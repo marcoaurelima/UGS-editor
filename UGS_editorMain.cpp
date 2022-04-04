@@ -45,6 +45,10 @@ wxString wxbuildinfo(wxbuildinfoformat format)
 }
 
 //(*IdInit(UGS_editorFrame)
+const long UGS_editorFrame::ID_TEXTCTRL8 = wxNewId();
+const long UGS_editorFrame::ID_BUTTON7 = wxNewId();
+const long UGS_editorFrame::ID_STATICTEXT7 = wxNewId();
+const long UGS_editorFrame::ID_PANEL10 = wxNewId();
 const long UGS_editorFrame::ID_STATICTEXT10 = wxNewId();
 const long UGS_editorFrame::ID_TEXTCTRL4 = wxNewId();
 const long UGS_editorFrame::ID_BUTTON4 = wxNewId();
@@ -70,7 +74,6 @@ const long UGS_editorFrame::ID_PANEL2 = wxNewId();
 const long UGS_editorFrame::ID_STATICTEXT1 = wxNewId();
 const long UGS_editorFrame::ID_STATICLINE1 = wxNewId();
 const long UGS_editorFrame::ID_BUTTON3 = wxNewId();
-const long UGS_editorFrame::ID_PANEL10 = wxNewId();
 const long UGS_editorFrame::ID_PANEL1 = wxNewId();
 const long UGS_editorFrame::idMenuQuit = wxNewId();
 const long UGS_editorFrame::idMenuAbout = wxNewId();
@@ -95,6 +98,12 @@ UGS_editorFrame::UGS_editorFrame(wxWindow* parent,wxWindowID id)
     Move(wxPoint(-1,-1));
     Panel1 = new wxPanel(this, ID_PANEL1, wxPoint(0,8), wxSize(542,592), wxTAB_TRAVERSAL, _T("ID_PANEL1"));
     Panel1->SetBackgroundColour(wxSystemSettings::GetColour(wxSYS_COLOUR_ACTIVEBORDER));
+    Panel10 = new wxPanel(Panel1, ID_PANEL10, wxPoint(32,510), wxSize(360,56), wxBORDER_DOUBLE|wxTAB_TRAVERSAL, _T("ID_PANEL10"));
+    Panel10->SetBackgroundColour(wxSystemSettings::GetColour(wxSYS_COLOUR_MENUBAR));
+    TextCtrl8 = new wxTextCtrl(Panel10, ID_TEXTCTRL8, wxEmptyString, wxPoint(80,9), wxSize(208,34), 0, wxDefaultValidator, _T("ID_TEXTCTRL8"));
+    TextCtrl8->Disable();
+    Button7 = new wxButton(Panel10, ID_BUTTON7, _("..."), wxPoint(304,8), wxSize(39,34), 0, wxDefaultValidator, _T("ID_BUTTON7"));
+    StaticText7 = new wxStaticText(Panel10, ID_STATICTEXT7, _("Saida"), wxPoint(32,16), wxDefaultSize, 0, _T("ID_STATICTEXT7"));
     Panel2 = new wxPanel(Panel1, ID_PANEL2, wxPoint(32,72), wxSize(480,424), wxBORDER_DOUBLE|wxTAB_TRAVERSAL, _T("ID_PANEL2"));
     Panel2->SetBackgroundColour(wxSystemSettings::GetColour(wxSYS_COLOUR_MENUBAR));
     StaticText10 = new wxStaticText(Panel2, ID_STATICTEXT10, _("Card (148x148)"), wxPoint(48,184), wxDefaultSize, 0, _T("ID_STATICTEXT10"));
@@ -109,8 +118,8 @@ UGS_editorFrame::UGS_editorFrame(wxWindow* parent,wxWindowID id)
     Button6 = new wxButton(Panel2, ID_BUTTON6, _("..."), wxPoint(400,272), wxSize(37,34), 0, wxDefaultValidator, _T("ID_BUTTON6"));
     StaticText11 = new wxStaticText(Panel2, ID_STATICTEXT11, _("Logo (246x246)"), wxPoint(48,240), wxDefaultSize, 0, _T("ID_STATICTEXT11"));
     StaticText12 = new wxStaticText(Panel2, ID_STATICTEXT12, _("Poster (1368x769)"), wxPoint(32,280), wxDefaultSize, 0, _T("ID_STATICTEXT12"));
-    TextCtrl1 = new wxTextCtrl(Panel2, ID_TEXTCTRL1, wxEmptyString, wxPoint(104,32), wxSize(336,34), 0, wxDefaultValidator, _T("ID_TEXTCTRL1"));
-    TextCtrl2 = new wxTextCtrl(Panel2, ID_TEXTCTRL2, wxEmptyString, wxPoint(104,80), wxSize(336,34), 0, wxDefaultValidator, _T("ID_TEXTCTRL2"));
+    TextCtrl1 = new wxTextCtrl(Panel2, ID_TEXTCTRL1, _("nirvana"), wxPoint(104,32), wxSize(336,34), 0, wxDefaultValidator, _T("ID_TEXTCTRL1"));
+    TextCtrl2 = new wxTextCtrl(Panel2, ID_TEXTCTRL2, _("breed"), wxPoint(104,80), wxSize(336,34), 0, wxDefaultValidator, _T("ID_TEXTCTRL2"));
     Choice1 = new wxChoice(Panel2, ID_CHOICE1, wxPoint(144,128), wxSize(296,34), 0, 0, 0, wxDefaultValidator, _T("ID_CHOICE1"));
     Choice1->Append(_("Guitarra 1"));
     Choice1->Append(_("Guitarra 2"));
@@ -144,9 +153,7 @@ UGS_editorFrame::UGS_editorFrame(wxWindow* parent,wxWindowID id)
     wxFont StaticText1Font(18,wxFONTFAMILY_TELETYPE,wxFONTSTYLE_NORMAL,wxFONTWEIGHT_BOLD,false,_T("Nimbus Mono PS"),wxFONTENCODING_DEFAULT);
     StaticText1->SetFont(StaticText1Font);
     StaticLine1 = new wxStaticLine(Panel1, ID_STATICLINE1, wxPoint(50,60), wxSize(400,-1), wxLI_HORIZONTAL, _T("ID_STATICLINE1"));
-    Panel10 = new wxPanel(Panel1, ID_PANEL10, wxPoint(32,510), wxSize(480,56), wxBORDER_DOUBLE|wxTAB_TRAVERSAL, _T("ID_PANEL10"));
-    Panel10->SetBackgroundColour(wxSystemSettings::GetColour(wxSYS_COLOUR_MENUBAR));
-    Button3 = new wxButton(Panel10, ID_BUTTON3, _("Exportar Fase"), wxPoint(288,10), wxSize(153,34), 0, wxDefaultValidator, _T("ID_BUTTON3"));
+    Button3 = new wxButton(Panel1, ID_BUTTON3, _("Exportar"), wxPoint(408,520), wxSize(98,34), 0, wxDefaultValidator, _T("ID_BUTTON3"));
     MenuBar1 = new wxMenuBar();
     Menu1 = new wxMenu();
     MenuItem1 = new wxMenuItem(Menu1, idMenuQuit, _("Sair\tAlt-F4"), _("Quit the application"), wxITEM_NORMAL);
@@ -159,8 +166,10 @@ UGS_editorFrame::UGS_editorFrame(wxWindow* parent,wxWindowID id)
     SetMenuBar(MenuBar1);
     FileDialog1 = new wxFileDialog(this, _("Select file"), wxEmptyString, wxEmptyString, _("*.ogg"), wxFD_DEFAULT_STYLE, wxDefaultPosition, wxDefaultSize, _T("wxFileDialog"));
     FileDialog2 = new wxFileDialog(this, _("Select file"), wxEmptyString, wxEmptyString, _("*.png"), wxFD_DEFAULT_STYLE, wxDefaultPosition, wxDefaultSize, _T("wxFileDialog"));
+    DirDialog1 = new wxDirDialog(this, _("Select directory"), wxEmptyString, wxDD_DEFAULT_STYLE, wxDefaultPosition, wxDefaultSize, _T("wxDirDialog"));
     Center();
 
+    Connect(ID_BUTTON7,wxEVT_COMMAND_BUTTON_CLICKED,(wxObjectEventFunction)&UGS_editorFrame::OnButton7Click1);
     Connect(ID_BUTTON4,wxEVT_COMMAND_BUTTON_CLICKED,(wxObjectEventFunction)&UGS_editorFrame::OnButton4Click);
     Connect(ID_BUTTON5,wxEVT_COMMAND_BUTTON_CLICKED,(wxObjectEventFunction)&UGS_editorFrame::OnButton5Click);
     Connect(ID_BUTTON6,wxEVT_COMMAND_BUTTON_CLICKED,(wxObjectEventFunction)&UGS_editorFrame::OnButton6Click);
@@ -205,6 +214,15 @@ std::string shortenPath(std::string path, int finalSize)
 
 }
 
+
+std::string secToMin(int time)
+{
+    std::string min = "00" + std::to_string(time/60);
+    std::string sec = "00" + std::to_string(time%60);
+
+    return (min.substr(min.size()-2, min.size()-1) + ":" + sec.substr(sec.size()-2, sec.size()-1));
+}
+
 void UGS_editorFrame::OnButton1Click(wxCommandEvent& event)
 {
     auto res = FileDialog1->ShowModal();
@@ -219,6 +237,7 @@ void UGS_editorFrame::OnButton1Click(wxCommandEvent& event)
     bool opened = music.openFromFile(path.ToStdString());
     if(!opened){ wxMessageBox(wxT("ERRO"), wxT("Não foi possível abrir o arquivo."), wxICON_ERROR); return;}
 
+    audioTotalTime = secToMin(music.getDuration().asSeconds());
 }
 
 void UGS_editorFrame::OnButton4Click(wxCommandEvent& event)
@@ -339,6 +358,8 @@ std::vector<int> genChord(int chordWeight, int dificulty)
 
 void UGS_editorFrame::OnButton3Click1(wxCommandEvent& event)
 {
+    if(TextCtrl8->IsEmpty()){ wxMessageBox("Defina uma pasta de saida.", "Erro", wxICON_ERROR); return; }
+
     FILE* file = fopen("exports/brute-sequence.txt", "r");
     if(file == NULL) { wxMessageBox("Arquivo de sequencia bruta inexistente.", "Erro", wxICON_ERROR); return; }
 
@@ -406,11 +427,51 @@ void UGS_editorFrame::OnButton3Click1(wxCommandEvent& event)
 
 
 
+void UGS_editorFrame::OnButton7Click1(wxCommandEvent& event)
+{
+    std::stringstream instructions;
+    instructions << "1. Escolha a pasta que recebera a exportacao.\n" <<
+                    "2. Esta pasta tem que estar dentro de /songs,\n" <<
+                    "    (diretorios do jogo que guardas as musicas).\n" <<
+                    "3. Se nao houver ainda nenhuma pasta, crie\n" <<
+                    "   uma nova (nome da pasta deve ser o proximo\n" <<
+                    "   numero inteiro da sequencia de pastas em /songs).";
+    wxMessageBox(instructions.str(), "INSTRUCOES", wxICON_INFORMATION);
 
 
+    auto res = DirDialog1->ShowModal();
+    if(res == wxID_CANCEL)
+        return;
 
+    wxString path = DirDialog1->GetPath();
+    TextCtrl8->SetValue(shortenPath(path.ToStdString(), 26));
+    pathOutput = path.ToStdString();
 
+    // Verificar se a pasta contêm as subpastas que irão receber a exportação
+    // Se não houver, vai ser criado.
+    system(("mkdir " + pathOutput + "/sequence").c_str());
+    system(("mkdir " + pathOutput + "/sequence/0").c_str());
+    system(("mkdir " + pathOutput + "/sequence/1").c_str());
+    system(("mkdir " + pathOutput + "/sequence/2").c_str());
 
+    system(("mkdir " + pathOutput + "/audio").c_str());
+    system(("mkdir " + pathOutput + "/picture").c_str());
 
+    std::cout << "path: " << pathOutput;
 
+    std::ofstream file;
+    file.open(pathOutput + "/about.txt");
 
+    file << TextCtrl1->GetValue().Upper().ToStdString() << "\n"
+         << TextCtrl2->GetValue().Upper().ToStdString() << "\n"
+         << audioTotalTime << "\n"
+         << "15\n--\n15\n--\n15\n--\n15\n--\n111";
+    file.close();
+            //TextCtrl2->GetValue().Upper().ToStdString() << "\n";
+    /*
+    FILE* file = fopen((pathOutput + "/about.txt").c_str(), "w");
+    std::string about_txt = TextCtrl1->GetValue().Upper().ToStdString() + "\n" +
+                            TextCtrl2->GetValue().Upper().ToStdString() + "\n";
+    fprintf(file, "%s", about_txt.c_str());*/
+
+}

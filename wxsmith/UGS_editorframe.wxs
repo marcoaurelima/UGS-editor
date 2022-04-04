@@ -10,6 +10,27 @@
 			<pos>0,8</pos>
 			<size>542,592</size>
 			<bg>wxSYS_COLOUR_ACTIVEBORDER</bg>
+			<object class="wxPanel" name="ID_PANEL10" variable="Panel10" member="yes">
+				<pos>32,510</pos>
+				<size>360,56</size>
+				<bg>wxSYS_COLOUR_MENUBAR</bg>
+				<style>wxBORDER_DOUBLE|wxTAB_TRAVERSAL</style>
+				<object class="wxTextCtrl" name="ID_TEXTCTRL8" variable="TextCtrl8" member="yes">
+					<pos>80,9</pos>
+					<size>208,34</size>
+					<enabled>0</enabled>
+				</object>
+				<object class="wxButton" name="ID_BUTTON7" variable="Button7" member="yes">
+					<label>...</label>
+					<pos>304,8</pos>
+					<size>39,34</size>
+					<handler function="OnButton7Click1" entry="EVT_BUTTON" />
+				</object>
+				<object class="wxStaticText" name="ID_STATICTEXT7" variable="StaticText7" member="yes">
+					<label>Saida</label>
+					<pos>32,16</pos>
+				</object>
+			</object>
 			<object class="wxPanel" name="ID_PANEL2" variable="Panel2" member="yes">
 				<pos>32,72</pos>
 				<size>480,424</size>
@@ -61,10 +82,12 @@
 					<pos>32,280</pos>
 				</object>
 				<object class="wxTextCtrl" name="ID_TEXTCTRL1" variable="TextCtrl1" member="yes">
+					<value>nirvana</value>
 					<pos>104,32</pos>
 					<size>336,34</size>
 				</object>
 				<object class="wxTextCtrl" name="ID_TEXTCTRL2" variable="TextCtrl2" member="yes">
+					<value>breed</value>
 					<pos>104,80</pos>
 					<size>336,34</size>
 				</object>
@@ -153,17 +176,11 @@
 				<pos>50,60</pos>
 				<size>400,-1</size>
 			</object>
-			<object class="wxPanel" name="ID_PANEL10" variable="Panel10" member="yes">
-				<pos>32,510</pos>
-				<size>480,56</size>
-				<bg>wxSYS_COLOUR_MENUBAR</bg>
-				<style>wxBORDER_DOUBLE|wxTAB_TRAVERSAL</style>
-				<object class="wxButton" name="ID_BUTTON3" variable="Button3" member="yes">
-					<label>Exportar Fase</label>
-					<pos>288,10</pos>
-					<size>153,34</size>
-					<handler function="OnButton3Click1" entry="EVT_BUTTON" />
-				</object>
+			<object class="wxButton" name="ID_BUTTON3" variable="Button3" member="yes">
+				<label>Exportar</label>
+				<pos>408,520</pos>
+				<size>98,34</size>
+				<handler function="OnButton3Click1" entry="EVT_BUTTON" />
 			</object>
 		</object>
 		<object class="wxMenuBar" variable="MenuBar1" member="no">
@@ -193,6 +210,9 @@
 		<object class="wxFileDialog" variable="FileDialog2" member="yes">
 			<message>Select file</message>
 			<wildcard>*.png</wildcard>
+		</object>
+		<object class="wxDirDialog" variable="DirDialog1" member="yes">
+			<message>Select directory</message>
 		</object>
 	</object>
 </wxsmith>

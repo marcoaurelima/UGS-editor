@@ -13,6 +13,7 @@
 //(*Headers(UGS_editorFrame)
 #include <wx/button.h>
 #include <wx/choice.h>
+#include <wx/dirdlg.h>
 #include <wx/filedlg.h>
 #include <wx/frame.h>
 #include <wx/menu.h>
@@ -56,9 +57,14 @@ class UGS_editorFrame: public wxFrame
         void OnButton2Click1(wxCommandEvent& event);
         void OnButton2Click2(wxCommandEvent& event);
         void OnButton3Click1(wxCommandEvent& event);
+        void OnButton7Click1(wxCommandEvent& event);
         //*)
 
         //(*Identifiers(UGS_editorFrame)
+        static const long ID_TEXTCTRL8;
+        static const long ID_BUTTON7;
+        static const long ID_STATICTEXT7;
+        static const long ID_PANEL10;
         static const long ID_STATICTEXT10;
         static const long ID_TEXTCTRL4;
         static const long ID_BUTTON4;
@@ -84,7 +90,6 @@ class UGS_editorFrame: public wxFrame
         static const long ID_STATICTEXT1;
         static const long ID_STATICLINE1;
         static const long ID_BUTTON3;
-        static const long ID_PANEL10;
         static const long ID_PANEL1;
         static const long idMenuQuit;
         static const long idMenuAbout;
@@ -97,7 +102,9 @@ class UGS_editorFrame: public wxFrame
         wxButton* Button4;
         wxButton* Button5;
         wxButton* Button6;
+        wxButton* Button7;
         wxChoice* Choice1;
+        wxDirDialog* DirDialog1;
         wxFileDialog* FileDialog1;
         wxFileDialog* FileDialog2;
         wxPanel* Panel10;
@@ -113,6 +120,7 @@ class UGS_editorFrame: public wxFrame
         wxStaticText* StaticText4;
         wxStaticText* StaticText5;
         wxStaticText* StaticText6;
+        wxStaticText* StaticText7;
         wxTextCtrl* TextCtrl1;
         wxTextCtrl* TextCtrl2;
         wxTextCtrl* TextCtrl3;
@@ -120,12 +128,15 @@ class UGS_editorFrame: public wxFrame
         wxTextCtrl* TextCtrl5;
         wxTextCtrl* TextCtrl6;
         wxTextCtrl* TextCtrl7;
+        wxTextCtrl* TextCtrl8;
         //*)
 
         std::string pathCard;
         std::string pathLogo;
         std::string pathPoster;
         std::string pathAudio;
+        std::string audioTotalTime;
+        std::string pathOutput;
 
         DECLARE_EVENT_TABLE()
 };
