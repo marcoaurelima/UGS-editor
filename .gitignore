@@ -1,3 +1,3 @@
-/#testExport
-/bin
-/exports/*
+#testExport
+bin
+exports/*
