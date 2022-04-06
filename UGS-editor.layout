@@ -7,9 +7,19 @@
 			<Cursor1 position="944" topLine="17" />
 		</Cursor>
 	</File>
-	<File name="UGS_editorApp.cpp" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+	<File name="UGS_editorMain.cpp" open="1" top="1" tabpos="1" split="0" active="1" splitpos="0" zoom_1="5" zoom_2="0">
 		<Cursor>
-			<Cursor1 position="367" topLine="0" />
+			<Cursor1 position="24187" topLine="568" />
+		</Cursor>
+	</File>
+	<File name="UGS_editorMain.h" open="1" top="0" tabpos="2" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="4433" topLine="47" />
+		</Cursor>
+	</File>
+	<File name="UGS_editorApp.h" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="470" topLine="0" />
 		</Cursor>
 	</File>
 	<File name="src/SequenceEditor.cpp" open="1" top="0" tabpos="3" split="0" active="1" splitpos="0" zoom_1="6" zoom_2="0">
@@ -17,19 +27,9 @@
 			<Cursor1 position="12528" topLine="328" />
 		</Cursor>
 	</File>
-	<File name="UGS_editorMain.h" open="1" top="0" tabpos="2" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+	<File name="UGS_editorApp.cpp" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
 		<Cursor>
-			<Cursor1 position="4473" topLine="93" />
-		</Cursor>
-	</File>
-	<File name="UGS_editorMain.cpp" open="1" top="1" tabpos="1" split="0" active="1" splitpos="0" zoom_1="5" zoom_2="0">
-		<Cursor>
-			<Cursor1 position="21443" topLine="532" />
-		</Cursor>
-	</File>
-	<File name="UGS_editorApp.h" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
-		<Cursor>
-			<Cursor1 position="470" topLine="0" />
+			<Cursor1 position="367" topLine="0" />
 		</Cursor>
 	</File>
 </CodeBlocks_layout_file>

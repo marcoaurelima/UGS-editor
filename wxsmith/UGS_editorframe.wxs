@@ -38,9 +38,14 @@
 				</object>
 				<object class="wxButton" name="ID_BUTTON3" variable="Button3" member="yes">
 					<label>Exportar tudo</label>
-					<pos>272,144</pos>
+					<pos>272,152</pos>
 					<size>170,34</size>
 					<handler function="OnButton3Click1" entry="EVT_BUTTON" />
+				</object>
+				<object class="wxGauge" name="ID_GAUGE1" variable="Gauge1" member="yes">
+					<value>60</value>
+					<pos>34,128</pos>
+					<size>408,8</size>
 				</object>
 			</object>
 			<object class="wxPanel" name="ID_PANEL2" variable="Panel2" member="yes">

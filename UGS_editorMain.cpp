@@ -50,6 +50,7 @@ const long UGS_editorFrame::ID_BUTTON7 = wxNewId();
 const long UGS_editorFrame::ID_STATICTEXT7 = wxNewId();
 const long UGS_editorFrame::ID_STATICTEXT16 = wxNewId();
 const long UGS_editorFrame::ID_BUTTON3 = wxNewId();
+const long UGS_editorFrame::ID_GAUGE1 = wxNewId();
 const long UGS_editorFrame::ID_PANEL10 = wxNewId();
 const long UGS_editorFrame::ID_TEXTCTRL1 = wxNewId();
 const long UGS_editorFrame::ID_TEXTCTRL2 = wxNewId();
@@ -118,7 +119,8 @@ UGS_editorFrame::UGS_editorFrame(wxWindow* parent,wxWindowID id)
     StaticText7 = new wxStaticText(Panel10, ID_STATICTEXT7, _("Path de saida"), wxPoint(32,56), wxDefaultSize, 0, _T("ID_STATICTEXT7"));
     StaticText16 = new wxStaticText(Panel10, ID_STATICTEXT16, _("Exportacao"), wxPoint(8,8), wxDefaultSize, 0, _T("ID_STATICTEXT16"));
     StaticText16->SetForegroundColour(wxSystemSettings::GetColour(wxSYS_COLOUR_GRAYTEXT));
-    Button3 = new wxButton(Panel10, ID_BUTTON3, _("Exportar tudo"), wxPoint(272,144), wxSize(170,34), 0, wxDefaultValidator, _T("ID_BUTTON3"));
+    Button3 = new wxButton(Panel10, ID_BUTTON3, _("Exportar tudo"), wxPoint(272,152), wxSize(170,34), 0, wxDefaultValidator, _T("ID_BUTTON3"));
+    Gauge1 = new wxGauge(Panel10, ID_GAUGE1, 100, wxPoint(34,128), wxSize(408,8), 0, wxDefaultValidator, _T("ID_GAUGE1"));
     Panel2 = new wxPanel(Panel1, ID_PANEL2, wxPoint(32,72), wxSize(480,264), wxBORDER_DOUBLE|wxTAB_TRAVERSAL, _T("ID_PANEL2"));
     Panel2->SetBackgroundColour(wxSystemSettings::GetColour(wxSYS_COLOUR_MENUBAR));
     TextCtrl1 = new wxTextCtrl(Panel2, ID_TEXTCTRL1, _("nirvana"), wxPoint(104,32), wxSize(336,34), 0, wxDefaultValidator, _T("ID_TEXTCTRL1"));
@@ -432,6 +434,8 @@ void UGS_editorFrame::OnButton3Click1(wxCommandEvent& event)
     FILE* file = fopen("exports/brute-sequence.txt", "r");
     if(file == NULL) { wxMessageBox("Arquivo de sequencia bruta inexistente.", "Erro", wxICON_ERROR); return; }
 
+    Gauge1->SetValue(10);
+
     std::vector<float> seqTime;
     std::vector<int> seqWeight;
     std::vector<float> seqBend;
@@ -439,6 +443,8 @@ void UGS_editorFrame::OnButton3Click1(wxCommandEvent& event)
     float a = 0.0;
     float c = 0.0;
     int b = 0;
+
+    Gauge1->SetValue(30);
 
     while(fscanf(file, "%f %d %f", &a, &b, &c) != EOF)
     {
@@ -467,6 +473,8 @@ void UGS_editorFrame::OnButton3Click1(wxCommandEvent& event)
         }
     }
 
+    Gauge1->SetValue(50);
+
     // SEQUENCIA PARA A PASTA DE EXPORTS
     std::string instrument = std::to_string(Choice1->GetCurrentSelection());
 
@@ -485,6 +493,7 @@ void UGS_editorFrame::OnButton3Click1(wxCommandEvent& event)
     fputs(sequenceHard.str().c_str(), file);
     fclose(file);
 
+    Gauge1->SetValue(70);
 
     // Fazer a transferencia de arquivos
     // IMAGEM
@@ -510,6 +519,7 @@ void UGS_editorFrame::OnButton3Click1(wxCommandEvent& event)
     ss << "cp " << pathAudioInstrument << " " << pathOutput << "/audio/" << Choice1->GetCurrentSelection() << ".ogg";
     system(ss.str().c_str());
 
+    Gauge1->SetValue(90);
 
     // SEQUENCIA DO INSTRUMENTO
     ss.str("");
@@ -524,7 +534,10 @@ void UGS_editorFrame::OnButton3Click1(wxCommandEvent& event)
     ss << "cp " << pathHard << " " << pathOutput << "/sequence/2/" << instrument << ".txt";
     system(ss.str().c_str());
 
+    Gauge1->SetValue(100);
 
+    wxMessageBox(wxT("Finalizado!"), wxT("Feedback"));
+    Gauge1->SetValue(0);
 
 
 

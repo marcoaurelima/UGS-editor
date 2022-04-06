@@ -610,12 +610,13 @@
 
 1585059103 /usr/include/wx-3.0/wx/gtk/app.h
 
-1649100360 /home/marco/Documentos/TCC/UGS-editor/UGS_editorMain.h
+1649260119 /home/marco/Documentos/TCC/UGS-editor/UGS_editorMain.h
 	<wx/button.h>
 	<wx/choice.h>
 	<wx/dirdlg.h>
 	<wx/filedlg.h>
 	<wx/frame.h>
+	<wx/gauge.h>
 	<wx/menu.h>
 	<wx/panel.h>
 	<wx/statline.h>
@@ -1323,4 +1324,12 @@
 	"wx/generic/dirdlgg.h"
 
 1585059103 /usr/include/wx-3.0/wx/gtk/dirdlg.h
+
+1585059103 /usr/include/wx-3.0/wx/progdlg.h
+	"wx/defs.h"
+	"wx/generic/progdlgg.h"
+	"wx/msw/progdlg.h"
+
+1585059103 /usr/include/wx-3.0/wx/generic/progdlgg.h
+	"wx/dialog.h"
 

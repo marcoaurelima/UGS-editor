@@ -16,6 +16,7 @@
 #include <wx/dirdlg.h>
 #include <wx/filedlg.h>
 #include <wx/frame.h>
+#include <wx/gauge.h>
 #include <wx/menu.h>
 #include <wx/panel.h>
 #include <wx/statline.h>
@@ -71,6 +72,7 @@ class UGS_editorFrame: public wxFrame
         static const long ID_STATICTEXT7;
         static const long ID_STATICTEXT16;
         static const long ID_BUTTON3;
+        static const long ID_GAUGE1;
         static const long ID_PANEL10;
         static const long ID_TEXTCTRL1;
         static const long ID_TEXTCTRL2;
@@ -126,6 +128,7 @@ class UGS_editorFrame: public wxFrame
         wxDirDialog* DirDialog1;
         wxFileDialog* FileDialog1;
         wxFileDialog* FileDialog2;
+        wxGauge* Gauge1;
         wxPanel* Panel10;
         wxPanel* Panel1;
         wxPanel* Panel2;
