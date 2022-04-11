@@ -606,7 +606,7 @@ void UGS_editorFrame::OnButton7Click1(wxCommandEvent& event)
     {
         std::ofstream ofs;
         ofs.open(pathOutput + "/info/instrument1.txt");
-        ofs << "15 --";
+        ofs << "15\n--;
         ofs.close();
     }
     ifs.close();
@@ -616,7 +616,7 @@ void UGS_editorFrame::OnButton7Click1(wxCommandEvent& event)
     {
         std::ofstream ofs;
         ofs.open(pathOutput + "/info/instrument2.txt");
-        ofs << "15 --";
+        ofs << "15\n--;
         ofs.close();
     }
     ifs.close();
@@ -626,7 +626,7 @@ void UGS_editorFrame::OnButton7Click1(wxCommandEvent& event)
     {
         std::ofstream ofs;
         ofs.open(pathOutput + "/info/instrument3.txt");
-        ofs << "15 --";
+        ofs << "15\n--;
         ofs.close();
     }
     ifs.close();
@@ -636,7 +636,7 @@ void UGS_editorFrame::OnButton7Click1(wxCommandEvent& event)
     {
         std::ofstream ofs;
         ofs.open(pathOutput + "/info/instrument4.txt");
-        ofs << "15 --";
+        ofs << "15\n--;
         ofs.close();
     }
 
@@ -698,7 +698,7 @@ void UGS_editorFrame::OnButton7Click1(wxCommandEvent& event)
         ifs.open(pathOutput + "/info/instrument" + std::to_string(i) + ".txt");
         if(ifs.is_open())
         {
-            std::string emptyFileContent = "15 --";
+            std::string emptyFileContent = "15\n--;
             std::string currentInstrument =  std::to_string(Choice1->GetCurrentSelection()) + " " + Choice1->GetString(Choice1->GetCurrentSelection()).Upper().ToStdString();
             std::cout << "res " << currentInstrument << "\n";
 
