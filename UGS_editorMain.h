@@ -67,9 +67,6 @@ class UGS_editorFrame: public wxFrame
         //*)
 
         //(*Identifiers(UGS_editorFrame)
-        static const long ID_TEXTCTRL8;
-        static const long ID_BUTTON7;
-        static const long ID_STATICTEXT7;
         static const long ID_STATICTEXT16;
         static const long ID_BUTTON3;
         static const long ID_GAUGE1;
@@ -87,6 +84,10 @@ class UGS_editorFrame: public wxFrame
         static const long ID_STATICTEXT5;
         static const long ID_TEXTCTRL7;
         static const long ID_BUTTON2;
+        static const long ID_STATICTEXT7;
+        static const long ID_TEXTCTRL8;
+        static const long ID_BUTTON7;
+        static const long ID_STATICLINE2;
         static const long ID_PANEL2;
         static const long ID_STATICTEXT1;
         static const long ID_STATICLINE1;
@@ -135,6 +136,7 @@ class UGS_editorFrame: public wxFrame
         wxPanel* Panel3;
         wxPanel* Panel4;
         wxStaticLine* StaticLine1;
+        wxStaticLine* StaticLine2;
         wxStaticText* StaticText10;
         wxStaticText* StaticText11;
         wxStaticText* StaticText12;
