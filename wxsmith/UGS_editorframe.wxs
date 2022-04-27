@@ -120,22 +120,28 @@
 				</object>
 				<object class="wxStaticText" name="ID_STATICTEXT7" variable="StaticText7" member="yes">
 					<label>Path de saida</label>
-					<pos>32,312</pos>
+					<pos>40,256</pos>
 				</object>
 				<object class="wxTextCtrl" name="ID_TEXTCTRL8" variable="TextCtrl8" member="yes">
-					<pos>32,344</pos>
+					<pos>32,288</pos>
 					<size>362,34</size>
 					<enabled>0</enabled>
 				</object>
 				<object class="wxButton" name="ID_BUTTON7" variable="Button7" member="yes">
 					<label>...</label>
-					<pos>400,344</pos>
+					<pos>400,288</pos>
 					<size>39,34</size>
 					<handler function="OnButton7Click1" entry="EVT_BUTTON" />
 				</object>
 				<object class="wxStaticLine" name="ID_STATICLINE2" variable="StaticLine2" member="yes">
-					<pos>20,280</pos>
+					<pos>20,250</pos>
 					<size>440,-1</size>
+				</object>
+				<object class="wxButton" name="ID_BUTTON10" variable="Button10" member="yes">
+					<label>Criar ambiente de producao</label>
+					<pos>32,345</pos>
+					<size>415,37</size>
+					<handler function="OnButton10Click" entry="EVT_BUTTON" />
 				</object>
 			</object>
 			<object class="wxStaticText" name="ID_STATICTEXT1" variable="StaticText1" member="yes">

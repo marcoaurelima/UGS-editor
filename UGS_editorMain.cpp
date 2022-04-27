@@ -66,6 +66,7 @@ const long UGS_editorFrame::ID_STATICTEXT7 = wxNewId();
 const long UGS_editorFrame::ID_TEXTCTRL8 = wxNewId();
 const long UGS_editorFrame::ID_BUTTON7 = wxNewId();
 const long UGS_editorFrame::ID_STATICLINE2 = wxNewId();
+const long UGS_editorFrame::ID_BUTTON10 = wxNewId();
 const long UGS_editorFrame::ID_PANEL2 = wxNewId();
 const long UGS_editorFrame::ID_STATICTEXT1 = wxNewId();
 const long UGS_editorFrame::ID_STATICLINE1 = wxNewId();
@@ -153,11 +154,12 @@ UGS_editorFrame::UGS_editorFrame(wxWindow* parent,wxWindowID id)
     TextCtrl7->SetForegroundColour(wxColour(223,22,24));
     TextCtrl7->SetBackgroundColour(wxSystemSettings::GetColour(wxSYS_COLOUR_3DDKSHADOW));
     Button2 = new wxButton(Panel2, ID_BUTTON2, _("Gerar"), wxPoint(344,208), wxSize(95,34), 0, wxDefaultValidator, _T("ID_BUTTON2"));
-    StaticText7 = new wxStaticText(Panel2, ID_STATICTEXT7, _("Path de saida"), wxPoint(32,312), wxDefaultSize, 0, _T("ID_STATICTEXT7"));
-    TextCtrl8 = new wxTextCtrl(Panel2, ID_TEXTCTRL8, wxEmptyString, wxPoint(32,344), wxSize(362,34), 0, wxDefaultValidator, _T("ID_TEXTCTRL8"));
+    StaticText7 = new wxStaticText(Panel2, ID_STATICTEXT7, _("Path de saida"), wxPoint(40,256), wxDefaultSize, 0, _T("ID_STATICTEXT7"));
+    TextCtrl8 = new wxTextCtrl(Panel2, ID_TEXTCTRL8, wxEmptyString, wxPoint(32,288), wxSize(362,34), 0, wxDefaultValidator, _T("ID_TEXTCTRL8"));
     TextCtrl8->Disable();
-    Button7 = new wxButton(Panel2, ID_BUTTON7, _("..."), wxPoint(400,344), wxSize(39,34), 0, wxDefaultValidator, _T("ID_BUTTON7"));
-    StaticLine2 = new wxStaticLine(Panel2, ID_STATICLINE2, wxPoint(20,280), wxSize(440,-1), wxLI_HORIZONTAL, _T("ID_STATICLINE2"));
+    Button7 = new wxButton(Panel2, ID_BUTTON7, _("..."), wxPoint(400,288), wxSize(39,34), 0, wxDefaultValidator, _T("ID_BUTTON7"));
+    StaticLine2 = new wxStaticLine(Panel2, ID_STATICLINE2, wxPoint(20,250), wxSize(440,-1), wxLI_HORIZONTAL, _T("ID_STATICLINE2"));
+    Button10 = new wxButton(Panel2, ID_BUTTON10, _("Criar ambiente de producao"), wxPoint(32,345), wxSize(415,37), 0, wxDefaultValidator, _T("ID_BUTTON10"));
     StaticText1 = new wxStaticText(Panel1, ID_STATICTEXT1, _("ULTIMATE GUITAR SHOW EDITOR"), wxPoint(72,35), wxSize(416,40), 0, _T("ID_STATICTEXT1"));
     wxFont StaticText1Font(18,wxFONTFAMILY_TELETYPE,wxFONTSTYLE_NORMAL,wxFONTWEIGHT_BOLD,false,_T("Nimbus Mono PS"),wxFONTENCODING_DEFAULT);
     StaticText1->SetFont(StaticText1Font);
@@ -209,6 +211,7 @@ UGS_editorFrame::UGS_editorFrame(wxWindow* parent,wxWindowID id)
     Connect(ID_BUTTON1,wxEVT_COMMAND_BUTTON_CLICKED,(wxObjectEventFunction)&UGS_editorFrame::OnButton1Click);
     Connect(ID_BUTTON2,wxEVT_COMMAND_BUTTON_CLICKED,(wxObjectEventFunction)&UGS_editorFrame::OnButton2Click2);
     Connect(ID_BUTTON7,wxEVT_COMMAND_BUTTON_CLICKED,(wxObjectEventFunction)&UGS_editorFrame::OnButton7Click1);
+    Connect(ID_BUTTON10,wxEVT_COMMAND_BUTTON_CLICKED,(wxObjectEventFunction)&UGS_editorFrame::OnButton10Click);
     Connect(ID_BUTTON4,wxEVT_COMMAND_BUTTON_CLICKED,(wxObjectEventFunction)&UGS_editorFrame::OnButton4Click);
     Connect(ID_BUTTON5,wxEVT_COMMAND_BUTTON_CLICKED,(wxObjectEventFunction)&UGS_editorFrame::OnButton5Click);
     Connect(ID_BUTTON6,wxEVT_COMMAND_BUTTON_CLICKED,(wxObjectEventFunction)&UGS_editorFrame::OnButton6Click);
@@ -573,167 +576,7 @@ void UGS_editorFrame::OnButton7Click1(wxCommandEvent& event)
     TextCtrl8->SetValue(shortenPath(path.ToStdString(), 42));
     pathOutput = path.ToStdString();
 
-    // Verificar se a pasta contêm as subpastas que irão receber a exportação
-    // Se não houver, vai ser criado.
-    system(("mkdir " + pathOutput + "/sequence").c_str());
-    system(("mkdir " + pathOutput + "/sequence/0").c_str());
-    system(("mkdir " + pathOutput + "/sequence/1").c_str());
-    system(("mkdir " + pathOutput + "/sequence/2").c_str());
 
-    system(("mkdir " + pathOutput + "/audio").c_str());
-    system(("mkdir " + pathOutput + "/picture").c_str());
-
-    system(("mkdir " + pathOutput + "/info").c_str());
-
-    std::ifstream ifs;
-
-    // Geração de arquivos que ainda não existem
-    ifs.open(pathOutput + "/info/about.txt");
-    if(!ifs.is_open())
-    {
-        std::ofstream ofs;
-        ofs.open(pathOutput + "/info/about.txt");
-        ofs << TextCtrl1->GetValue().Upper().ToStdString() << "\n"
-             << TextCtrl2->GetValue().Upper().ToStdString() << "\n"
-             << audioTotalTime << "\n"
-             << "111\n";
-        ofs.close();
-    } else
-    {
-        std::string buffer;
-        std::getline(ifs, buffer);
-        TextCtrl1->SetValue(buffer);
-
-        std::getline(ifs, buffer);
-        TextCtrl2->SetValue(buffer);
-    }
-    ifs.close();
-
-    ifs.open(pathOutput + "/info/instrument1.txt");
-    if(!ifs.is_open())
-    {
-        std::ofstream ofs;
-        ofs.open(pathOutput + "/info/instrument1.txt");
-        ofs << "15\n--";
-        ofs.close();
-    }
-    ifs.close();
-
-    ifs.open(pathOutput + "/info/instrument2.txt");
-    if(!ifs.is_open())
-    {
-        std::ofstream ofs;
-        ofs.open(pathOutput + "/info/instrument2.txt");
-        ofs << "15\n--";
-        ofs.close();
-    }
-    ifs.close();
-
-    ifs.open(pathOutput + "/info/instrument3.txt");
-    if(!ifs.is_open())
-    {
-        std::ofstream ofs;
-        ofs.open(pathOutput + "/info/instrument3.txt");
-        ofs << "15\n--";
-        ofs.close();
-    }
-    ifs.close();
-
-    ifs.open(pathOutput + "/info/instrument4.txt");
-    if(!ifs.is_open())
-    {
-        std::ofstream ofs;
-        ofs.open(pathOutput + "/info/instrument4.txt");
-        ofs << "15\n--";
-        ofs.close();
-    }
-
-    // Verificar se ja exitem arquivos de imagem nas pastas
-    // se existir, vai setar o path automaticamente nos campos.
-    ifs.open(pathOutput + "/picture/card.png");
-    if(ifs.is_open())
-    {
-        TextCtrl4->SetValue(shortenPath((pathOutput + "/picture/card.png"), 32));
-        pathCard = (pathOutput + "/picture/card.png");
-    }
-    ifs.close();
-
-    ifs.open(pathOutput + "/picture/logo.png");
-    if(ifs.is_open())
-    {
-        TextCtrl5->SetValue(shortenPath((pathOutput + "/picture/logo.png"), 32));
-        pathLogo = (pathOutput + "/picture/logo.png");
-    }
-    ifs.close();
-
-    ifs.open(pathOutput + "/picture/poster.png");
-    if(ifs.is_open())
-    {
-        TextCtrl6->SetValue(shortenPath((pathOutput + "/picture/poster.png"), 32));
-        pathPoster = (pathOutput + "/picture/poster.png");
-    }
-    ifs.close();
-
-    // Verificar se ja exitem arquivos de audio nas pastas
-    // se existir, vai setar o path automaticamente nos campos.
-    ifs.open(pathOutput + "/audio/background.ogg");
-    if(ifs.is_open())
-    {
-        TextCtrl9->SetValue(shortenPath((pathOutput + "/audio/background.ogg"), 32));
-        pathAudioBackgroung = (pathOutput + "/audio/background.ogg");
-    }
-    ifs.close();
-
-    ifs.open(pathOutput + "/audio/" + std::to_string(Choice1->GetCurrentSelection()) + ".ogg");
-
-    std::cout << "res " << (pathOutput + "/audio/" + std::to_string(Choice1->GetCurrentSelection()) + ".ogg") << "\n";
-
-    if(ifs.is_open())
-    {
-        TextCtrl10->SetValue(shortenPath((pathOutput + "/audio/" + std::to_string(Choice1->GetCurrentSelection()) + ".ogg"), 32));
-        pathAudioInstrument = (pathOutput + "/audio/" + std::to_string(Choice1->GetCurrentSelection()) + ".ogg");
-    }
-    ifs.close();
-
-
-    // Inserir informação de intrumento
-    // Procurar entre os 4 se ainda tem vaga
-    // pra outro instrumento.
-    // se já houver o instrumento em questão em algum arquivo, será subscreito.
-    int fileAvailableNum = 0;
-    for(int i=1;i<=4 && fileAvailableNum==0;i++)
-    {
-        ifs.open(pathOutput + "/info/instrument" + std::to_string(i) + ".txt");
-        if(ifs.is_open())
-        {
-            std::string emptyFileContent = "15\n--";
-            std::string currentInstrument =  std::to_string(Choice1->GetCurrentSelection()) + " " + Choice1->GetString(Choice1->GetCurrentSelection()).Upper().ToStdString();
-            std::cout << "res " << currentInstrument << "\n";
-
-            std::string buffer;
-            std::getline(ifs, buffer);
-            if(buffer == emptyFileContent || buffer == currentInstrument)
-            {
-                fileAvailableNum = i;
-            }
-        }
-        ifs.close();
-    }
-
-    if(fileAvailableNum != 0) // Houve algum arquivo disponível entre os 4
-    {
-        std::ofstream ofs;
-        ofs.open(pathOutput + "/info/instrument" + std::to_string(fileAvailableNum) + ".txt");
-        ofs << Choice1->GetCurrentSelection() << " " << Choice1->GetString(Choice1->GetCurrentSelection()).Upper().ToStdString();
-        ofs.close();
-    } else //
-    {
-        std::stringstream msg;
-        msg << "Esta musica ja dispoe de 4 instrumentos editados. O limite e' de 4 instrumentos.\n"
-            << "todos os arquivos serao exportados normalmente, mas nao estarao visiveis no jogo.\n"
-            << "Para deixa-los visiveis, basta editar os arquivos de instrumento em /info\npara os instrumentos desejados.";
-        wxMessageBox(msg.str(), "Aviso");
-    }
 }
 
 
@@ -776,6 +619,182 @@ void UGS_editorFrame::OnClose(wxCloseEvent& event)
     Destroy();
 }
 
+
+void UGS_editorFrame::OnButton10Click(wxCommandEvent& event)
+{
+
+    // Verificar se a pasta contêm as subpastas que irão receber a exportação
+    // Se não houver, vai ser criado.
+    system(("mkdir " + pathOutput + "/sequence").c_str());
+    system(("mkdir " + pathOutput + "/sequence/0").c_str());
+    system(("mkdir " + pathOutput + "/sequence/1").c_str());
+    system(("mkdir " + pathOutput + "/sequence/2").c_str());
+
+    std::ofstream ofs;
+    ofs.open(pathOutput + "/sequence/speeds.txt");
+    ofs << "6 8 10";
+    ofs.close();
+
+    system(("mkdir " + pathOutput + "/info").c_str());
+    // Geração de arquivos que ainda não existem
+    std::ifstream ifs;
+    ifs.open(pathOutput + "/info/about.txt");
+    if(!ifs.is_open())
+    {
+        if(TextCtrl1->IsEmpty() || TextCtrl2->IsEmpty())
+        {
+            wxMessageBox(wxT("Pro favor preencha os campos de Artista e Música"), "Aviso");
+            return;
+        }
+        std::ofstream ofs;
+        ofs.open(pathOutput + "/info/about.txt");
+        ofs << TextCtrl1->GetValue().Upper().ToStdString() << "\n"
+             << TextCtrl2->GetValue().Upper().ToStdString() << "\n"
+             << audioTotalTime << "\n"
+             << "111\n";
+        ofs.close();
+    } else
+    {
+        std::string buffer;
+        std::getline(ifs, buffer);
+        TextCtrl1->SetValue(buffer);
+
+        std::getline(ifs, buffer);
+        TextCtrl2->SetValue(buffer);
+    }
+    ifs.close();
+
+    ifs.open(pathOutput + "/info/instrument1.txt");
+    if(!ifs.is_open())
+    {
+        std::ofstream ofs;
+        ofs.open(pathOutput + "/info/instrument1.txt");
+        ofs << "15 --";
+        ofs.close();
+    }
+    ifs.close();
+
+    ifs.open(pathOutput + "/info/instrument2.txt");
+    if(!ifs.is_open())
+    {
+        std::ofstream ofs;
+        ofs.open(pathOutput + "/info/instrument2.txt");
+        ofs << "15 --";
+        ofs.close();
+    }
+    ifs.close();
+
+    ifs.open(pathOutput + "/info/instrument3.txt");
+    if(!ifs.is_open())
+    {
+        std::ofstream ofs;
+        ofs.open(pathOutput + "/info/instrument3.txt");
+        ofs << "15 --";
+        ofs.close();
+    }
+    ifs.close();
+
+    ifs.open(pathOutput + "/info/instrument4.txt");
+    if(!ifs.is_open())
+    {
+        std::ofstream ofs;
+        ofs.open(pathOutput + "/info/instrument4.txt");
+        ofs << "15 --";
+        ofs.close();
+    }
+
+
+    system(("mkdir " + pathOutput + "/picture").c_str());
+    // Verificar se ja exitem arquivos de imagem nas pastas
+    // se existir, vai setar o path automaticamente nos campos.
+    ifs.open(pathOutput + "/picture/card.png");
+    if(ifs.is_open())
+    {
+        TextCtrl4->SetValue(shortenPath((pathOutput + "/picture/card.png"), 32));
+        pathCard = (pathOutput + "/picture/card.png");
+    }
+    ifs.close();
+
+    ifs.open(pathOutput + "/picture/logo.png");
+    if(ifs.is_open())
+    {
+        TextCtrl5->SetValue(shortenPath((pathOutput + "/picture/logo.png"), 32));
+        pathLogo = (pathOutput + "/picture/logo.png");
+    }
+    ifs.close();
+
+    ifs.open(pathOutput + "/picture/poster.png");
+    if(ifs.is_open())
+    {
+        TextCtrl6->SetValue(shortenPath((pathOutput + "/picture/poster.png"), 32));
+        pathPoster = (pathOutput + "/picture/poster.png");
+    }
+    ifs.close();
+
+    system(("mkdir " + pathOutput + "/audio").c_str());
+    // Verificar se ja exitem arquivos de audio nas pastas
+    // se existir, vai setar o path automaticamente nos campos.
+    ifs.open(pathOutput + "/audio/background.ogg");
+    if(ifs.is_open())
+    {
+        TextCtrl9->SetValue(shortenPath((pathOutput + "/audio/background.ogg"), 32));
+        pathAudioBackgroung = (pathOutput + "/audio/background.ogg");
+    }
+    ifs.close();
+
+    ifs.open(pathOutput + "/audio/" + std::to_string(Choice1->GetCurrentSelection()) + ".ogg");
+
+    std::cout << "res " << (pathOutput + "/audio/" + std::to_string(Choice1->GetCurrentSelection()) + ".ogg") << "\n";
+
+    if(ifs.is_open())
+    {
+        TextCtrl10->SetValue(shortenPath((pathOutput + "/audio/" + std::to_string(Choice1->GetCurrentSelection()) + ".ogg"), 32));
+        pathAudioInstrument = (pathOutput + "/audio/" + std::to_string(Choice1->GetCurrentSelection()) + ".ogg");
+    }
+    ifs.close();
+
+
+    // Inserir informação de intrumento
+    // Procurar entre os 4 se ainda tem vaga
+    // pra outro instrumento.
+    // se já houver o instrumento em questão em algum arquivo, será subscreito.
+    int fileAvailableNum = 0;
+    for(int i=1;i<=4 && fileAvailableNum==0;i++)
+    {
+        ifs.open(pathOutput + "/info/instrument" + std::to_string(i) + ".txt");
+        if(ifs.is_open())
+        {
+            std::string emptyFileContent = "15 --";
+            std::string currentInstrument =  std::to_string(Choice1->GetCurrentSelection()) + " " + Choice1->GetString(Choice1->GetCurrentSelection()).Upper().ToStdString();
+            std::cout << "res " << currentInstrument << "\n";
+
+            std::string buffer;
+            std::getline(ifs, buffer);
+            if(buffer == emptyFileContent || buffer == currentInstrument)
+            {
+                fileAvailableNum = i;
+            }
+        }
+        ifs.close();
+    }
+
+    if(fileAvailableNum != 0) // Houve algum arquivo disponível entre os 4
+    {
+        std::ofstream ofs;
+        ofs.open(pathOutput + "/info/instrument" + std::to_string(fileAvailableNum) + ".txt");
+        ofs << Choice1->GetCurrentSelection() << " " << Choice1->GetString(Choice1->GetCurrentSelection()).Upper().ToStdString();
+        ofs.close();
+    } else //
+    {
+        std::stringstream msg;
+        msg << "Esta musica ja dispoe de 4 instrumentos editados. O limite e' de 4 instrumentos.\n"
+            << "todos os arquivos serao exportados normalmente, mas nao estarao visiveis no jogo.\n"
+            << "Para deixa-los visiveis, basta editar os arquivos de instrumento em /info\npara os instrumentos desejados.";
+        wxMessageBox(msg.str(), "Aviso");
+    }
+
+     wxMessageBox(wxT("Ambiente de produção criado com sucesso!"), wxT("Informação"));
+}
 
 
 
