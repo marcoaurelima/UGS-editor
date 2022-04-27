@@ -53,7 +53,7 @@ private:
     int chordWeight = 1; // Peso do acorde; se for 0 significa que é uma nota e não um acorde.
 
 
-    bool mouseColision(auto &sprite, sf::RenderWindow& window);
+    bool mouseColision(auto& sprite, sf::RenderWindow& window);
     std::string secToMin(int tempoTotal, int segundos);
 
 };

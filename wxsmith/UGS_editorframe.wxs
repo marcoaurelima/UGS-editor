@@ -39,12 +39,10 @@
 				<bg>wxSYS_COLOUR_MENUBAR</bg>
 				<style>wxBORDER_DOUBLE|wxTAB_TRAVERSAL</style>
 				<object class="wxTextCtrl" name="ID_TEXTCTRL1" variable="TextCtrl1" member="yes">
-					<value>nirvana</value>
 					<pos>104,32</pos>
 					<size>336,34</size>
 				</object>
 				<object class="wxTextCtrl" name="ID_TEXTCTRL2" variable="TextCtrl2" member="yes">
-					<value>breed</value>
 					<pos>104,72</pos>
 					<size>336,34</size>
 				</object>

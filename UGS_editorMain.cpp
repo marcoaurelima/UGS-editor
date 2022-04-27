@@ -120,8 +120,8 @@ UGS_editorFrame::UGS_editorFrame(wxWindow* parent,wxWindowID id)
     Gauge1 = new wxGauge(Panel10, ID_GAUGE1, 100, wxPoint(40,65), wxSize(408,8), 0, wxDefaultValidator, _T("ID_GAUGE1"));
     Panel2 = new wxPanel(Panel1, ID_PANEL2, wxPoint(32,72), wxSize(480,408), wxBORDER_DOUBLE|wxTAB_TRAVERSAL, _T("ID_PANEL2"));
     Panel2->SetBackgroundColour(wxSystemSettings::GetColour(wxSYS_COLOUR_MENUBAR));
-    TextCtrl1 = new wxTextCtrl(Panel2, ID_TEXTCTRL1, _("nirvana"), wxPoint(104,32), wxSize(336,34), 0, wxDefaultValidator, _T("ID_TEXTCTRL1"));
-    TextCtrl2 = new wxTextCtrl(Panel2, ID_TEXTCTRL2, _("breed"), wxPoint(104,72), wxSize(336,34), 0, wxDefaultValidator, _T("ID_TEXTCTRL2"));
+    TextCtrl1 = new wxTextCtrl(Panel2, ID_TEXTCTRL1, wxEmptyString, wxPoint(104,32), wxSize(336,34), 0, wxDefaultValidator, _T("ID_TEXTCTRL1"));
+    TextCtrl2 = new wxTextCtrl(Panel2, ID_TEXTCTRL2, wxEmptyString, wxPoint(104,72), wxSize(336,34), 0, wxDefaultValidator, _T("ID_TEXTCTRL2"));
     Choice1 = new wxChoice(Panel2, ID_CHOICE1, wxPoint(144,112), wxSize(296,34), 0, 0, 0, wxDefaultValidator, _T("ID_CHOICE1"));
     Choice1->Append(_("Guitarra 1"));
     Choice1->Append(_("Guitarra 2"));
@@ -598,6 +598,14 @@ void UGS_editorFrame::OnButton7Click1(wxCommandEvent& event)
              << audioTotalTime << "\n"
              << "111\n";
         ofs.close();
+    } else
+    {
+        std::string buffer;
+        std::getline(ifs, buffer);
+        TextCtrl1->SetValue(buffer);
+
+        std::getline(ifs, buffer);
+        TextCtrl2->SetValue(buffer);
     }
     ifs.close();
 
@@ -606,7 +614,7 @@ void UGS_editorFrame::OnButton7Click1(wxCommandEvent& event)
     {
         std::ofstream ofs;
         ofs.open(pathOutput + "/info/instrument1.txt");
-        ofs << "15\n--;
+        ofs << "15\n--";
         ofs.close();
     }
     ifs.close();
@@ -616,7 +624,7 @@ void UGS_editorFrame::OnButton7Click1(wxCommandEvent& event)
     {
         std::ofstream ofs;
         ofs.open(pathOutput + "/info/instrument2.txt");
-        ofs << "15\n--;
+        ofs << "15\n--";
         ofs.close();
     }
     ifs.close();
@@ -626,7 +634,7 @@ void UGS_editorFrame::OnButton7Click1(wxCommandEvent& event)
     {
         std::ofstream ofs;
         ofs.open(pathOutput + "/info/instrument3.txt");
-        ofs << "15\n--;
+        ofs << "15\n--";
         ofs.close();
     }
     ifs.close();
@@ -636,7 +644,7 @@ void UGS_editorFrame::OnButton7Click1(wxCommandEvent& event)
     {
         std::ofstream ofs;
         ofs.open(pathOutput + "/info/instrument4.txt");
-        ofs << "15\n--;
+        ofs << "15\n--";
         ofs.close();
     }
 
@@ -698,7 +706,7 @@ void UGS_editorFrame::OnButton7Click1(wxCommandEvent& event)
         ifs.open(pathOutput + "/info/instrument" + std::to_string(i) + ".txt");
         if(ifs.is_open())
         {
-            std::string emptyFileContent = "15\n--;
+            std::string emptyFileContent = "15\n--";
             std::string currentInstrument =  std::to_string(Choice1->GetCurrentSelection()) + " " + Choice1->GetString(Choice1->GetCurrentSelection()).Upper().ToStdString();
             std::cout << "res " << currentInstrument << "\n";
 

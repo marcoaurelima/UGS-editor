@@ -20,15 +20,23 @@
 			<Target title="Release">
 				<Option output="bin/Release/UGS-editor" prefix_auto="1" extension_auto="1" />
 				<Option object_output="obj/Release/" />
-				<Option type="1" />
+				<Option type="0" />
 				<Option compiler="gcc" />
 				<Option projectLinkerOptionsRelation="2" />
 				<Compiler>
 					<Add option="-O2" />
+					<Add option="-fconcepts-ts" />
+					<Add option="-I/usr/local/lib/wx/include/gtk3-unicode-3.0 -I/usr/local/include/wx-3.0 -D_FILE_OFFSET_BITS=64 -DWXUSINGDLL -D__WXGTK__ -pthread" />
 					<Add directory="include" />
 				</Compiler>
 				<Linker>
 					<Add option="-s" />
+					<Add library="wx_gtk3u_core-3.0" />
+					<Add library="wx_baseu-3.0" />
+					<Add library="sfml-graphics" />
+					<Add library="sfml-system" />
+					<Add library="sfml-window" />
+					<Add library="sfml-audio" />
 				</Linker>
 			</Target>
 		</Build>
