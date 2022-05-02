@@ -27,9 +27,9 @@
 #include <fstream>
 #include <random>
 
-#include "Player.h"
+#include "include/Player.h"
 
-#include "SequenceEditor.h"
+#include "include/SequenceEditor.h"
 
 class UGS_editorFrame: public wxFrame
 {
