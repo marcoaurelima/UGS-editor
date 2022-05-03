@@ -119,7 +119,7 @@ UGS_editorFrame::UGS_editorFrame(wxWindow* parent,wxWindowID id)
     StaticText16->SetForegroundColour(wxSystemSettings::GetColour(wxSYS_COLOUR_GRAYTEXT));
     Button3 = new wxButton(Panel10, ID_BUTTON3, _("Exportar tudo"), wxPoint(280,24), wxSize(170,30), 0, wxDefaultValidator, _T("ID_BUTTON3"));
     Gauge1 = new wxGauge(Panel10, ID_GAUGE1, 100, wxPoint(40,65), wxSize(408,8), 0, wxDefaultValidator, _T("ID_GAUGE1"));
-    Panel2 = new wxPanel(Panel1, ID_PANEL2, wxPoint(32,72), wxSize(472,408), wxBORDER_DOUBLE|wxTAB_TRAVERSAL, _T("ID_PANEL2"));
+    Panel2 = new wxPanel(Panel1, ID_PANEL2, wxPoint(32,72), wxSize(480,408), wxBORDER_DOUBLE|wxTAB_TRAVERSAL, _T("ID_PANEL2"));
     Panel2->SetBackgroundColour(wxSystemSettings::GetColour(wxSYS_COLOUR_MENUBAR));
     TextCtrl1 = new wxTextCtrl(Panel2, ID_TEXTCTRL1, wxEmptyString, wxPoint(104,32), wxSize(336,30), 0, wxDefaultValidator, _T("ID_TEXTCTRL1"));
     TextCtrl2 = new wxTextCtrl(Panel2, ID_TEXTCTRL2, wxEmptyString, wxPoint(104,72), wxSize(336,30), 0, wxDefaultValidator, _T("ID_TEXTCTRL2"));
@@ -148,13 +148,13 @@ UGS_editorFrame::UGS_editorFrame(wxWindow* parent,wxWindowID id)
     Button1 = new wxButton(Panel2, ID_BUTTON1, _("..."), wxPoint(400,152), wxSize(37,30), 0, wxDefaultValidator, _T("ID_BUTTON1"));
     StaticText9 = new wxStaticText(Panel2, ID_STATICTEXT9, _("Informacoes"), wxPoint(16,8), wxDefaultSize, 0, _T("ID_STATICTEXT9"));
     StaticText9->SetForegroundColour(wxSystemSettings::GetColour(wxSYS_COLOUR_GRAYTEXT));
-    StaticText5 = new wxStaticText(Panel2, ID_STATICTEXT5, _("Arquivo de sequência bruta"), wxPoint(32,216), wxDefaultSize, 0, _T("ID_STATICTEXT5"));
+    StaticText5 = new wxStaticText(Panel2, ID_STATICTEXT5, _("Arquivo de sequencia bruta"), wxPoint(40,216), wxDefaultSize, 0, _T("ID_STATICTEXT5"));
     TextCtrl7 = new wxTextCtrl(Panel2, ID_TEXTCTRL7, _("Ausente"), wxPoint(216,212), wxSize(111,22), wxTE_CENTRE, wxDefaultValidator, _T("ID_TEXTCTRL7"));
     TextCtrl7->Disable();
     TextCtrl7->SetForegroundColour(wxColour(223,22,24));
     TextCtrl7->SetBackgroundColour(wxSystemSettings::GetColour(wxSYS_COLOUR_3DDKSHADOW));
     Button2 = new wxButton(Panel2, ID_BUTTON2, _("Gerar"), wxPoint(344,208), wxSize(95,30), 0, wxDefaultValidator, _T("ID_BUTTON2"));
-    StaticText7 = new wxStaticText(Panel2, ID_STATICTEXT7, _("Path de saida"), wxPoint(40,256), wxDefaultSize, 0, _T("ID_STATICTEXT7"));
+    StaticText7 = new wxStaticText(Panel2, ID_STATICTEXT7, _("Path de saida"), wxPoint(40,264), wxDefaultSize, 0, _T("ID_STATICTEXT7"));
     TextCtrl8 = new wxTextCtrl(Panel2, ID_TEXTCTRL8, wxEmptyString, wxPoint(32,288), wxSize(362,30), 0, wxDefaultValidator, _T("ID_TEXTCTRL8"));
     TextCtrl8->Disable();
     Button7 = new wxButton(Panel2, ID_BUTTON7, _("..."), wxPoint(400,288), wxSize(39,30), 0, wxDefaultValidator, _T("ID_BUTTON7"));
@@ -240,9 +240,31 @@ UGS_editorFrame::~UGS_editorFrame()
     //*)
 }
 
+
+bool copy_file(std::string source, std::string target)
+{
+    FILE* file_source = fopen(source.c_str(), "rb");
+    if(file_source == NULL){ return false; }
+
+    FILE* file_target = fopen(target.c_str(), "wb");
+    if(file_target == NULL){ return false; }
+
+    int c = 0;
+    while((c = fgetc(file_source)) != EOF)
+    {
+        fputc(c, file_target);
+    }
+
+    fclose(file_source);
+    fclose(file_target);
+
+    return true;
+}
+
+
 void UGS_editorFrame::OnBackup(wxCommandEvent& event)
 {
-    system("copy exports/brute-sequence.txt.backup exports/brute-sequence.txt");
+    copy_file("exports/brute-sequence.txt.backup", "exports/brute-sequence.txt");
 
     std::ifstream file("exports/brute-sequence.txt");
     if(file.is_open())
@@ -264,6 +286,19 @@ void UGS_editorFrame::OnAbout(wxCommandEvent& event)
     wxMessageBox(msg, _("Sobre"));
 }
 
+void corrPath(std::string& path)
+{
+    for(unsigned i=0;i<path.size();i++)
+    {
+        if(path[i] == '\\')
+        {
+            path[i] = '/';
+            std::cout << "[" << path[i] << "]"; continue;
+        }
+        std::cout << path[i] << "\n";
+    }
+
+}
 
 std::string shortenPath(std::string path, int finalSize)
 {
@@ -290,12 +325,13 @@ void UGS_editorFrame::OnButton1Click(wxCommandEvent& event)
     if(res == wxID_CANCEL)
         return;
 
-    wxString path = FileDialog1->GetPath();
-    TextCtrl3->SetValue(shortenPath(path.ToStdString(), 32));
-    pathAudio = path.ToStdString();
+    std::string path = FileDialog1->GetPath().ToStdString();
+    corrPath(path);
+    TextCtrl3->SetValue(shortenPath(path, 32));
+    pathAudio = path;
 
     sf::Music music;
-    bool opened = music.openFromFile(path.ToStdString());
+    bool opened = music.openFromFile(path);
     if(!opened){ wxMessageBox(wxT("ERRO"), wxT("Não foi possível abrir o arquivo."), wxICON_ERROR); return;}
 
     audioTotalTime = secToMin(music.getDuration().asSeconds());
@@ -307,9 +343,10 @@ void UGS_editorFrame::OnButton4Click(wxCommandEvent& event)
     if(res == wxID_CANCEL)
         return;
 
-    wxString path = FileDialog2->GetPath();
-    TextCtrl4->SetValue(shortenPath(path.ToStdString(), 32));
-    pathCard = path.ToStdString();
+    std::string path = FileDialog2->GetPath().ToStdString();
+    corrPath(path);
+    TextCtrl4->SetValue(shortenPath(path, 32));
+    pathCard = path;
 }
 
 void UGS_editorFrame::OnButton5Click(wxCommandEvent& event)
@@ -318,9 +355,10 @@ void UGS_editorFrame::OnButton5Click(wxCommandEvent& event)
     if(res == wxID_CANCEL)
         return;
 
-    wxString path = FileDialog2->GetPath();
-    TextCtrl5->SetValue(shortenPath(path.ToStdString(), 32));
-    pathLogo = path.ToStdString();
+    std::string path = FileDialog2->GetPath().ToStdString();
+    corrPath(path);
+    TextCtrl5->SetValue(shortenPath(path, 32));
+    pathLogo = path;
 }
 
 void UGS_editorFrame::OnButton6Click(wxCommandEvent& event)
@@ -329,9 +367,10 @@ void UGS_editorFrame::OnButton6Click(wxCommandEvent& event)
     if(res == wxID_CANCEL)
         return;
 
-    wxString path = FileDialog2->GetPath();
-    TextCtrl6->SetValue(shortenPath(path.ToStdString(), 32));
-    pathPoster = path.ToStdString();
+    std::string path = FileDialog2->GetPath().ToStdString();
+    corrPath(path);
+    TextCtrl6->SetValue(shortenPath(path, 32));
+    pathPoster = path;
 }
 
 
@@ -499,40 +538,47 @@ void UGS_editorFrame::OnButton3Click1(wxCommandEvent& event)
     // IMAGEM
     std::stringstream ss;
     ss.str("");
-    ss << "copy " << pathCard << " " << pathOutput << "/picture/card.png";
-    system(ss.str().c_str());
+    //ss << "copy " << pathCard << " " << pathOutput << "/picture/card.png";
+    //system(ss.str().c_str());
+    copy_file(pathCard, pathOutput + "/picture/card.png");
 
     ss.str("");
-    ss << "copy " << pathLogo << " " << pathOutput << "/picture/logo.png";
-    system(ss.str().c_str());
+    //ss << "copy " << pathLogo << " " << pathOutput << "/picture/logo.png";
+    //system(ss.str().c_str());
+    copy_file(pathLogo, pathOutput + "/picture/logo.png");
 
     ss.str("");
-    ss << "copy " << pathPoster << " " << pathOutput << "/picture/poster.png";
-    system(ss.str().c_str());
+    //ss << "copy " << pathPoster << " " << pathOutput << "/picture/poster.png";
+    //system(ss.str().c_str());
+    copy_file(pathPoster, pathOutput + "/picture/poster.png");
 
     // AUDIO
     ss.str("");
-    ss << "copy " << pathAudioBackgroung << " " << pathOutput << "/audio/background.ogg";
-    system(ss.str().c_str());
-
+    //ss << "copy " << pathAudioBackgroung << " " << pathOutput << "/audio/background.ogg";
+    //system(ss.str().c_str());
+    copy_file(pathAudioBackgroung, pathOutput + "/audio/background.ogg");
     ss.str("");
-    ss << "copy " << pathAudioInstrument << " " << pathOutput << "/audio/" << Choice1->GetCurrentSelection() << ".ogg";
-    system(ss.str().c_str());
+    //ss << "copy " << pathAudioInstrument << " " << pathOutput << "/audio/" << Choice1->GetCurrentSelection() << ".ogg";
+    //system(ss.str().c_str());
+    copy_file(pathAudioInstrument, pathOutput + "/audio/" + std::to_string(Choice1->GetCurrentSelection()) + ".ogg");
 
     Gauge1->SetValue(90);
 
     // SEQUENCIA DO INSTRUMENTO
     ss.str("");
-    ss << "copy " << pathEasy << " " << pathOutput << "/sequence/0/" << instrument << ".txt";
-    system(ss.str().c_str());
+    //ss << "copy " << pathEasy << " " << pathOutput << "/sequence/0/" << instrument << ".txt";
+    //system(ss.str().c_str());
+    copy_file(pathEasy, pathOutput + "/sequence/0/" + instrument + ".txt");
 
     ss.str("");
-    ss << "copy " << pathMedium << " " << pathOutput << "/sequence/1/" << instrument << ".txt";
-    system(ss.str().c_str());
+    //ss << "copy " << pathMedium << " " << pathOutput << "/sequence/1/" << instrument << ".txt";
+    //system(ss.str().c_str());
+    copy_file(pathMedium, pathOutput + "/sequence/1/" + instrument + ".txt");
 
     ss.str("");
-    ss << "copy " << pathHard << " " << pathOutput << "/sequence/2/" << instrument << ".txt";
-    system(ss.str().c_str());
+    //ss << "copy " << pathHard << " " << pathOutput << "/sequence/2/" << instrument << ".txt";
+    //system(ss.str().c_str());
+    copy_file(pathHard, pathOutput + "/sequence/2/" + instrument + ".txt");
 
     Gauge1->SetValue(100);
 
@@ -572,9 +618,10 @@ void UGS_editorFrame::OnButton7Click1(wxCommandEvent& event)
     pathLogo = "";
     pathPoster = "";
 
-    wxString path = DirDialog1->GetPath();
-    TextCtrl8->SetValue(shortenPath(path.ToStdString(), 42));
-    pathOutput = path.ToStdString();
+    std::string path = DirDialog1->GetPath().ToStdString();
+    corrPath(path);
+    TextCtrl8->SetValue(shortenPath(path, 42));
+    pathOutput = path;
 
 
 }
@@ -586,12 +633,13 @@ void UGS_editorFrame::OnButton8Click(wxCommandEvent& event)
     if(res == wxID_CANCEL)
         return;
 
-    wxString path = FileDialog1->GetPath();
-    TextCtrl9->SetValue(shortenPath(path.ToStdString(), 30));
-    pathAudioBackgroung = path.ToStdString();
+    std::string path = FileDialog1->GetPath().ToStdString();
+    corrPath(path);
+    TextCtrl9->SetValue(shortenPath(path, 30));
+    pathAudioBackgroung = path;
 
     sf::Music music;
-    bool opened = music.openFromFile(path.ToStdString());
+    bool opened = music.openFromFile(path);
     if(!opened){ wxMessageBox(wxT("ERRO"), wxT("Não foi possível abrir o arquivo."), wxICON_ERROR); return;}
 }
 
@@ -601,12 +649,13 @@ void UGS_editorFrame::OnButton9Click(wxCommandEvent& event)
     if(res == wxID_CANCEL)
         return;
 
-    wxString path = FileDialog1->GetPath();
-    TextCtrl10->SetValue(shortenPath(path.ToStdString(), 30));
-    pathAudioInstrument = path.ToStdString();
+    std::string path = FileDialog1->GetPath().ToStdString();
+    corrPath(path);
+    TextCtrl10->SetValue(shortenPath(path, 30));
+    pathAudioInstrument = path;
 
     sf::Music music;
-    bool opened = music.openFromFile(path.ToStdString());
+    bool opened = music.openFromFile(path);
     if(!opened){ wxMessageBox(wxT("ERRO"), wxT("Não foi possível abrir o arquivo."), wxICON_ERROR); return;}
 }
 
@@ -614,14 +663,19 @@ void UGS_editorFrame::OnButton9Click(wxCommandEvent& event)
 void UGS_editorFrame::OnClose(wxCloseEvent& event)
 {
     // Fazer backup de segurança da ultima edicao
-    system("copy /Y exports/brute-sequence.txt exports/brute-sequence.txt.backup");
-    system("del exports/brute-sequence.txt");
+    //system("copy /Y exports/brute-sequence.txt exports/brute-sequence.txt.backup");
+    //system("del exports/brute-sequence.txt");
+
+    copy_file("exports/brute-sequence.txt", "exports/brute-sequence.txt.backup");
+    remove("exports/brute-sequence.txt");
+
     Destroy();
 }
 
 
 void UGS_editorFrame::OnButton10Click(wxCommandEvent& event)
 {
+    std::cout << pathOutput << "/sequence" << "\n";
 
     // Verificar se a pasta contêm as subpastas que irão receber a exportação
     // Se não houver, vai ser criado.

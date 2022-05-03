@@ -34,7 +34,7 @@
 			</object>
 			<object class="wxPanel" name="ID_PANEL2" variable="Panel2" member="yes">
 				<pos>32,72</pos>
-				<size>472,408</size>
+				<size>480,408</size>
 				<bg>wxSYS_COLOUR_MENUBAR</bg>
 				<style>wxBORDER_DOUBLE|wxTAB_TRAVERSAL</style>
 				<object class="wxTextCtrl" name="ID_TEXTCTRL1" variable="TextCtrl1" member="yes">
@@ -99,8 +99,8 @@
 					<fg>wxSYS_COLOUR_GRAYTEXT</fg>
 				</object>
 				<object class="wxStaticText" name="ID_STATICTEXT5" variable="StaticText5" member="yes">
-					<label>Arquivo de sequência bruta</label>
-					<pos>32,216</pos>
+					<label>Arquivo de sequencia bruta</label>
+					<pos>40,216</pos>
 				</object>
 				<object class="wxTextCtrl" name="ID_TEXTCTRL7" variable="TextCtrl7" member="yes">
 					<value>Ausente</value>
@@ -119,7 +119,7 @@
 				</object>
 				<object class="wxStaticText" name="ID_STATICTEXT7" variable="StaticText7" member="yes">
 					<label>Path de saida</label>
-					<pos>40,256</pos>
+					<pos>40,264</pos>
 				</object>
 				<object class="wxTextCtrl" name="ID_TEXTCTRL8" variable="TextCtrl8" member="yes">
 					<pos>32,288</pos>
