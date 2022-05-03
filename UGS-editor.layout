@@ -2,24 +2,9 @@
 <CodeBlocks_layout_file>
 	<FileVersion major="1" minor="0" />
 	<ActiveTarget name="Debug" />
-	<File name="include\SequenceEditor.h" open="0" top="0" tabpos="2" split="0" active="1" splitpos="0" zoom_1="3" zoom_2="0">
+	<File name="UGS_editorMain.h" open="1" top="0" tabpos="2" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
 		<Cursor>
-			<Cursor1 position="1293" topLine="29" />
-		</Cursor>
-	</File>
-	<File name="UGS_editorMain.cpp" open="1" top="1" tabpos="1" split="0" active="1" splitpos="0" zoom_1="3" zoom_2="0">
-		<Cursor>
-			<Cursor1 position="26832" topLine="616" />
-		</Cursor>
-	</File>
-	<File name="UGS_editorApp.h" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
-		<Cursor>
-			<Cursor1 position="470" topLine="0" />
-		</Cursor>
-	</File>
-	<File name="src\SequenceEditor.cpp" open="0" top="0" tabpos="3" split="0" active="1" splitpos="0" zoom_1="6" zoom_2="0">
-		<Cursor>
-			<Cursor1 position="38" topLine="0" />
+			<Cursor1 position="6227" topLine="102" />
 		</Cursor>
 	</File>
 	<File name="wxsmith\UGS_editorframe.wxs" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
@@ -27,14 +12,29 @@
 			<Cursor1 position="10675" topLine="261" />
 		</Cursor>
 	</File>
+	<File name="include\SequenceEditor.h" open="0" top="0" tabpos="2" split="0" active="1" splitpos="0" zoom_1="3" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="1293" topLine="29" />
+		</Cursor>
+	</File>
 	<File name="UGS_editorApp.cpp" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
 		<Cursor>
 			<Cursor1 position="367" topLine="0" />
 		</Cursor>
 	</File>
-	<File name="UGS_editorMain.h" open="1" top="0" tabpos="2" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+	<File name="UGS_editorApp.h" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
 		<Cursor>
-			<Cursor1 position="6227" topLine="102" />
+			<Cursor1 position="470" topLine="0" />
+		</Cursor>
+	</File>
+	<File name="UGS_editorMain.cpp" open="1" top="1" tabpos="1" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="19625" topLine="405" />
+		</Cursor>
+	</File>
+	<File name="src\SequenceEditor.cpp" open="0" top="0" tabpos="3" split="0" active="1" splitpos="0" zoom_1="6" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="38" topLine="0" />
 		</Cursor>
 	</File>
 </CodeBlocks_layout_file>

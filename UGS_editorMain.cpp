@@ -407,15 +407,20 @@ void UGS_editorFrame::OnButton2Click2(wxCommandEvent& event)
 
 int getRandInt(int range)
 {
+
     std::random_device dev;
     std::mt19937 rng(dev());
     std::uniform_int_distribution<std::mt19937::result_type> dist6(0,range);
 
     return dist6(rng);
+    /*
+    srand(time(NULL));
+    return rand()%range;*/
 }
 
-std::vector<int> genChord(int chordWeight, int dificulty)
+std::vector<int> genChord_old(int chordWeight, int dificulty)
 {
+    puts("!!!");
     std::vector<int> chords;
     int chordSize = chordWeight;
     int colorRange = 2;
@@ -435,9 +440,15 @@ std::vector<int> genChord(int chordWeight, int dificulty)
     // Gerar os acordes
     while(true)
     {
+        puts("***");
+        std::cout << "chords.size(): " << chords.size() << "\n";
+        std::cout << "(unsigned)chordSize: " << (unsigned)chordSize << "\n";
+        std::cout << "colorRange: " << colorRange << "\n";
+
         if(chords.size() == (unsigned)chordSize){ break; }
 
         int tileColor = getRandInt(colorRange);
+        std::cout << "tileColor: " << tileColor << "\n\n";
 
         bool exists = false;
         for(auto& i : chords)
@@ -448,12 +459,54 @@ std::vector<int> genChord(int chordWeight, int dificulty)
         if(!exists)
         chords.push_back(tileColor);
     }
+puts("+++");
+    return chords;
+}
+
+std::vector<int> genChord(int chordWeight, int dificulty)
+{
+    std::vector<int> chords;
+    int chordSize = chordWeight;
+    int qtdUsedColors = 2;
+
+    if(dificulty == 0) // FÁCIL
+    {
+        if(chordWeight > 2){ chordSize = 2; }
+        qtdUsedColors = 3;
+    } else if(dificulty == 1) // MÉDIO
+    {
+        if(chordWeight > 3){ chordSize = 3; }
+        qtdUsedColors = 4;
+    } else if(dificulty == 2) // DIFÍCIL
+    {
+        if(chordWeight > 3){ chordSize = 3; }
+        qtdUsedColors = 5;
+    }
+
+    std::vector<int> colors;
+    // Gerar um vetor de cores de acordo com o tamanho especificado
+    for(int i=0;i<qtdUsedColors;i++){ colors.push_back(i); }
+
+    std::random_shuffle(colors.begin(), colors.end());
+
+    for(int i=0;i<chordSize;i++)
+    {
+        chords.push_back(colors[i]);
+    }
+
+    printf("Acordes: ");
+    for(auto& i :  chords)
+    {
+        std::cout << i << " ";
+    }
+    puts("");
 
     return chords;
 }
 
 void UGS_editorFrame::OnButton3Click1(wxCommandEvent& event)
 {
+    //puts("1111111");
     // Boquear edição se os campos estão faltando
     bool lock = TextCtrl1->IsEmpty() ||
                 TextCtrl2->IsEmpty() ||
@@ -475,16 +528,19 @@ void UGS_editorFrame::OnButton3Click1(wxCommandEvent& event)
 
     Gauge1->SetValue(10);
 
+    //puts("22222");
     std::vector<float> seqTime;
     std::vector<int> seqWeight;
     std::vector<float> seqBend;
 
+    //puts("33333");
     float a = 0.0;
     float c = 0.0;
     int b = 0;
 
     Gauge1->SetValue(30);
 
+    //puts("44444");
     while(fscanf(file, "%f %d %f", &a, &b, &c) != EOF)
     {
         //std::cout << a << " - " << b << " - " << c << "\n";
@@ -494,23 +550,45 @@ void UGS_editorFrame::OnButton3Click1(wxCommandEvent& event)
     }
     fclose(file);
 
+    std::cout << "seqTime: " << seqTime.size() << "\n";
+    std::cout << "seqWeight: " << seqWeight.size() << "\n";
+    std::cout << "seqBend: " << seqBend.size() << "\n";
+
+    //puts("555555");
+
     std::stringstream sequenceEasy;
     std::stringstream sequenceMedium;
     std::stringstream sequenceHard;
 
+    //puts("66666");
     // Produção da faixa fácil
     for(unsigned i=0;i<seqTime.size();i++)
     {
         auto chordsEasy = genChord(seqWeight[i], 0);
+        //puts("aaa");
         auto chordsMedium = genChord(seqWeight[i], 1);
+        //puts("bbb");
         auto chordsHard = genChord(seqWeight[i], 2);
+        //puts("ccc");
         for(unsigned j=0;j<chordsEasy.size();j++)
         {
             sequenceEasy << seqTime[i] << " " << chordsEasy[j] << " " << seqBend[i] << "\n";
-            sequenceMedium << seqTime[i] << " " << chordsMedium[j] << " " << seqBend[i] << "\n";
-            sequenceHard << seqTime[i] << " " << chordsHard[j] << " " << seqBend[i] << "\n";
+         //   puts("ddd");
         }
+        for(unsigned j=0;j<chordsMedium.size();j++)
+        {
+            sequenceMedium << seqTime[i] << " " << chordsMedium[j] << " " << seqBend[i] << "\n";
+            //puts("eee");
+        }
+        for(unsigned j=0;j<chordsHard.size();j++)
+        {
+            sequenceHard << seqTime[i] << " " << chordsHard[j] << " " << seqBend[i] << "\n";
+            //puts("fff");
+        }
+        //puts("ggg");
     }
+
+    //puts("7777777");
 
     Gauge1->SetValue(50);
 
@@ -532,6 +610,7 @@ void UGS_editorFrame::OnButton3Click1(wxCommandEvent& event)
     fputs(sequenceHard.str().c_str(), file);
     fclose(file);
 
+    //puts("888888");
     Gauge1->SetValue(70);
 
     // Fazer a transferencia de arquivos
@@ -580,6 +659,7 @@ void UGS_editorFrame::OnButton3Click1(wxCommandEvent& event)
     //system(ss.str().c_str());
     copy_file(pathHard, pathOutput + "/sequence/2/" + instrument + ".txt");
 
+    //puts("9999999");
     Gauge1->SetValue(100);
 
     wxMessageBox(wxT("Finalizado!"), wxT("Feedback"));
@@ -679,17 +759,22 @@ void UGS_editorFrame::OnButton10Click(wxCommandEvent& event)
 
     // Verificar se a pasta contêm as subpastas que irão receber a exportação
     // Se não houver, vai ser criado.
-    system(("mkdir " + pathOutput + "/sequence").c_str());
+    mkdir((pathOutput + "/sequence").c_str());
+    mkdir((pathOutput + "/sequence/0").c_str());
+    mkdir((pathOutput + "/sequence/1").c_str());
+    mkdir((pathOutput + "/sequence/2").c_str());
+
+    /*system(("mkdir " + pathOutput + "/sequence").c_str());
     system(("mkdir " + pathOutput + "/sequence/0").c_str());
     system(("mkdir " + pathOutput + "/sequence/1").c_str());
-    system(("mkdir " + pathOutput + "/sequence/2").c_str());
+    system(("mkdir " + pathOutput + "/sequence/2").c_str());*/
 
     std::ofstream ofs;
     ofs.open(pathOutput + "/sequence/speeds.txt");
     ofs << "6 8 10";
     ofs.close();
 
-    system(("mkdir " + pathOutput + "/info").c_str());
+    mkdir((pathOutput + "/info").c_str());
     // Geração de arquivos que ainda não existem
     std::ifstream ifs;
     ifs.open(pathOutput + "/info/about.txt");
@@ -757,8 +842,9 @@ void UGS_editorFrame::OnButton10Click(wxCommandEvent& event)
         ofs.close();
     }
 
+    mkdir((pathOutput + "/picture").c_str());
+    ///system(("mkdir " + pathOutput + "/picture").c_str());
 
-    system(("mkdir " + pathOutput + "/picture").c_str());
     // Verificar se ja exitem arquivos de imagem nas pastas
     // se existir, vai setar o path automaticamente nos campos.
     ifs.open(pathOutput + "/picture/card.png");
@@ -785,7 +871,9 @@ void UGS_editorFrame::OnButton10Click(wxCommandEvent& event)
     }
     ifs.close();
 
-    system(("mkdir " + pathOutput + "/audio").c_str());
+    mkdir((pathOutput + "/audio").c_str());
+    ///system(("mkdir " + pathOutput + "/audio").c_str());
+
     // Verificar se ja exitem arquivos de audio nas pastas
     // se existir, vai setar o path automaticamente nos campos.
     ifs.open(pathOutput + "/audio/background.ogg");
