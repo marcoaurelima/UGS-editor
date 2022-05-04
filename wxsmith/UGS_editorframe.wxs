@@ -13,7 +13,7 @@
 			<bg>wxSYS_COLOUR_MENU</bg>
 			<object class="wxPanel" name="ID_PANEL10" variable="Panel10" member="yes">
 				<pos>536,408</pos>
-				<size>480,104</size>
+				<size>488,104</size>
 				<bg>wxSYS_COLOUR_MENUBAR</bg>
 				<style>wxBORDER_DOUBLE|wxTAB_TRAVERSAL</style>
 				<object class="wxStaticText" name="ID_STATICTEXT16" variable="StaticText16" member="yes">
@@ -102,19 +102,10 @@
 					<label>Arquivo de sequencia bruta</label>
 					<pos>32,216</pos>
 				</object>
-				<object class="wxTextCtrl" name="ID_TEXTCTRL7" variable="TextCtrl7" member="yes">
-					<value>Ausente</value>
-					<pos>216,212</pos>
-					<size>111,22</size>
-					<enabled>0</enabled>
-					<fg>#DF1618</fg>
-					<bg>wxSYS_COLOUR_3DDKSHADOW</bg>
-					<style>wxTE_CENTRE</style>
-				</object>
 				<object class="wxButton" name="ID_BUTTON2" variable="Button2" member="yes">
 					<label>Gerar</label>
-					<pos>344,208</pos>
-					<size>95,30</size>
+					<pos>304,208</pos>
+					<size>139,30</size>
 					<handler function="OnButton2Click2" entry="EVT_BUTTON" />
 				</object>
 				<object class="wxStaticText" name="ID_STATICTEXT7" variable="StaticText7" member="yes">
@@ -138,6 +129,12 @@
 					<size>406,40</size>
 					<handler function="OnButton10Click" entry="EVT_BUTTON" />
 				</object>
+				<object class="wxStaticText" name="ID_STATICTEXT17" variable="StaticText17" member="yes">
+					<label>  [    ausente    ]  </label>
+					<pos>200,216</pos>
+					<fg>#FF0000</fg>
+					<bg>wxSYS_COLOUR_WINDOW</bg>
+				</object>
 			</object>
 			<object class="wxStaticText" name="ID_STATICTEXT1" variable="StaticText1" member="yes">
 				<label>ULTIMATE GUITAR SHOW EDITOR</label>
@@ -158,7 +155,7 @@
 			</object>
 			<object class="wxPanel" name="ID_PANEL3" variable="Panel3" member="yes">
 				<pos>536,24</pos>
-				<size>480,144</size>
+				<size>488,144</size>
 				<bg>wxSYS_COLOUR_MENUBAR</bg>
 				<style>wxBORDER_DOUBLE|wxTAB_TRAVERSAL</style>
 				<object class="wxButton" name="ID_BUTTON4" variable="Button4" member="yes">
@@ -168,7 +165,6 @@
 					<handler function="OnButton4Click" entry="EVT_BUTTON" />
 				</object>
 				<object class="wxTextCtrl" name="ID_TEXTCTRL4" variable="TextCtrl4" member="yes">
-					<value>SGSGS</value>
 					<pos>128,37</pos>
 					<size>286,24</size>
 					<enabled>0</enabled>
@@ -215,11 +211,10 @@
 			</object>
 			<object class="wxPanel" name="ID_PANEL4" variable="Panel4" member="yes">
 				<pos>536,176</pos>
-				<size>480,224</size>
+				<size>488,224</size>
 				<bg>wxSYS_COLOUR_MENUBAR</bg>
 				<style>wxBORDER_DOUBLE|wxTAB_TRAVERSAL</style>
 				<object class="wxTextCtrl" name="ID_TEXTCTRL9" variable="TextCtrl9" member="yes">
-					<value>FSAF</value>
 					<pos>64,42</pos>
 					<size>352,24</size>
 					<enabled>0</enabled>
@@ -240,7 +235,6 @@
 					<fg>wxSYS_COLOUR_GRAYTEXT</fg>
 				</object>
 				<object class="wxTextCtrl" name="ID_TEXTCTRL10" variable="TextCtrl10" member="yes">
-					<value>GBDFGHDF</value>
 					<pos>152,114</pos>
 					<size>266,24</size>
 					<enabled>0</enabled>
@@ -278,7 +272,6 @@
 					<size>118,23</size>
 				</object>
 				<object class="wxTextCtrl" name="ID_TEXTCTRL11" variable="TextCtrl11" member="yes">
-					<value>GFGFDSG</value>
 					<pos>152,146</pos>
 					<size>266,23</size>
 					<enabled>0</enabled>
@@ -328,7 +321,6 @@
 					<size>118,23</size>
 				</object>
 				<object class="wxTextCtrl" name="ID_TEXTCTRL12" variable="TextCtrl12" member="yes">
-					<value>GGGGK</value>
 					<pos>152,178</pos>
 					<size>266,23</size>
 					<enabled>0</enabled>
