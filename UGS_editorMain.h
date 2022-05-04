@@ -65,6 +65,8 @@ class UGS_editorFrame: public wxFrame
         void OnPanel2Paint1(wxPaintEvent& event);
         void OnClose(wxCloseEvent& event);
         void OnButton10Click(wxCommandEvent& event);
+        void OnButton11Click(wxCommandEvent& event);
+        void OnButton12Click(wxCommandEvent& event);
         //*)
 
         //(*Identifiers(UGS_editorFrame)
@@ -88,7 +90,6 @@ class UGS_editorFrame: public wxFrame
         static const long ID_STATICTEXT7;
         static const long ID_TEXTCTRL8;
         static const long ID_BUTTON7;
-        static const long ID_STATICLINE2;
         static const long ID_BUTTON10;
         static const long ID_PANEL2;
         static const long ID_STATICTEXT1;
@@ -111,6 +112,13 @@ class UGS_editorFrame: public wxFrame
         static const long ID_TEXTCTRL10;
         static const long ID_STATICTEXT15;
         static const long ID_BUTTON9;
+        static const long ID_CHOICE2;
+        static const long ID_TEXTCTRL11;
+        static const long ID_CHOICE3;
+        static const long ID_CHOICE4;
+        static const long ID_TEXTCTRL12;
+        static const long ID_BUTTON11;
+        static const long ID_BUTTON12;
         static const long ID_PANEL4;
         static const long ID_PANEL1;
         static const long idMenuQuit;
@@ -119,6 +127,8 @@ class UGS_editorFrame: public wxFrame
 
         //(*Declarations(UGS_editorFrame)
         wxButton* Button10;
+        wxButton* Button11;
+        wxButton* Button12;
         wxButton* Button1;
         wxButton* Button2;
         wxButton* Button3;
@@ -129,6 +139,9 @@ class UGS_editorFrame: public wxFrame
         wxButton* Button8;
         wxButton* Button9;
         wxChoice* Choice1;
+        wxChoice* Choice2;
+        wxChoice* Choice3;
+        wxChoice* Choice4;
         wxDirDialog* DirDialog1;
         wxFileDialog* FileDialog1;
         wxFileDialog* FileDialog2;
@@ -139,7 +152,6 @@ class UGS_editorFrame: public wxFrame
         wxPanel* Panel3;
         wxPanel* Panel4;
         wxStaticLine* StaticLine1;
-        wxStaticLine* StaticLine2;
         wxStaticText* StaticText10;
         wxStaticText* StaticText11;
         wxStaticText* StaticText12;
@@ -157,6 +169,8 @@ class UGS_editorFrame: public wxFrame
         wxStaticText* StaticText8;
         wxStaticText* StaticText9;
         wxTextCtrl* TextCtrl10;
+        wxTextCtrl* TextCtrl11;
+        wxTextCtrl* TextCtrl12;
         wxTextCtrl* TextCtrl1;
         wxTextCtrl* TextCtrl2;
         wxTextCtrl* TextCtrl3;
@@ -172,8 +186,10 @@ class UGS_editorFrame: public wxFrame
         std::string pathLogo;
         std::string pathPoster;
         std::string pathAudio; // Audio orginal
-        std::string pathAudioBackgroung; // Apenas o Bacground
-        std::string pathAudioInstrument; // Apenas o instrumento
+        std::string pathAudioVoice;
+        std::string pathAudioInstrument1;
+        std::string pathAudioInstrument2;
+        std::string pathAudioInstrument3;
 
         std::string audioTotalTime;
         std::string pathOutput;

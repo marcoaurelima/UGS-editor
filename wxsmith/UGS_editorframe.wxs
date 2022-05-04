@@ -4,7 +4,7 @@
 		<title>Ultimate Guitar Show - Editor</title>
 		<centered>1</centered>
 		<pos>-1,-1</pos>
-		<size>1053,538</size>
+		<size>1053,554</size>
 		<id_arg>0</id_arg>
 		<handler function="OnClose" entry="EVT_CLOSE" />
 		<object class="wxPanel" name="ID_PANEL1" variable="Panel1" member="yes">
@@ -12,8 +12,8 @@
 			<size>542,592</size>
 			<bg>wxSYS_COLOUR_MENU</bg>
 			<object class="wxPanel" name="ID_PANEL10" variable="Panel10" member="yes">
-				<pos>536,392</pos>
-				<size>480,88</size>
+				<pos>536,408</pos>
+				<size>480,104</size>
 				<bg>wxSYS_COLOUR_MENUBAR</bg>
 				<style>wxBORDER_DOUBLE|wxTAB_TRAVERSAL</style>
 				<object class="wxStaticText" name="ID_STATICTEXT16" variable="StaticText16" member="yes">
@@ -23,27 +23,27 @@
 				</object>
 				<object class="wxButton" name="ID_BUTTON3" variable="Button3" member="yes">
 					<label>Exportar tudo</label>
-					<pos>280,24</pos>
+					<pos>288,24</pos>
 					<size>170,30</size>
 					<handler function="OnButton3Click1" entry="EVT_BUTTON" />
 				</object>
 				<object class="wxGauge" name="ID_GAUGE1" variable="Gauge1" member="yes">
-					<pos>40,65</pos>
-					<size>408,8</size>
+					<pos>26,72</pos>
+					<size>432,10</size>
 				</object>
 			</object>
 			<object class="wxPanel" name="ID_PANEL2" variable="Panel2" member="yes">
 				<pos>32,72</pos>
-				<size>480,408</size>
+				<size>480,440</size>
 				<bg>wxSYS_COLOUR_MENUBAR</bg>
 				<style>wxBORDER_DOUBLE|wxTAB_TRAVERSAL</style>
 				<object class="wxTextCtrl" name="ID_TEXTCTRL1" variable="TextCtrl1" member="yes">
-					<pos>104,32</pos>
-					<size>336,30</size>
+					<pos>88,46</pos>
+					<size>352,24</size>
 				</object>
 				<object class="wxTextCtrl" name="ID_TEXTCTRL2" variable="TextCtrl2" member="yes">
-					<pos>104,72</pos>
-					<size>336,30</size>
+					<pos>88,84</pos>
+					<size>352,24</size>
 				</object>
 				<object class="wxChoice" name="ID_CHOICE1" variable="Choice1" member="yes">
 					<content>
@@ -63,34 +63,34 @@
 						<item>Piano</item>
 						<item>Teclado</item>
 					</content>
-					<pos>128,116</pos>
-					<size>316,23</size>
+					<pos>112,124</pos>
+					<size>326,23</size>
 				</object>
 				<object class="wxTextCtrl" name="ID_TEXTCTRL3" variable="TextCtrl3" member="yes">
-					<pos>128,154</pos>
-					<size>266,28</size>
+					<pos>112,162</pos>
+					<size>284,24</size>
 					<enabled>0</enabled>
 				</object>
 				<object class="wxStaticText" name="ID_STATICTEXT2" variable="StaticText2" member="yes">
 					<label>Artista</label>
-					<pos>40,40</pos>
+					<pos>32,48</pos>
 				</object>
 				<object class="wxStaticText" name="ID_STATICTEXT3" variable="StaticText3" member="yes">
 					<label>Musica</label>
-					<pos>40,80</pos>
+					<pos>32,85</pos>
 				</object>
 				<object class="wxStaticText" name="ID_STATICTEXT4" variable="StaticText4" member="yes">
 					<label>Instrumento</label>
-					<pos>40,120</pos>
+					<pos>32,123</pos>
 				</object>
 				<object class="wxStaticText" name="ID_STATICTEXT6" variable="StaticText6" member="yes">
 					<label>Audio .ogg</label>
-					<pos>40,160</pos>
+					<pos>32,163</pos>
 				</object>
 				<object class="wxButton" name="ID_BUTTON1" variable="Button1" member="yes">
-					<label>...</label>
-					<pos>400,152</pos>
-					<size>37,30</size>
+					<label>. . .</label>
+					<pos>402,160</pos>
+					<size>38,24</size>
 					<handler function="OnButton1Click" entry="EVT_BUTTON" />
 				</object>
 				<object class="wxStaticText" name="ID_STATICTEXT9" variable="StaticText9" member="yes">
@@ -100,7 +100,7 @@
 				</object>
 				<object class="wxStaticText" name="ID_STATICTEXT5" variable="StaticText5" member="yes">
 					<label>Arquivo de sequencia bruta</label>
-					<pos>40,216</pos>
+					<pos>32,216</pos>
 				</object>
 				<object class="wxTextCtrl" name="ID_TEXTCTRL7" variable="TextCtrl7" member="yes">
 					<value>Ausente</value>
@@ -119,27 +119,23 @@
 				</object>
 				<object class="wxStaticText" name="ID_STATICTEXT7" variable="StaticText7" member="yes">
 					<label>Path de saida</label>
-					<pos>40,264</pos>
+					<pos>32,296</pos>
 				</object>
 				<object class="wxTextCtrl" name="ID_TEXTCTRL8" variable="TextCtrl8" member="yes">
-					<pos>32,288</pos>
-					<size>362,30</size>
+					<pos>32,320</pos>
+					<size>362,24</size>
 					<enabled>0</enabled>
 				</object>
 				<object class="wxButton" name="ID_BUTTON7" variable="Button7" member="yes">
-					<label>...</label>
-					<pos>400,288</pos>
-					<size>39,30</size>
+					<label>. . .</label>
+					<pos>400,320</pos>
+					<size>38,24</size>
 					<handler function="OnButton7Click1" entry="EVT_BUTTON" />
-				</object>
-				<object class="wxStaticLine" name="ID_STATICLINE2" variable="StaticLine2" member="yes">
-					<pos>20,250</pos>
-					<size>440,-1</size>
 				</object>
 				<object class="wxButton" name="ID_BUTTON10" variable="Button10" member="yes">
 					<label>Criar ambiente de producao</label>
-					<pos>32,345</pos>
-					<size>415,37</size>
+					<pos>32,376</pos>
+					<size>406,40</size>
 					<handler function="OnButton10Click" entry="EVT_BUTTON" />
 				</object>
 			</object>
@@ -161,54 +157,55 @@
 				<size>400,-1</size>
 			</object>
 			<object class="wxPanel" name="ID_PANEL3" variable="Panel3" member="yes">
-				<pos>536,72</pos>
-				<size>480,168</size>
+				<pos>536,24</pos>
+				<size>480,144</size>
 				<bg>wxSYS_COLOUR_MENUBAR</bg>
 				<style>wxBORDER_DOUBLE|wxTAB_TRAVERSAL</style>
 				<object class="wxButton" name="ID_BUTTON4" variable="Button4" member="yes">
-					<label>...</label>
-					<pos>424,32</pos>
-					<size>39,30</size>
+					<label>. . .</label>
+					<pos>424,37</pos>
+					<size>38,24</size>
 					<handler function="OnButton4Click" entry="EVT_BUTTON" />
 				</object>
 				<object class="wxTextCtrl" name="ID_TEXTCTRL4" variable="TextCtrl4" member="yes">
-					<pos>168,33</pos>
-					<size>247,29</size>
+					<value>SGSGS</value>
+					<pos>128,37</pos>
+					<size>286,24</size>
 					<enabled>0</enabled>
 				</object>
 				<object class="wxStaticText" name="ID_STATICTEXT10" variable="StaticText10" member="yes">
 					<label>Card (148x148)</label>
-					<pos>32,42</pos>
+					<pos>24,42</pos>
 				</object>
 				<object class="wxTextCtrl" name="ID_TEXTCTRL5" variable="TextCtrl5" member="yes">
-					<pos>168,72</pos>
-					<size>247,30</size>
+					<pos>128,69</pos>
+					<size>286,24</size>
 					<enabled>0</enabled>
 				</object>
 				<object class="wxButton" name="ID_BUTTON5" variable="Button5" member="yes">
-					<label>...</label>
-					<pos>424,72</pos>
-					<size>39,30</size>
+					<label>. . .</label>
+					<pos>424,69</pos>
+					<size>38,24</size>
 					<handler function="OnButton5Click" entry="EVT_BUTTON" />
 				</object>
 				<object class="wxStaticText" name="ID_STATICTEXT11" variable="StaticText11" member="yes">
 					<label>Logo (246x246)</label>
-					<pos>32,80</pos>
+					<pos>24,72</pos>
 				</object>
 				<object class="wxTextCtrl" name="ID_TEXTCTRL6" variable="TextCtrl6" member="yes">
-					<pos>168,112</pos>
-					<size>247,30</size>
+					<pos>128,102</pos>
+					<size>286,24</size>
 					<enabled>0</enabled>
 				</object>
 				<object class="wxButton" name="ID_BUTTON6" variable="Button6" member="yes">
-					<label>...</label>
-					<pos>424,112</pos>
-					<size>39,30</size>
+					<label>. . .</label>
+					<pos>424,102</pos>
+					<size>38,24</size>
 					<handler function="OnButton6Click" entry="EVT_BUTTON" />
 				</object>
 				<object class="wxStaticText" name="ID_STATICTEXT12" variable="StaticText12" member="yes">
 					<label>Poster (1368x769)</label>
-					<pos>32,120</pos>
+					<pos>24,104</pos>
 				</object>
 				<object class="wxStaticText" name="ID_STATICTEXT14" variable="StaticText14" member="yes">
 					<label>Imagem</label>
@@ -217,23 +214,24 @@
 				</object>
 			</object>
 			<object class="wxPanel" name="ID_PANEL4" variable="Panel4" member="yes">
-				<pos>536,248</pos>
-				<size>480,128</size>
+				<pos>536,176</pos>
+				<size>480,224</size>
 				<bg>wxSYS_COLOUR_MENUBAR</bg>
 				<style>wxBORDER_DOUBLE|wxTAB_TRAVERSAL</style>
 				<object class="wxTextCtrl" name="ID_TEXTCTRL9" variable="TextCtrl9" member="yes">
-					<pos>160,32</pos>
-					<size>255,30</size>
+					<value>FSAF</value>
+					<pos>64,42</pos>
+					<size>352,24</size>
 					<enabled>0</enabled>
 				</object>
 				<object class="wxStaticText" name="ID_STATICTEXT8" variable="StaticText8" member="yes">
-					<label>Background .ogg</label>
-					<pos>24,40</pos>
+					<label>Voz</label>
+					<pos>24,45</pos>
 				</object>
 				<object class="wxButton" name="ID_BUTTON8" variable="Button8" member="yes">
-					<label>...</label>
-					<pos>424,32</pos>
-					<size>39,30</size>
+					<label>. . .</label>
+					<pos>424,42</pos>
+					<size>38,24</size>
 					<handler function="OnButton8Click" entry="EVT_BUTTON" />
 				</object>
 				<object class="wxStaticText" name="ID_STATICTEXT13" variable="StaticText13" member="yes">
@@ -242,19 +240,110 @@
 					<fg>wxSYS_COLOUR_GRAYTEXT</fg>
 				</object>
 				<object class="wxTextCtrl" name="ID_TEXTCTRL10" variable="TextCtrl10" member="yes">
-					<pos>160,73</pos>
-					<size>256,29</size>
+					<value>GBDFGHDF</value>
+					<pos>152,114</pos>
+					<size>266,24</size>
 					<enabled>0</enabled>
 				</object>
 				<object class="wxStaticText" name="ID_STATICTEXT15" variable="StaticText15" member="yes">
-					<label>Instrumento .ogg</label>
-					<pos>24,80</pos>
+					<label>Instrumentos</label>
+					<pos>24,88</pos>
 				</object>
 				<object class="wxButton" name="ID_BUTTON9" variable="Button9" member="yes">
-					<label>...</label>
-					<pos>424,72</pos>
-					<size>39,30</size>
+					<label>. . .</label>
+					<pos>424,114</pos>
+					<size>38,24</size>
 					<handler function="OnButton9Click" entry="EVT_BUTTON" />
+				</object>
+				<object class="wxChoice" name="ID_CHOICE2" variable="Choice2" member="yes">
+					<content>
+						<item>Guitarra 1</item>
+						<item>Guitarra 2</item>
+						<item>Baixo</item>
+						<item>Bateria</item>
+						<item>Sanfona</item>
+						<item>Zabumba</item>
+						<item>Triangulo</item>
+						<item>Sax</item>
+						<item>Violao</item>
+						<item>Cavaquinho</item>
+						<item>Ukulele</item>
+						<item>Trompete</item>
+						<item>Sampler</item>
+						<item>Piano</item>
+						<item>Teclado</item>
+					</content>
+					<selection>0</selection>
+					<pos>24,114</pos>
+					<size>118,23</size>
+				</object>
+				<object class="wxTextCtrl" name="ID_TEXTCTRL11" variable="TextCtrl11" member="yes">
+					<value>GFGFDSG</value>
+					<pos>152,146</pos>
+					<size>266,23</size>
+					<enabled>0</enabled>
+				</object>
+				<object class="wxChoice" name="ID_CHOICE3" variable="Choice3" member="yes">
+					<content>
+						<item>Guitarra 1</item>
+						<item>Guitarra 2</item>
+						<item>Baixo</item>
+						<item>Bateria</item>
+						<item>Sanfona</item>
+						<item>Zabumba</item>
+						<item>Triangulo</item>
+						<item>Sax</item>
+						<item>Violao</item>
+						<item>Cavaquinho</item>
+						<item>Ukulele</item>
+						<item>Trompete</item>
+						<item>Sampler</item>
+						<item>Piano</item>
+						<item>Teclado</item>
+					</content>
+					<selection>2</selection>
+					<pos>24,146</pos>
+					<size>118,23</size>
+				</object>
+				<object class="wxChoice" name="ID_CHOICE4" variable="Choice4" member="yes">
+					<content>
+						<item>Guitarra 1</item>
+						<item>Guitarra 2</item>
+						<item>Baixo</item>
+						<item>Bateria</item>
+						<item>Sanfona</item>
+						<item>Zabumba</item>
+						<item>Triangulo</item>
+						<item>Sax</item>
+						<item>Violao</item>
+						<item>Cavaquinho</item>
+						<item>Ukulele</item>
+						<item>Trompete</item>
+						<item>Sampler</item>
+						<item>Piano</item>
+						<item>Teclado</item>
+					</content>
+					<selection>3</selection>
+					<pos>24,178</pos>
+					<size>118,23</size>
+				</object>
+				<object class="wxTextCtrl" name="ID_TEXTCTRL12" variable="TextCtrl12" member="yes">
+					<value>GGGGK</value>
+					<pos>152,178</pos>
+					<size>266,23</size>
+					<enabled>0</enabled>
+				</object>
+				<object class="wxButton" name="ID_BUTTON11" variable="Button11" member="yes">
+					<label>. . .</label>
+					<pos>424,146</pos>
+					<size>38,24</size>
+					<handler function="OnButton11Click" entry="EVT_BUTTON" />
+				</object>
+				<object class="wxButton" name="ID_BUTTON12" variable="Button12" member="yes">
+					<label>. . .</label>
+					<pos>424,178</pos>
+					<size>38,24</size>
+					<handler function="OnButton12Click" entry="EVT_BUTTON" />
 				</object>
 			</object>
 		</object>
