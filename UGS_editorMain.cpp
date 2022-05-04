@@ -545,6 +545,10 @@ std::vector<int> genChord(int chordWeight, int dificulty)
 
 void UGS_editorFrame::OnButton3Click1(wxCommandEvent& event)
 {
+    if(!enviromentProductionCreated)
+    {
+        wxMessageBox(wxT("Ambiente de produção não foi criado ainda."), wxT("Impossível exportar")); return;
+    }
     // Boquear exportação se arquivo de sequencia brura estiver faltando
     if(StaticText17->GetLabel() != "  [    Presente    ]  ")
     {
@@ -653,7 +657,6 @@ void UGS_editorFrame::OnButton3Click1(wxCommandEvent& event)
     // AUDIO
     ss.str("");
     copy_file(pathAudioVoice, pathOutput + "/audio/background.ogg");
-    copy_file(pathAudio, pathOutput + "/song.ogg");
 
     ss.str("");
     copy_file(pathAudioInstrument1, pathOutput + "/audio/" + std::to_string(Choice2->GetCurrentSelection()) + ".ogg");
@@ -661,6 +664,59 @@ void UGS_editorFrame::OnButton3Click1(wxCommandEvent& event)
     copy_file(pathAudioInstrument3, pathOutput + "/audio/" + std::to_string(Choice4->GetCurrentSelection()) + ".ogg");
 
     Gauge1->SetValue(90);
+
+
+    // Inserir informação de intrumento
+    std::ifstream ifs;
+    ifs.open(pathOutput + "/info/instrument1.txt");
+    if(ifs.is_open())
+    {
+        int code = Choice2->GetCurrentSelection();
+        std::string instr = Choice2->GetString(code).ToStdString();
+
+        if(code != -1)
+        {
+            std::ofstream ofs;
+            ofs.open(pathOutput + "/info/instrument1.txt");
+            ofs << code << " " << instr;
+            ofs.close();
+        }
+    }
+    ifs.close();
+
+    ifs.open(pathOutput + "/info/instrument2.txt");
+    if(ifs.is_open())
+    {
+        int code = Choice3->GetCurrentSelection();
+        std::string instr = Choice3->GetString(code).ToStdString();
+
+        if(code != -1)
+        {
+            std::ofstream ofs;
+            ofs.open(pathOutput + "/info/instrument2.txt");
+            ofs << code << " " << instr;
+            ofs.close();
+        }
+    }
+    ifs.close();
+
+    ifs.open(pathOutput + "/info/instrument3.txt");
+    if(ifs.is_open())
+    {
+        int code = Choice4->GetCurrentSelection();
+        std::string instr = Choice4->GetString(code).ToStdString();
+
+        if(code != -1)
+        {
+            std::ofstream ofs;
+            ofs.open(pathOutput + "/info/instrument3.txt");
+            ofs << code << " " << instr;
+            ofs.close();
+        }
+    }
+    ifs.close();
+
+
 
     // SEQUENCIA DO INSTRUMENTO
     ss.str("");
@@ -695,6 +751,8 @@ void UGS_editorFrame::OnButton7Click1(wxCommandEvent& event)
     if(res == wxID_CANCEL)
         return;
 
+    enviromentProductionCreated = false;
+
     // Apaga todas as informações de path antigas se houver
     // (path relativos as imagens e audio intrumento background)
     TextCtrl4->Clear();
@@ -704,7 +762,6 @@ void UGS_editorFrame::OnButton7Click1(wxCommandEvent& event)
     TextCtrl10->Clear();
     TextCtrl11->Clear();
     TextCtrl12->Clear();
-    pathAudio = "";
     pathAudioVoice = "";
     pathAudioInstrument1 = "";
     pathAudioInstrument2 = "";
@@ -850,6 +907,7 @@ void UGS_editorFrame::OnButton7Click1(wxCommandEvent& event)
        {
            Button10->Enable(true);
        }
+
 }
 
 
@@ -994,46 +1052,10 @@ void UGS_editorFrame::OnButton10Click(wxCommandEvent& event)
     mkdir((pathOutput + "/picture").c_str());
     mkdir((pathOutput + "/audio").c_str());
 
+    copy_file(pathAudio, pathOutput + "/song.ogg");
 
-    // Inserir informação de intrumento
-    // Procurar entre os 4 se ainda tem vaga
-    // pra outro instrumento.
-    // se já houver o instrumento em questão em algum arquivo, será subscreito.
-    int fileAvailableNum = 0;
-    for(int i=1;i<=4 && fileAvailableNum==0;i++)
-    {
-        ifs.open(pathOutput + "/info/instrument" + std::to_string(i) + ".txt");
-        if(ifs.is_open())
-        {
-            std::string emptyFileContent = "15 --";
-            std::string currentInstrument =  std::to_string(Choice1->GetCurrentSelection()) + " " + Choice1->GetString(Choice1->GetCurrentSelection()).Upper().ToStdString();
-
-            std::string buffer;
-            std::getline(ifs, buffer);
-            if(buffer == emptyFileContent || buffer == currentInstrument)
-            {
-                fileAvailableNum = i;
-            }
-        }
-        ifs.close();
-    }
-
-    if(fileAvailableNum != 0) // Houve algum arquivo disponível entre os 4
-    {
-        std::ofstream ofs;
-        ofs.open(pathOutput + "/info/instrument" + std::to_string(fileAvailableNum) + ".txt");
-        ofs << Choice1->GetCurrentSelection() << " " << Choice1->GetString(Choice1->GetCurrentSelection()).Upper().ToStdString();
-        ofs.close();
-    } else //
-    {
-        std::stringstream msg;
-        msg << "Esta musica ja dispoe de 4 instrumentos editados. O limite e' de 4 instrumentos.\n"
-            << "todos os arquivos serao exportados normalmente, mas nao estarao visiveis no jogo.\n"
-            << "Para deixa-los visiveis, basta editar os arquivos de instrumento em /info\npara os instrumentos desejados.";
-        wxMessageBox(msg.str(), "Aviso");
-    }
-
-     wxMessageBox(wxT("Ambiente de produção criado com sucesso!"), wxT("Informação"));
+    enviromentProductionCreated = true;
+    wxMessageBox(wxT("Ambiente de produção criado com sucesso!"), wxT("Informação"));
 }
 
 

@@ -194,6 +194,8 @@ class UGS_editorFrame: public wxFrame
         std::string audioTotalTime;
         std::string pathOutput;
 
+        bool enviromentProductionCreated{false};
+
         DECLARE_EVENT_TABLE()
 };
 

@@ -4102,7 +4102,7 @@
 	<SFML/Graphics.hpp>
 	<SFML/Audio.hpp>
 
-1651631161 c:\users\marco\documents\tcc\ugs-editor\ugs_editormain.h
+1651642388 c:\users\marco\documents\tcc\ugs-editor\ugs_editormain.h
 	<wx/button.h>
 	<wx/choice.h>
 	<wx/dirdlg.h>
@@ -4717,7 +4717,7 @@
 
 1572212502 c:\wxwidgets-3.1.3\include\wx\qt\stattext.h
 
-1651636961 source:c:\users\marco\documents\tcc\ugs-editor\ugs_editormain.cpp
+1651642289 source:c:\users\marco\documents\tcc\ugs-editor\ugs_editormain.cpp
 	"UGS_editorMain.h"
 	<wx/msgdlg.h>
 	<wx/font.h>
