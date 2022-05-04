@@ -385,7 +385,7 @@ void UGS_editorFrame::OnButton1Click(wxCommandEvent& event)
 
     std::string path = FileDialog1->GetPath().ToStdString();
     corrPath(path);
-    TextCtrl3->SetValue(shortenPath(path, 32));
+    TextCtrl3->SetValue(shortenPath(path, 46));
     pathAudio = path;
 
     sf::Music music;
@@ -403,7 +403,7 @@ void UGS_editorFrame::OnButton4Click(wxCommandEvent& event)
 
     std::string path = FileDialog2->GetPath().ToStdString();
     corrPath(path);
-    TextCtrl4->SetValue(shortenPath(path, 32));
+    TextCtrl4->SetValue(shortenPath(path, 46));
     pathCard = path;
 }
 
@@ -415,7 +415,7 @@ void UGS_editorFrame::OnButton5Click(wxCommandEvent& event)
 
     std::string path = FileDialog2->GetPath().ToStdString();
     corrPath(path);
-    TextCtrl5->SetValue(shortenPath(path, 32));
+    TextCtrl5->SetValue(shortenPath(path, 46));
     pathLogo = path;
 }
 
@@ -427,7 +427,7 @@ void UGS_editorFrame::OnButton6Click(wxCommandEvent& event)
 
     std::string path = FileDialog2->GetPath().ToStdString();
     corrPath(path);
-    TextCtrl6->SetValue(shortenPath(path, 32));
+    TextCtrl6->SetValue(shortenPath(path, 46));
     pathPoster = path;
 }
 
@@ -465,20 +465,15 @@ void UGS_editorFrame::OnButton2Click2(wxCommandEvent& event)
 
 int getRandInt(int range)
 {
-
     std::random_device dev;
     std::mt19937 rng(dev());
     std::uniform_int_distribution<std::mt19937::result_type> dist6(0,range);
 
     return dist6(rng);
-    /*
-    srand(time(NULL));
-    return rand()%range;*/
 }
 
 std::vector<int> genChord_old(int chordWeight, int dificulty)
 {
-    puts("!!!");
     std::vector<int> chords;
     int chordSize = chordWeight;
     int colorRange = 2;
@@ -498,15 +493,9 @@ std::vector<int> genChord_old(int chordWeight, int dificulty)
     // Gerar os acordes
     while(true)
     {
-        puts("***");
-        std::cout << "chords.size(): " << chords.size() << "\n";
-        std::cout << "(unsigned)chordSize: " << (unsigned)chordSize << "\n";
-        std::cout << "colorRange: " << colorRange << "\n";
-
         if(chords.size() == (unsigned)chordSize){ break; }
 
         int tileColor = getRandInt(colorRange);
-        std::cout << "tileColor: " << tileColor << "\n\n";
 
         bool exists = false;
         for(auto& i : chords)
@@ -517,7 +506,6 @@ std::vector<int> genChord_old(int chordWeight, int dificulty)
         if(!exists)
         chords.push_back(tileColor);
     }
-puts("+++");
     return chords;
 }
 
@@ -552,20 +540,18 @@ std::vector<int> genChord(int chordWeight, int dificulty)
         chords.push_back(colors[i]);
     }
 
-    printf("Acordes: ");
-    for(auto& i :  chords)
-    {
-        std::cout << i << " ";
-    }
-    puts("");
-
     return chords;
 }
 
 void UGS_editorFrame::OnButton3Click1(wxCommandEvent& event)
 {
-    //puts("1111111");
-    // Boquear edição se os campos estão faltando
+    // Boquear exportação se arquivo de sequencia brura estiver faltando
+    if(StaticText17->GetLabel() != "  [    Presente    ]  ")
+    {
+        wxMessageBox(wxT("Nao há arquivo de sequência bruta ainda."), wxT("Impossível exportar")); return;
+    }
+
+    // Boquear exportação se os campos estão faltando
     bool lock = TextCtrl1->IsEmpty() ||
                 TextCtrl2->IsEmpty() ||
                 TextCtrl3->IsEmpty() ||
@@ -579,7 +565,7 @@ void UGS_editorFrame::OnButton3Click1(wxCommandEvent& event)
                 TextCtrl11->IsEmpty() ||
                 TextCtrl12->IsEmpty() ||
                 Choice1->GetSelection() < 0;
-    if(lock){ wxMessageBox("Preencha todos os campos.", "Alerta"); return; }
+    if(lock){ wxMessageBox(wxT("Preencha todos os campos."),  wxT("Impossível exportar")); return; }
 
     if(TextCtrl8->IsEmpty()){ wxMessageBox("Defina uma pasta de saida.", "Erro", wxICON_ERROR); return; }
 
@@ -588,67 +574,47 @@ void UGS_editorFrame::OnButton3Click1(wxCommandEvent& event)
 
     Gauge1->SetValue(10);
 
-    //puts("22222");
     std::vector<float> seqTime;
     std::vector<int> seqWeight;
     std::vector<float> seqBend;
 
-    //puts("33333");
     float a = 0.0;
     float c = 0.0;
     int b = 0;
 
     Gauge1->SetValue(30);
 
-    //puts("44444");
     while(fscanf(file, "%f %d %f", &a, &b, &c) != EOF)
     {
-        //std::cout << a << " - " << b << " - " << c << "\n";
         seqTime.push_back(a);
         seqWeight.push_back(b);
         seqBend.push_back(c);
     }
     fclose(file);
 
-    std::cout << "seqTime: " << seqTime.size() << "\n";
-    std::cout << "seqWeight: " << seqWeight.size() << "\n";
-    std::cout << "seqBend: " << seqBend.size() << "\n";
-
-    //puts("555555");
-
     std::stringstream sequenceEasy;
     std::stringstream sequenceMedium;
     std::stringstream sequenceHard;
 
-    //puts("66666");
     // Produção da faixa fácil
     for(unsigned i=0;i<seqTime.size();i++)
     {
         auto chordsEasy = genChord(seqWeight[i], 0);
-        //puts("aaa");
         auto chordsMedium = genChord(seqWeight[i], 1);
-        //puts("bbb");
         auto chordsHard = genChord(seqWeight[i], 2);
-        //puts("ccc");
         for(unsigned j=0;j<chordsEasy.size();j++)
         {
             sequenceEasy << seqTime[i] << " " << chordsEasy[j] << " " << seqBend[i] << "\n";
-         //   puts("ddd");
         }
         for(unsigned j=0;j<chordsMedium.size();j++)
         {
             sequenceMedium << seqTime[i] << " " << chordsMedium[j] << " " << seqBend[i] << "\n";
-            //puts("eee");
         }
         for(unsigned j=0;j<chordsHard.size();j++)
         {
             sequenceHard << seqTime[i] << " " << chordsHard[j] << " " << seqBend[i] << "\n";
-            //puts("fff");
         }
-        //puts("ggg");
     }
-
-    //puts("7777777");
 
     Gauge1->SetValue(50);
 
@@ -670,36 +636,26 @@ void UGS_editorFrame::OnButton3Click1(wxCommandEvent& event)
     fputs(sequenceHard.str().c_str(), file);
     fclose(file);
 
-    //puts("888888");
     Gauge1->SetValue(70);
 
     // Fazer a transferencia de arquivos
     // IMAGEM
     std::stringstream ss;
     ss.str("");
-    //ss << "copy " << pathCard << " " << pathOutput << "/picture/card.png";
-    //system(ss.str().c_str());
     copy_file(pathCard, pathOutput + "/picture/card.png");
 
     ss.str("");
-    //ss << "copy " << pathLogo << " " << pathOutput << "/picture/logo.png";
-    //system(ss.str().c_str());
     copy_file(pathLogo, pathOutput + "/picture/logo.png");
 
     ss.str("");
-    //ss << "copy " << pathPoster << " " << pathOutput << "/picture/poster.png";
-    //system(ss.str().c_str());
     copy_file(pathPoster, pathOutput + "/picture/poster.png");
 
     // AUDIO
     ss.str("");
-    //ss << "copy " << pathAudioBackgroung << " " << pathOutput << "/audio/background.ogg";
-    //system(ss.str().c_str());
     copy_file(pathAudioVoice, pathOutput + "/audio/background.ogg");
     copy_file(pathAudio, pathOutput + "/song.ogg");
+
     ss.str("");
-    //ss << "copy " << pathAudioInstrument << " " << pathOutput << "/audio/" << Choice1->GetCurrentSelection() << ".ogg";
-    //system(ss.str().c_str());
     copy_file(pathAudioInstrument1, pathOutput + "/audio/" + std::to_string(Choice2->GetCurrentSelection()) + ".ogg");
     copy_file(pathAudioInstrument2, pathOutput + "/audio/" + std::to_string(Choice3->GetCurrentSelection()) + ".ogg");
     copy_file(pathAudioInstrument3, pathOutput + "/audio/" + std::to_string(Choice4->GetCurrentSelection()) + ".ogg");
@@ -708,21 +664,14 @@ void UGS_editorFrame::OnButton3Click1(wxCommandEvent& event)
 
     // SEQUENCIA DO INSTRUMENTO
     ss.str("");
-    //ss << "copy " << pathEasy << " " << pathOutput << "/sequence/0/" << instrument << ".txt";
-    //system(ss.str().c_str());
     copy_file(pathEasy, pathOutput + "/sequence/0/" + instrument + ".txt");
 
     ss.str("");
-    //ss << "copy " << pathMedium << " " << pathOutput << "/sequence/1/" << instrument << ".txt";
-    //system(ss.str().c_str());
     copy_file(pathMedium, pathOutput + "/sequence/1/" + instrument + ".txt");
 
     ss.str("");
-    //ss << "copy " << pathHard << " " << pathOutput << "/sequence/2/" << instrument << ".txt";
-    //system(ss.str().c_str());
     copy_file(pathHard, pathOutput + "/sequence/2/" + instrument + ".txt");
 
-    //puts("9999999");
     Gauge1->SetValue(100);
 
     wxMessageBox(wxT("Finalizado!"), wxT("Feedback"));
@@ -736,12 +685,11 @@ void UGS_editorFrame::OnButton7Click1(wxCommandEvent& event)
     std::stringstream instructions;
     instructions << "1. Escolha a pasta que recebera a exportacao.\n" <<
                     "2. Esta pasta tem que estar dentro de /songs,\n" <<
-                    "    (diretorios do jogo que guardas as musicas).\n" <<
-                    "3. Se nao houver ainda nenhuma pasta, crie\n" <<
-                    "   uma nova (nome da pasta deve ser o proximo\n" <<
-                    "   numero inteiro da sequencia de pastas em /songs).";
-    wxMessageBox(instructions.str(), "INSTRUCOES", wxICON_INFORMATION);
+                    "    (diretorio do jogo que guarda as musicas).\n" <<
+                    "3. Pode-se usar uma pasta ja existente.\n" <<
+                    "   Se nao houver a pasta ainda, crie-a.\n";
 
+    wxMessageBox(instructions.str(), "INSTRUCOES");
 
     auto res = DirDialog1->ShowModal();
     if(res == wxID_CANCEL)
@@ -767,7 +715,7 @@ void UGS_editorFrame::OnButton7Click1(wxCommandEvent& event)
 
     std::string path = DirDialog1->GetPath().ToStdString();
     corrPath(path);
-    TextCtrl8->SetValue(shortenPath(path, 42));
+    TextCtrl8->SetValue(shortenPath(path, 56));
     pathOutput = path;
 
 
@@ -777,7 +725,7 @@ void UGS_editorFrame::OnButton7Click1(wxCommandEvent& event)
     ifs.open(pathOutput + "/picture/card.png");
     if(ifs.is_open())
     {
-        TextCtrl4->SetValue(shortenPath((pathOutput + "/picture/card.png"), 32));
+        TextCtrl4->SetValue(shortenPath((pathOutput + "/picture/card.png"), 46));
         pathCard = (pathOutput + "/picture/card.png");
     }
     ifs.close();
@@ -785,7 +733,7 @@ void UGS_editorFrame::OnButton7Click1(wxCommandEvent& event)
     ifs.open(pathOutput + "/picture/logo.png");
     if(ifs.is_open())
     {
-        TextCtrl5->SetValue(shortenPath((pathOutput + "/picture/logo.png"), 32));
+        TextCtrl5->SetValue(shortenPath((pathOutput + "/picture/logo.png"), 46));
         pathLogo = (pathOutput + "/picture/logo.png");
     }
     ifs.close();
@@ -793,24 +741,73 @@ void UGS_editorFrame::OnButton7Click1(wxCommandEvent& event)
     ifs.open(pathOutput + "/picture/poster.png");
     if(ifs.is_open())
     {
-        TextCtrl6->SetValue(shortenPath((pathOutput + "/picture/poster.png"), 32));
+        TextCtrl6->SetValue(shortenPath((pathOutput + "/picture/poster.png"), 46));
         pathPoster = (pathOutput + "/picture/poster.png");
     }
     ifs.close();
 
+    FILE* file = NULL;
 
-    ///system(("mkdir " + pathOutput + "/audio").c_str());
-    std::cout << "DEBUG:\n";
-    std::cout << (pathOutput + "/audio/" + std::to_string(Choice2->GetCurrentSelection()) + ".ogg\n");
-    std::cout << (pathOutput + "/audio/" + std::to_string(Choice3->GetCurrentSelection()) + ".ogg\n");
-    std::cout << (pathOutput + "/audio/" + std::to_string(Choice4->GetCurrentSelection()) + ".ogg\n");
+    // Verificar quais instrumentos existem na pasta
+    // Modificar os Choices
+    file = fopen((pathOutput + "/info/instrument1.txt").c_str(), "r");
+    if(file != NULL)
+    {
+        int n = -1;
+        fscanf(file, "%d ", &n);
+        Choice2->SetSelection(n);
+    }
+    fclose(file);
+
+    file = fopen((pathOutput + "/info/instrument2.txt").c_str(), "r");
+    if(file != NULL)
+    {
+        int n = -1;
+        fscanf(file, "%d ", &n);
+        Choice3->SetSelection(n);
+    }
+    fclose(file);
+
+    file = fopen((pathOutput + "/info/instrument3.txt").c_str(), "r");
+    if(file != NULL)
+    {
+        int n = -1;
+        fscanf(file, "%d ", &n);
+        Choice4->SetSelection(n);
+    }
+    fclose(file);
+
+    // Verificar se há informações de artistas e musica disponíveis
+    file = fopen((pathOutput + "/info/about.txt").c_str(), "r");
+    if(file != NULL)
+    {
+        std::stringstream ss;
+        char buffer[50];
+        fscanf(file, "%s", buffer);
+        ss << buffer;
+        TextCtrl1->SetValue(ss.str());
+
+        fscanf(file, "%s", buffer);
+        ss << buffer;
+        TextCtrl2->SetValue(ss.str());
+    }
+    fclose(file);
+
+    // Verificar se existe a faixa da musica completa disponivel
+    ifs.open(pathOutput + "/song.ogg");
+    if(ifs.is_open())
+    {
+        TextCtrl3->SetValue(shortenPath((pathOutput + "/song.ogg"), 45));
+        pathAudio = (pathOutput + "/song.ogg");
+    }
+    ifs.close();
 
     // Verificar se ja exitem arquivos de audio nas pastas
     // se existir, vai setar o path automaticamente nos campos.
     ifs.open(pathOutput + "/audio/background.ogg");
     if(ifs.is_open())
     {
-        TextCtrl9->SetValue(shortenPath((pathOutput + "/audio/background.ogg"), 32));
+        TextCtrl9->SetValue(shortenPath((pathOutput + "/audio/background.ogg"), 55));
         pathAudioVoice = (pathOutput + "/audio/background.ogg");
     }
     ifs.close();
@@ -818,7 +815,7 @@ void UGS_editorFrame::OnButton7Click1(wxCommandEvent& event)
     ifs.open(pathOutput + "/audio/" + std::to_string(Choice2->GetCurrentSelection()) + ".ogg");
     if(ifs.is_open())
     {
-        TextCtrl10->SetValue(shortenPath((pathOutput + "/audio/" + std::to_string(Choice2->GetCurrentSelection()) + ".ogg"), 32));
+        TextCtrl10->SetValue(shortenPath((pathOutput + "/audio/" + std::to_string(Choice2->GetCurrentSelection()) + ".ogg"), 44));
         pathAudioInstrument1 = (pathOutput + "/audio/" + std::to_string(Choice2->GetCurrentSelection()) + ".ogg");
     }
     ifs.close();
@@ -826,7 +823,7 @@ void UGS_editorFrame::OnButton7Click1(wxCommandEvent& event)
     ifs.open(pathOutput + "/audio/" + std::to_string(Choice3->GetCurrentSelection()) + ".ogg");
     if(ifs.is_open())
     {
-        TextCtrl11->SetValue(shortenPath((pathOutput + "/audio/" + std::to_string(Choice3->GetCurrentSelection()) + ".ogg"), 32));
+        TextCtrl11->SetValue(shortenPath((pathOutput + "/audio/" + std::to_string(Choice3->GetCurrentSelection()) + ".ogg"), 44));
         pathAudioInstrument2 = (pathOutput + "/audio/" + std::to_string(Choice3->GetCurrentSelection()) + ".ogg");
     }
     ifs.close();
@@ -834,7 +831,7 @@ void UGS_editorFrame::OnButton7Click1(wxCommandEvent& event)
     ifs.open(pathOutput + "/audio/" + std::to_string(Choice4->GetCurrentSelection()) + ".ogg");
     if(ifs.is_open())
     {
-        TextCtrl12->SetValue(shortenPath((pathOutput + "/audio/" + std::to_string(Choice4->GetCurrentSelection()) + ".ogg"), 32));
+        TextCtrl12->SetValue(shortenPath((pathOutput + "/audio/" + std::to_string(Choice4->GetCurrentSelection()) + ".ogg"), 44));
         pathAudioInstrument3 = (pathOutput + "/audio/" + std::to_string(Choice4->GetCurrentSelection()) + ".ogg");
     }
     ifs.close();
@@ -853,9 +850,6 @@ void UGS_editorFrame::OnButton7Click1(wxCommandEvent& event)
        {
            Button10->Enable(true);
        }
-
-
-
 }
 
 
@@ -867,7 +861,7 @@ void UGS_editorFrame::OnButton8Click(wxCommandEvent& event)
 
     std::string path = FileDialog1->GetPath().ToStdString();
     corrPath(path);
-    TextCtrl9->SetValue(shortenPath(path, 30));
+    TextCtrl9->SetValue(shortenPath(path, 55));
     pathAudioVoice = path;
 
     sf::Music music;
@@ -883,7 +877,7 @@ void UGS_editorFrame::OnButton9Click(wxCommandEvent& event)
 
     std::string path = FileDialog1->GetPath().ToStdString();
     corrPath(path);
-    TextCtrl10->SetValue(shortenPath(path, 30));
+    TextCtrl10->SetValue(shortenPath(path, 44));
     pathAudioInstrument1 = path;
 
     sf::Music music;
@@ -895,9 +889,6 @@ void UGS_editorFrame::OnButton9Click(wxCommandEvent& event)
 void UGS_editorFrame::OnClose(wxCloseEvent& event)
 {
     // Fazer backup de segurança da ultima edicao
-    //system("copy /Y exports/brute-sequence.txt exports/brute-sequence.txt.backup");
-    //system("del exports/brute-sequence.txt");
-
     copy_file("exports/brute-sequence.txt", "exports/brute-sequence.txt.backup");
     remove("exports/brute-sequence.txt");
 
@@ -907,7 +898,18 @@ void UGS_editorFrame::OnClose(wxCloseEvent& event)
 
 void UGS_editorFrame::OnButton10Click(wxCommandEvent& event)
 {
-    std::cout << pathOutput << "/sequence" << "\n";
+    // Verificar se todos os campos necessarios estão preenchidos
+    if(TextCtrl1->IsEmpty() ||
+       TextCtrl1->IsEmpty() ||
+       Choice1->GetCurrentSelection() == -1 ||
+       TextCtrl3->IsEmpty() ||
+       StaticText17->GetLabel() == "  [    Ausente    ]  " ||
+       TextCtrl8->IsEmpty()
+       ){
+        wxMessageBox(wxT("Favor preecha todos os campos da parte de \"Informações\""), wxT("Atenção"));
+        return;
+       }
+
 
     // Verificar se a pasta contêm as subpastas que irão receber a exportação
     // Se não houver, vai ser criado.
@@ -915,11 +917,6 @@ void UGS_editorFrame::OnButton10Click(wxCommandEvent& event)
     mkdir((pathOutput + "/sequence/0").c_str());
     mkdir((pathOutput + "/sequence/1").c_str());
     mkdir((pathOutput + "/sequence/2").c_str());
-
-    /*system(("mkdir " + pathOutput + "/sequence").c_str());
-    system(("mkdir " + pathOutput + "/sequence/0").c_str());
-    system(("mkdir " + pathOutput + "/sequence/1").c_str());
-    system(("mkdir " + pathOutput + "/sequence/2").c_str());*/
 
     std::ofstream ofs;
     ofs.open(pathOutput + "/sequence/speeds.txt");
@@ -996,8 +993,6 @@ void UGS_editorFrame::OnButton10Click(wxCommandEvent& event)
 
     mkdir((pathOutput + "/picture").c_str());
     mkdir((pathOutput + "/audio").c_str());
-    ///system(("mkdir " + pathOutput + "/picture").c_str());
-
 
 
     // Inserir informação de intrumento
@@ -1012,7 +1007,6 @@ void UGS_editorFrame::OnButton10Click(wxCommandEvent& event)
         {
             std::string emptyFileContent = "15 --";
             std::string currentInstrument =  std::to_string(Choice1->GetCurrentSelection()) + " " + Choice1->GetString(Choice1->GetCurrentSelection()).Upper().ToStdString();
-            std::cout << "res " << currentInstrument << "\n";
 
             std::string buffer;
             std::getline(ifs, buffer);
@@ -1051,7 +1045,7 @@ void UGS_editorFrame::OnButton11Click(wxCommandEvent& event)
 
     std::string path = FileDialog1->GetPath().ToStdString();
     corrPath(path);
-    TextCtrl11->SetValue(shortenPath(path, 30));
+    TextCtrl11->SetValue(shortenPath(path, 44));
     pathAudioInstrument2 = path;
 
     sf::Music music;
@@ -1067,7 +1061,7 @@ void UGS_editorFrame::OnButton12Click(wxCommandEvent& event)
 
     std::string path = FileDialog1->GetPath().ToStdString();
     corrPath(path);
-    TextCtrl12->SetValue(shortenPath(path, 30));
+    TextCtrl12->SetValue(shortenPath(path, 44));
     pathAudioInstrument3 = path;
 
     sf::Music music;

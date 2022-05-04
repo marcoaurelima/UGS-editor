@@ -130,7 +130,7 @@
 					<handler function="OnButton10Click" entry="EVT_BUTTON" />
 				</object>
 				<object class="wxStaticText" name="ID_STATICTEXT17" variable="StaticText17" member="yes">
-					<label>  [    ausente    ]  </label>
+					<label>  [    Ausente    ]  </label>
 					<pos>200,216</pos>
 					<fg>#FF0000</fg>
 					<bg>wxSYS_COLOUR_WINDOW</bg>
